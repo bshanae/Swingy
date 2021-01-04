@@ -1,0 +1,17 @@
+name : Legendary rapier
+category : rapier
+
+attacks :
+  - name : Thrust
+    weight : 80
+    damage :
+      min : 800
+      max : 800
+    criticalChance : 0.5
+
+  - name : Backstab
+    weight : 20
+    damage :
+      min : 1500
+      max : 1500
+    criticalChance : 0.8

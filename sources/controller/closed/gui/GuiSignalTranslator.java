@@ -12,7 +12,7 @@ public class					GuiSignalTranslator extends SignalTranslator
 		Signals.Gui				guiSignal;
 
 		guiSignal = (Signals.Gui)signal;
-		switch (guiSignal.buttonId)
+		switch (guiSignal.getButtonId())
 		{
 			case INFO_OK:
 				return new Commands.Ok();
@@ -48,7 +48,7 @@ public class					GuiSignalTranslator extends SignalTranslator
 				return new Commands.Delete(3);
 
 			case NAME_ENTRY_ENTER:
-				return new Commands.Enter((String)guiSignal.linkedData);
+				return new Commands.Enter((String)guiSignal.getLinkedData());
 
 			case MAP_ARROW_UP:
 				return new Commands.GoNorth();

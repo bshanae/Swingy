@@ -1,0 +1,9 @@
+name : Broken stuff
+category : stuff
+
+attacks :
+  - name : Magic arrow
+    weight : 100
+    damage :
+      min : 25
+      max : 25

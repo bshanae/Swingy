@@ -1,0 +1,15 @@
+name : Student stuff
+category : stuff
+
+attacks :
+  - name : Magic arrow
+    weight : 85
+    damage :
+      min : 30
+      max : 30
+
+  - name : Heavy magic arrow
+    weight : 15
+    damage :
+      min : 50
+      max : 50

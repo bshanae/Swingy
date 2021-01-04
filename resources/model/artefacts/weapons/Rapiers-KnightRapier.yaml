@@ -1,0 +1,17 @@
+name : Knight rapier
+category : rapier
+
+attacks :
+  - name : Thrust
+    weight : 80
+    damage :
+      min : 350
+      max : 350
+    criticalChance : 0.35
+
+  - name : Backstab
+    weight : 20
+    damage :
+      min : 600
+      max : 600
+    criticalChance : 0.6

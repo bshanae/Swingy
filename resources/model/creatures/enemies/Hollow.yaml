@@ -1,0 +1,21 @@
+name : Hollow
+health : 200
+defense : 0
+
+level : 0
+spawnChance : 1.0
+
+attacks :
+  - name : Punch
+    weight : 60
+    damage :
+      min : 20
+      max : 30
+    criticalChance : 0.1
+
+  - name : Byte
+    weight : 40
+    damage :
+      min : 30
+      max : 30
+    criticalChance : 0.35

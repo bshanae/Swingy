@@ -1,0 +1,17 @@
+name : Bandit dagger
+category : dagger
+
+attacks :
+  - name : Blow
+    weight : 80
+    damage :
+      min : 200
+      max : 250
+    criticalChance : 0.5
+
+  - name : Bleeding cut
+    weight : 82
+    damage :
+      min : 300
+      max : 300
+    criticalChance : 0.8

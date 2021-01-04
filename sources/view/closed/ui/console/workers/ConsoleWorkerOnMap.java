@@ -3,7 +3,7 @@ package view.closed.ui.console.workers;
 import application.utils.Point;
 import model.open.Requests;
 import view.closed.ui.utils.MapGenerator;
-import view.closed.ui.console.utils.ResourceManager;
+import application.utils.ResourceManager;
 import view.closed.ui.console.utils.Template;
 import view.closed.ui.console.ConsoleWorker;
 import view.open.Context;
@@ -50,7 +50,7 @@ public class							ConsoleWorkerOnMap extends ConsoleWorker
 	{
 		String							rawTemplate;
 
-		rawTemplate = ResourceManager.getText("/console/templates/Map.txt");
+		rawTemplate = ResourceManager.getText("/view/console/templates/Map.txt");
 		mapTemplate = new Template(rawTemplate);
 	}
 

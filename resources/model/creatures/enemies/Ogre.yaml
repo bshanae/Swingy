@@ -1,0 +1,26 @@
+name : Ogre
+health : 1000
+defense : 30
+
+level : 1
+spawnChance : 0.5
+
+attacks :
+  - name : Punch
+    weight : 80
+    damage :
+      min : 40
+      max : 60
+
+  - name : Fall
+    weight : 15
+    damage :
+      min : 80
+      max : 100
+
+  - name : Byte
+    weight : 5
+    damage :
+      min : 200
+      max : 200
+    criticalChance : 0.5

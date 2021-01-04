@@ -114,7 +114,7 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 		panel.setLayout(new MigLayout("insets 8 10 8 10"));
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
-		nameLabel = new JLabel(hero.name);
+		nameLabel = new JLabel(hero.getName());
 		nameLabel.setFont(new Font(GuiSettings.FONT_NAME, Font.BOLD, 25));
 
 		levelLabel = new JLabel("Level 5");

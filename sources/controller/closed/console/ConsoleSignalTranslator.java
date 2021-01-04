@@ -84,14 +84,14 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 		Pattern							resultPattern;
 
 		consoleSignal = (Signals.Console)signal;
-		assert contextToPatterns.containsKey(consoleSignal.context);
+		assert contextToPatterns.containsKey(consoleSignal.getContext());
 
 		possiblePatterns = new LinkedList<>();
 
-		possiblePatterns.addAll(Arrays.asList(contextToPatterns.get(consoleSignal.context)));
+		possiblePatterns.addAll(Arrays.asList(contextToPatterns.get(consoleSignal.getContext())));
 		possiblePatterns.addAll(Arrays.asList(commonPatterns));
 
-		commandParser = new CommandParser(consoleSignal.input);
+		commandParser = new CommandParser(consoleSignal.getInput());
 		resultPattern = null;
 
 		for (Pattern pattern : possiblePatterns)

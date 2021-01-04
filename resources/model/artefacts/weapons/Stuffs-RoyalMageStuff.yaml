@@ -1,0 +1,33 @@
+name : Royal mage stuff
+category : stuff
+
+attacks :
+  - name : Magic arrow
+    weight : 25
+    damage :
+      min : 200
+      max : 200
+
+  - name : Heavy magic arrow
+    weight : 25
+    damage :
+      min : 250
+      max : 250
+
+  - name : Magic spear
+    weight : 25
+    damage :
+      min : 300
+      max : 300
+
+  - name : Heavy magic spear
+    weight : 15
+    damage :
+      min : 400
+      max : 400
+
+  - name : Crtistal magic spear
+    weight : 19
+    damage :
+      min : 1000
+      max : 1000

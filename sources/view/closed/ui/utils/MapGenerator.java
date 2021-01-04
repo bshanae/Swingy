@@ -37,8 +37,8 @@ public class						MapGenerator
 
 	private void					loadInfo(Requests.Map request)
 	{
-		mapSize = request.map.size;
-		mapCreatures = request.map.creatures;
+		mapSize = request.map.getSize();
+		mapCreatures = request.map.getCreatures();
 
 		pivot = request.pivot;
 	}
@@ -97,7 +97,7 @@ public class						MapGenerator
 	private Pockets.Creature		getCreatureForCoordinate(Point coordinate)
 	{
 		for (Pockets.Creature creature : mapCreatures)
-			if (creature.position.equals(coordinate))
+			if (creature.getPosition().equals(coordinate))
 				return creature;
 
 		return null;

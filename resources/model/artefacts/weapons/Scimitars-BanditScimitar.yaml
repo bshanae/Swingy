@@ -1,0 +1,10 @@
+name : Bandit scimitar
+category : scimitar
+
+attacks :
+  - name : Blow
+    weight : 100
+    damage :
+      min : 120
+      max : 210
+    criticalChance : 0.2

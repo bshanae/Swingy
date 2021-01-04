@@ -1,0 +1,10 @@
+name : Lucky dagger
+category : dagger
+
+attacks :
+  - name : Blow
+    weight : 100
+    damage :
+      min : 900
+      max : 1100
+    criticalChance : 0.9

@@ -1,6 +1,7 @@
 package application;
 
 import controller.open.Controller;
+import model.closed.creatures.enemy.EnemyStorage;
 import model.open.Model;
 import view.open.View;
 

@@ -1,7 +1,6 @@
 package model.open;
 
 import application.utils.Point;
-import model.closed.managers.battle.BattleLogger;
 
 import java.util.List;
 
@@ -88,7 +87,7 @@ public abstract class						Requests
 
 		public								Map
 											(
-												model.closed.managers.Map map,
+												model.closed.map.Map map,
 												Point pivot,
 												boolean allowHeroMovement
 											)
@@ -104,7 +103,7 @@ public abstract class						Requests
 		public final Pockets.BattleLog		log;
 		public final boolean				isBattleFinished;
 
-		public								Battle(model.closed.managers.battle.Battle battle)
+		public								Battle(model.closed.battle.Battle battle)
 		{
 			log = new Pockets.BattleLog(battle.getLogger());
 			isBattleFinished = battle.isFinished();

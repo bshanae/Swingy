@@ -1,0 +1,15 @@
+name : Cursed stuff
+category : stuff
+
+attacks :
+  - name : Nothing
+    weight : 75
+    damage :
+      min : 0
+      max : 0
+
+  - name : Dark storm
+    weight : 25
+    damage :
+      min : 4500
+      max : 4500

@@ -2,8 +2,13 @@ package model.closed;
 
 import application.patterns.SingletonMap;
 import controller.open.Commands;
-import model.closed.managers.heroStorage.HeroStorage;
-import model.closed.managers.delegates.core.CoreDelegate;
+import model.closed.artefacts.armor.ArmorStorage;
+import model.closed.artefacts.helm.HelmStorage;
+import model.closed.artefacts.weapon.WeaponStorage;
+import model.closed.creatures.enemy.EnemyStorage;
+import model.closed.creatures.hero.HeroStorage;
+import model.closed.creatures.hero.heroTemplate.HeroTemplateStorage;
+import model.closed.delegates.core.CoreDelegate;
 
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -47,7 +52,14 @@ public class						Game
 	{
 		state = State.RUNNING;
 
+		HelmStorage.getInstance().download();
+		ArmorStorage.getInstance().download();
+		WeaponStorage.getInstance().download();
+
+		HeroTemplateStorage.getInstance().download();
 		HeroStorage.getInstance().download();
+		EnemyStorage.getInstance().download();
+
 		coreDelegate.run();
 	}
 

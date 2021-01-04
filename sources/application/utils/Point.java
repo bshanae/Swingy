@@ -1,6 +1,6 @@
 package application.utils;
 
-import model.closed.managers.generators.RandomGenerator;
+import model.closed.utils.RandomGenerator;
 
 public class			Point
 {

@@ -2,7 +2,7 @@ package view.closed.ui.console.workers;
 
 import model.open.Pockets;
 import model.open.Requests;
-import view.closed.ui.console.utils.ResourceManager;
+import application.utils.ResourceManager;
 import view.closed.ui.console.utils.Template;
 import view.closed.ui.console.ConsoleWorker;
 import view.open.Context;
@@ -26,7 +26,7 @@ public class					ConsoleWorkerOnHeroSelector extends ConsoleWorker
 		Template				template;
 
 		heroSelectorRequest = (Requests.HeroSelector)request;
-		rawTemplate = ResourceManager.getText("/console/templates/HeroSelector.txt");
+		rawTemplate = ResourceManager.getText("/view/console/templates/HeroSelector.txt");
 		template = new Template(rawTemplate);
 
 		List<Pockets.Hero> heroes = heroSelectorRequest.heroes;
@@ -37,7 +37,7 @@ public class					ConsoleWorkerOnHeroSelector extends ConsoleWorker
 			template.replace
 			(
 				"HERO" + i,
-				i < numberOfHeroes ? heroes.get(i).name : "Empty"
+				i < numberOfHeroes ? heroes.get(i).getName() : "Empty"
 			);
 		}
 

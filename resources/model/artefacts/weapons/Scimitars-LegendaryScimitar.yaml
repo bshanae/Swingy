@@ -1,0 +1,10 @@
+name : Legendary scimitar
+category : scimitar
+
+attacks :
+  - name : Blow
+    weight : 100
+    damage :
+      min : 500
+      max : 3000
+    criticalChance : 0.5

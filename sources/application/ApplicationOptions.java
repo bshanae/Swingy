@@ -7,8 +7,8 @@ public enum								ApplicationOptions
 {
 // -----------------------------------> Values
 
-	LAUNCH_CONSOLE("console"),
-	LAUNCH_GUI("gui"),
+	LAUNCH_CONSOLE("view/console"),
+	LAUNCH_GUI("view/gui"),
 	DEBUG("debug"),
 	LOG_MVC("log-mvc"),
 	LOG_DELEGATE("log-delegate"),

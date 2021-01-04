@@ -1,7 +1,7 @@
 package view.closed.ui.console.workers;
 
 import model.open.Requests;
-import view.closed.ui.console.utils.ResourceManager;
+import application.utils.ResourceManager;
 import view.closed.ui.console.ConsoleWorker;
 import view.open.Context;
 
@@ -17,6 +17,6 @@ public class		ConsoleWorkerOnClassSelector extends ConsoleWorker
 
 	private String	getText(Requests.Abstract request)
 	{
-		return ResourceManager.getText("/console/templates/ClassSelector.txt");
+		return ResourceManager.getText("/view/console/templates/ClassSelector.txt");
 	}
 }

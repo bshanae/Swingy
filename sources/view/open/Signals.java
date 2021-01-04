@@ -1,5 +1,7 @@
 package view.open;
 
+import lombok.Getter;
+
 public abstract class					Signals
 {
 	public interface					Abstract {}
@@ -10,8 +12,11 @@ public abstract class					Signals
 
 	public static class					Console implements Abstract
 	{
-		public final Context			context;
-		public final String				input;
+		@Getter
+		private final Context			context;
+
+		@Getter
+		private final String			input;
 
 		public							Console(Context context, String input)
 		{
@@ -24,8 +29,11 @@ public abstract class					Signals
 
 	public static class					Gui implements Abstract
 	{
-		public final ButtonId			buttonId;
-		public final Object				linkedData;
+		@Getter
+		private final ButtonId			buttonId;
+
+		@Getter
+		private final Object			linkedData;
 
 		public 							Gui(ButtonId buttonId)
 		{

@@ -1,0 +1,10 @@
+name : Old sword
+category : sword
+
+attacks :
+  - name : Blow
+    weight : 100
+    damage :
+      min : 20
+      max : 40
+    criticalChance : 0.1

@@ -1,9 +1,16 @@
 package application.utils;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+
 public class			Range<T extends Comparable<T>>
 {
-	public final T		min;
-	public final T		max;
+	@Getter
+	private final T		min;
+
+	@Getter
+	private final T		max;
 
 	public				Range(T value)
 	{
@@ -11,7 +18,8 @@ public class			Range<T extends Comparable<T>>
 		max = value;
 	}
 
-	public				Range(T min, T max)
+	@JsonCreator
+	public				Range(@JsonProperty("min") T min, @JsonProperty("max") T max)
 	{
 		this.min = min;
 		this.max = max;

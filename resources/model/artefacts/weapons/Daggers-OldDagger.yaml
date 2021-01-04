@@ -1,0 +1,10 @@
+name : Old dagger
+category : dagger
+
+attacks :
+  - name : Blow
+    weight : 100
+    damage :
+      min : 20
+      max : 30
+    criticalChance : 0.4

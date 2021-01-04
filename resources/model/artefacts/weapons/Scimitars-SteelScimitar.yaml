@@ -1,0 +1,10 @@
+name : Steel scimitar
+category : scimitar
+
+attacks :
+  - name : Blow
+    weight : 100
+    damage :
+      min : 40
+      max : 80
+    criticalChance : 0.2

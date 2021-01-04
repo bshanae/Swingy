@@ -1,0 +1,10 @@
+name : Steel dagger
+category : dagger
+
+attacks :
+  - name : Blow
+    weight : 100
+    damage :
+      min : 100
+      max : 150
+    criticalChance : 0.45
