@@ -3,6 +3,7 @@ package view.closed.ui.gui.workers;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiWorker;
+import view.closed.ui.gui.utils.GuiDialogSize;
 import view.closed.ui.gui.utils.GuiSignalSender;
 import view.open.ButtonId;
 
@@ -21,7 +22,7 @@ public class					GuiWorkerOnBattle extends GuiWorker
 	public void					execute(Requests.Abstract request)
 	{
 		parseRequest(request);
-		showInDialog(buildMainPanel());
+		showInDialog("Battle", GuiDialogSize.BIG, buildMainPanel());
 	}
 
 // --------------------------->	Private methods : UI
@@ -33,7 +34,7 @@ public class					GuiWorkerOnBattle extends GuiWorker
 		panel = new JPanel();
 		panel.setLayout(new MigLayout("fill"));
 
-		panel.add(buildLog(), "center, center, width 600!, height 300!, wrap");
+		panel.add(buildLog(), "center, center, width 630!, height 300!, wrap");
 		panel.add(buildButton(), "center");
 
 		return panel;
@@ -52,7 +53,9 @@ public class					GuiWorkerOnBattle extends GuiWorker
 		scrollPane = new JScrollPane(textArea);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-		if (!request.isBattleFinished)
+		scrollPane.getViewport().setViewPosition(new Point(0, textArea.getDocument().getLength()));
+
+		if (!request.isBattleFinished())
 		{
 			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -71,7 +74,7 @@ public class					GuiWorkerOnBattle extends GuiWorker
 		JButton					button;
 
 		button = new JButton("Proceed");
-		button.setEnabled(request.isBattleFinished);
+		button.setEnabled(request.isBattleFinished());
 		button.addActionListener(new GuiSignalSender(ButtonId.BATTLE_PROCEED));
 
 		return button;
@@ -90,7 +93,7 @@ public class					GuiWorkerOnBattle extends GuiWorker
 
 		stringBuilder = new StringBuilder();
 
-		for (String line : request.log.lines)
+		for (String line : request.getLog().lines)
 			stringBuilder.append(line).append("\n");
 
 		return stringBuilder.toString();

@@ -1,15 +1,39 @@
 package view.closed.ui.gui;
 
+import application.patterns.SingletonMap;
 import application.service.Exceptions;
 import model.open.Requests;
+import view.closed.ui.UiMode;
 import view.closed.ui.UiWorkerFactory;
+import view.closed.ui.console.ConsoleWorkerFactory;
 import view.closed.ui.gui.workers.*;
 
-public class			GuiWorkerFactory extends UiWorkerFactory
+public class						GuiWorkerFactory extends UiWorkerFactory
 {
-	@Override
-	public GuiWorker	build(Requests.Abstract request)
+// ------------------------------->	Attributes
+
+	private Requests.Abstract		previousRequest;
+	private boolean					isLastRequestWasSame;
+
+// ------------------------------->	Properties
+
+	public static GuiWorkerFactory	getInstance()
 	{
+		return SingletonMap.getInstanceOf(GuiWorkerFactory.class);
+	}
+
+	public boolean					isLastRequestWasSame()
+	{
+		return isLastRequestWasSame;
+	}
+
+// ------------------------------->	Public methods
+
+	@Override
+	public GuiWorker				build(Requests.Abstract request)
+	{
+		updateRequestHistory(request);
+
 		if (request instanceof Requests.Info)
 			return new GuiWorkerOnInfo();
 		if (request instanceof Requests.Question)
@@ -26,5 +50,17 @@ public class			GuiWorkerFactory extends UiWorkerFactory
 			return new GuiWorkerOnBattle();
 
 		throw new Exceptions.UnexpectedCodeBranch();
+	}
+
+// ------------------------------->	Private methods
+
+	private void					updateRequestHistory(Requests.Abstract currentRequest)
+	{
+		if (previousRequest != null)
+			isLastRequestWasSame = previousRequest.getClass() == currentRequest.getClass();
+		else
+			isLastRequestWasSame = false;
+
+		previousRequest = currentRequest;
 	}
 }

@@ -7,11 +7,11 @@ attacks :
     damage :
       min : 110
       max : 140
-    criticalChance : 0.1
+    critical chance : 0.1
 
   - name : Strong blow
     weight : 40
     damage :
       min : 160
       max : 200
-    criticalChance : 0.15
+    critical chance : 0.15

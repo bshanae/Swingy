@@ -20,7 +20,7 @@ public class				ConsoleWorkerOnBattle extends ConsoleWorker
 
 		write(getText());
 
-		if (this.request.isBattleFinished)
+		if (this.request.isBattleFinished())
 		{
 			write("Press enter to continue...");
 			promptInput(Context.parse(request));
@@ -39,7 +39,7 @@ public class				ConsoleWorkerOnBattle extends ConsoleWorker
 		String				newText;
 
 		stringBuilder = new StringBuilder();
-		for (String line : request.log.lines)
+		for (String line : request.getLog().lines)
 			stringBuilder.append(line).append("\n");
 
 		logText = stringBuilder.toString();

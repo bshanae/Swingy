@@ -170,7 +170,7 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 		assert request instanceof Requests.HeroSelector;
 		heroSelectorRequest = (Requests.HeroSelector)request;
 
-		heroes = heroSelectorRequest.heroes;
+		heroes = heroSelectorRequest.getHeroes();
 	}
 
 	private Pockets.Hero		getHeroAt(int index)

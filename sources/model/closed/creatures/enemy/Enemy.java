@@ -3,7 +3,9 @@ package model.closed.creatures.enemy;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import model.closed.artefacts.artefact.ArtefactAlias;
 import model.closed.artefacts.artefact.artefactDropper.ArtefactDropper;
+import model.closed.artefacts.artefact.artefactDropper.DroppableArtefact;
 import model.closed.battle.Attack;
 import model.closed.creatures.Creature;
 
@@ -25,7 +27,7 @@ public class						Enemy extends Creature
 	@Getter
 	private final ArtefactDropper	artefactDropper;
 
-// -------------------------------> Constructor
+// -------------------------------> Constructors
 
 	@JsonCreator
 	public 							Enemy
@@ -34,9 +36,23 @@ public class						Enemy extends Creature
 										@JsonProperty("health") int baseHealth,
 										@JsonProperty("defense") int defense,
 										@JsonProperty("level") int level,
-										@JsonProperty("spawnChance") float spawnChance,
+										@JsonProperty("spawn chance") float spawnChance,
 										@JsonProperty("attacks") List<Attack> attacks,
-										@JsonProperty("artefacts") ArtefactDropper artefactDropper
+										@JsonProperty("artefacts") List<DroppableArtefact> artefacts
+									)
+	{
+		this(name, baseHealth, defense, level, spawnChance, attacks, new ArtefactDropper(artefacts));
+	}
+
+	private							Enemy
+									(
+										String name,
+										int baseHealth,
+										int defense,
+										int level,
+										float spawnChance,
+										List<Attack> attacks,
+										ArtefactDropper artefactDropper
 									)
 	{
 		super(name);

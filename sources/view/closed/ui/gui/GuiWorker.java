@@ -1,18 +1,42 @@
 package view.closed.ui.gui;
 
 import view.closed.ui.UiWorker;
+import view.closed.ui.gui.utils.GuiDialogSize;
 
 import javax.swing.*;
 
 public abstract class		GuiWorker extends UiWorker
 {
+// -----------------------> Protected methods
+
 	protected static void	showInFrame(JPanel panel)
 	{
 		GuiServer.getInstance().execute(new GuiTasks.ShowInFrame(panel));
 	}
 
-	protected static void	showInDialog(JPanel panel)
+	protected static void	showInDialog(String title, GuiDialogSize size, JPanel panel)
 	{
-		GuiServer.getInstance().execute(new GuiTasks.ShowInDialog(panel));
+		boolean				buildNewDialog;
+
+		buildNewDialog = !GuiWorkerFactory.getInstance().isLastRequestWasSame();
+		showInDialog(title, buildNewDialog, size, panel);
+	}
+
+	protected static void	showInNewDialog(String title, GuiDialogSize size, JPanel panel)
+	{
+		showInDialog(title, true, size, panel);
+	}
+
+// -----------------------> Private methods
+
+	private static void		showInDialog
+							(
+								String title,
+								boolean buildNewDialog,
+								GuiDialogSize size,
+								JPanel panel
+							)
+	{
+		GuiServer.getInstance().execute(new GuiTasks.ShowInDialog(title, buildNewDialog, size, panel));
 	}
 }

@@ -7,11 +7,11 @@ attacks :
     damage :
       min : 800
       max : 800
-    criticalChance : 0.5
+    critical chance : 0.5
 
   - name : Backstab
     weight : 20
     damage :
       min : 1500
       max : 1500
-    criticalChance : 0.8
+    critical chance : 0.8

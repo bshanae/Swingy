@@ -1,6 +1,5 @@
 package view.closed.ui;
 
-import application.patterns.SingletonMap;
 import application.service.Exceptions;
 import view.closed.WorkerFactory;
 import view.closed.ui.console.ConsoleWorkerFactory;
@@ -13,10 +12,10 @@ public abstract class				UiWorkerFactory extends WorkerFactory
 		switch (UiMode.getCurrentMode())
 		{
 			case CONSOLE:
-				return SingletonMap.getInstanceOf(ConsoleWorkerFactory.class);
+				return ConsoleWorkerFactory.getInstance();
 
 			case GUI:
-				return SingletonMap.getInstanceOf(GuiWorkerFactory.class);
+				return GuiWorkerFactory.getInstance();
 		}
 
 		throw new Exceptions.UnexpectedCodeBranch();

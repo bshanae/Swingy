@@ -29,7 +29,7 @@ public class					ConsoleWorkerOnHeroSelector extends ConsoleWorker
 		rawTemplate = ResourceManager.getText("/view/console/templates/HeroSelector.txt");
 		template = new Template(rawTemplate);
 
-		List<Pockets.Hero> heroes = heroSelectorRequest.heroes;
+		List<Pockets.Hero>		heroes = heroSelectorRequest.getHeroes();
 		int						numberOfHeroes = heroes.size();
 
 		for (int i = 0; i < 4; i++)

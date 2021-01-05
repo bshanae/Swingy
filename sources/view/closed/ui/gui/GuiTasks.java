@@ -1,33 +1,57 @@
 package view.closed.ui.gui;
 
 import application.patterns.server.ServerTask;
+import lombok.Getter;
+import view.closed.ui.gui.utils.GuiDialogSize;
 
 import javax.swing.*;
 
-public abstract class		GuiTasks
+public abstract class				GuiTasks
 {
-	public interface		Abstract extends ServerTask {}
+// -------------------------------> Nested types
 
-	public static class		Enable implements Abstract {}
+	public interface				Abstract extends ServerTask {}
 
-	public static class		Disable implements Abstract {}
+	public static class				Enable implements Abstract {}
 
-	public static class		ShowInFrame implements Abstract
+	public static class				Disable implements Abstract {}
+
+	public static class				ShowInFrame implements Abstract
 	{
-		public final JPanel	panel;
+		@Getter
+		private final JPanel		panel;
 
-		public 				ShowInFrame(JPanel panel)
+		public 						ShowInFrame(JPanel panel)
 		{
 			this.panel = panel;
 		}
 	}
 
-	public static class		ShowInDialog implements Abstract
+	public static class				ShowInDialog implements Abstract
 	{
-		public final JPanel	panel;
+		@Getter
+		private final String		title;
 
-		public 				ShowInDialog(JPanel panel)
+		@Getter
+		private final boolean		buildNewDialog;
+
+		@Getter
+		private final GuiDialogSize	size;
+
+		@Getter
+		private final JPanel		panel;
+
+		public 						ShowInDialog
+									(
+										String title,
+										boolean buildNewDialog,
+										GuiDialogSize size,
+										JPanel panel
+									)
 		{
+			this.title = title;
+			this.buildNewDialog = buildNewDialog;
+			this.size = size;
 			this.panel = panel;
 		}
 	}

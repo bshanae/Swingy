@@ -7,4 +7,4 @@ attacks :
     damage :
       min : 500
       max : 3000
-    criticalChance : 0.5
+    critical chance : 0.5

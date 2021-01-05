@@ -118,9 +118,9 @@ public class				MapDelegate extends Delegate
 		return null;
 	}
 
-	private void			drawMap(boolean allowHeroMovement)
+	private void			drawMap(boolean heroMovementAllowed)
 	{
-		sendRequest(new Requests.Map(map, hero.getPosition(), allowHeroMovement));
+		sendRequest(new Requests.Map(map, hero.getPosition(), heroMovementAllowed));
 	}
 
 	private void			startBattle()

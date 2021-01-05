@@ -1,6 +1,7 @@
 package model.open;
 
 import application.utils.Point;
+import lombok.Getter;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ public abstract class						Requests
 
 	public static class						HeroSelector implements Ui
 	{
-		public final List<Pockets.Hero>		heroes;
+		@Getter
+		private final List<Pockets.Hero>	heroes;
 
 		public 								HeroSelector(List<Pockets.Hero> heroes)
 		{
@@ -39,7 +41,8 @@ public abstract class						Requests
 
 	private static abstract class			WithMessage implements Ui
 	{
-		public final String					message;
+		@Getter
+		private final String				message;
 
 		public								WithMessage(String message)
 		{
@@ -67,9 +70,14 @@ public abstract class						Requests
 
 	public static class						Question implements Ui
 	{
-		public final String					question;
-		public final String					answerA;
-		public final String					answerB;
+		@Getter
+		private final String				question;
+
+		@Getter
+		private final String				answerA;
+
+		@Getter
+		private final String				answerB;
 
 		public 								Question(String question, String answerA, String answerB)
 		{
@@ -81,27 +89,35 @@ public abstract class						Requests
 
 	public static class						Map implements Ui
 	{
-		public final Pockets.Map			map;
-		public final Point					pivot;
-		public final boolean				allowHeroMovement;
+		@Getter
+		private final Pockets.Map			map;
+
+		@Getter
+		private final Point					pivot;
+
+		@Getter
+		private final boolean				heroMovementAllowed;
 
 		public								Map
 											(
 												model.closed.map.Map map,
 												Point pivot,
-												boolean allowHeroMovement
+												boolean heroMovementAllowed
 											)
 		{
 			this.map = new Pockets.Map(map);
 			this.pivot = pivot;
-			this.allowHeroMovement = allowHeroMovement;
+			this.heroMovementAllowed = heroMovementAllowed;
 		}
 	}
 
 	public static class						Battle implements Ui
 	{
-		public final Pockets.BattleLog		log;
-		public final boolean				isBattleFinished;
+		@Getter
+		private final Pockets.BattleLog		log;
+
+		@Getter
+		private final boolean				isBattleFinished;
 
 		public								Battle(model.closed.battle.Battle battle)
 		{

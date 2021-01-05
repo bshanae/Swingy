@@ -2,6 +2,10 @@ package view.closed.ui.gui;
 
 import application.patterns.SingletonMap;
 import application.patterns.server.Server;
+import application.service.Debug;
+import application.service.Exceptions;
+import application.service.LogGroup;
+import view.closed.ui.gui.utils.GuiDialogSize;
 import view.closed.ui.gui.utils.GuiSettings;
 
 import javax.swing.*;
@@ -40,12 +44,12 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 
 	private void						execute(GuiTasks.ShowInFrame task)
 	{
-		EventQueue.invokeLater(new FrameUpdater(task.panel));
+		EventQueue.invokeLater(new FrameUpdater(task));
 	}
 
 	private void						execute(GuiTasks.ShowInDialog task)
 	{
-		EventQueue.invokeLater(new DialogUpdater(task.panel));
+		EventQueue.invokeLater(new DialogUpdater(task));
 	}
 
 // -----------------------------------> Nested classes for GUI queuing
@@ -73,12 +77,6 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 		@Override
 		public void						run()
 		{
-			buildFrame();
-			buildDialog();
-		}
-
-		private void					buildFrame()
-		{
 			frame = new JFrame();
 
 			frame.setTitle(GuiSettings.WINDOW_TITLE);
@@ -90,31 +88,24 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setLocationRelativeTo(null);
 		}
-
-		private void					buildDialog()
-		{
-			dialog = new JDialog(frame, "", Dialog.ModalityType.DOCUMENT_MODAL);
-
-			dialog.setResizable(false);
-			dialog.setSize(GuiSettings.DIALOG_WIDTH, GuiSettings.DIALOG_HEIGHT);
-			dialog.setLocationRelativeTo(frame);
-		}
 	}
 
 	private class						FrameUpdater implements Runnable
 	{
-		private final JPanel			panel;
+		private final
+		GuiTasks.ShowInFrame			task;
 
-		public 							FrameUpdater(JPanel panel)
+		public 							FrameUpdater(GuiTasks.ShowInFrame task)
 		{
-			this.panel = panel;
+			this.task = task;
 		}
 
 		@Override
 		public void						run()
 		{
-			frame.setContentPane(panel);
-			dialog.setVisible(false);
+			frame.setContentPane(task.getPanel());
+			if (dialog != null)
+				dialog.setVisible(false);
 
 			frame.revalidate();
 			frame.repaint();
@@ -123,19 +114,71 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 
 	private class						DialogUpdater implements Runnable
 	{
-		private final JPanel			panel;
+		// ---------------------------> Attributes
 
-		public 							DialogUpdater(JPanel panel)
+		private final
+		GuiTasks.ShowInDialog			task;
+
+		// ---------------------------> Constructor
+
+		public 							DialogUpdater(GuiTasks.ShowInDialog task)
 		{
-			this.panel = panel;
+			this.task = task;
 		}
+
+		// ---------------------------> Public methods
 
 		@Override
 		public void						run()
 		{
-			dialog.setContentPane(panel);
-			dialog.setVisible(true);
+			rebuildIfNeeded();
 
+			setTitle();
+			setSize();
+			setPanel();
+
+			center();
+			redraw();
+		}
+
+		// ---------------------------> Private methods
+
+		private void					rebuildIfNeeded()
+		{
+			if (task.isBuildNewDialog() || dialog == null)
+			{
+				if (dialog != null)
+					dialog.dispose();
+
+				dialog = new JDialog(frame, Dialog.ModalityType.DOCUMENT_MODAL);
+				dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+				dialog.setResizable(false);
+			}
+		}
+
+		private void					setTitle()
+		{
+			dialog.setTitle(task.getTitle());
+		}
+
+		private void					setSize()
+		{
+			dialog.setSize(task.getSize().getWidth(), task.getSize().getHeight());
+		}
+
+		private void					setPanel()
+		{
+			dialog.setContentPane(task.getPanel());
+		}
+
+		private void					center()
+		{
+			dialog.setLocationRelativeTo(frame);
+		}
+
+		private void					redraw()
+		{
+			dialog.setVisible(true);
 			frame.revalidate();
 			frame.repaint();
 		}

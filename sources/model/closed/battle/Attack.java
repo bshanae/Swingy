@@ -17,21 +17,13 @@ public class						Attack
 										@JsonProperty("name") String name,
 										@JsonProperty("weight") float weight,
 										@JsonProperty("damage") Range<Integer> damageRange,
-										@JsonProperty("criticalChance") float criticalChance
+										@JsonProperty("critical chance") float criticalChance
 									)
 	{
 		this.name = name;
 		this.weight = weight;
 		this.damageRange = damageRange;
 		this.criticalChance = criticalChance;
-	}
-
-	public 							Attack(String name, float weight, Range<Integer> damageRange)
-	{
-		this.name = name;
-		this.weight = weight;
-		this.damageRange = damageRange;
-		this.criticalChance = 0.f;
 	}
 
 	public Attack					applyGain(int gain)

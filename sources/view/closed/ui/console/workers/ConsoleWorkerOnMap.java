@@ -29,7 +29,7 @@ public class							ConsoleWorkerOnMap extends ConsoleWorker
 		clean();
 		write(getText());
 
-		if (this.request.allowHeroMovement)
+		if (this.request.isHeroMovementAllowed())
 			promptInput(Context.parse(request));
 	}
 

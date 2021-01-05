@@ -113,7 +113,7 @@ public class							GuiWorkerOnMap extends GuiWorker
 		for (int i = 0; i < 4; i++)
 		{
 			buttons[i] = new JButton();
-			buttons[i].setFont(new Font("Arial", Font.PLAIN, 18));
+			buttons[i].setFont(new Font("Arial", Font.PLAIN, 12));
 		}
 
 		buttons[0].setText("▲");

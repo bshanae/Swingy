@@ -7,11 +7,11 @@ attacks :
     damage :
       min : 200
       max : 250
-    criticalChance : 0.5
+    critical chance : 0.5
 
   - name : Bleeding cut
     weight : 82
     damage :
       min : 300
       max : 300
-    criticalChance : 0.8
+    critical chance : 0.8

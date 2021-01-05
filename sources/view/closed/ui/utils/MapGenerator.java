@@ -37,10 +37,10 @@ public class						MapGenerator
 
 	private void					loadInfo(Requests.Map request)
 	{
-		mapSize = request.map.getSize();
-		mapCreatures = request.map.getCreatures();
+		mapSize = request.getMap().getSize();
+		mapCreatures = request.getMap().getCreatures();
 
-		pivot = request.pivot;
+		pivot = request.getPivot();
 	}
 
 	private void					calculateOffset()

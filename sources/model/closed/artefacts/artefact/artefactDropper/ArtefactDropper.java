@@ -21,8 +21,7 @@ public class							ArtefactDropper
 
 // -----------------------------------> Constructor
 
-	@JsonCreator
-	public 								ArtefactDropper(@JsonProperty("artefacts") List<DroppableArtefact> artefacts)
+	public 								ArtefactDropper(List<DroppableArtefact> artefacts)
 	{
 		this.artefacts = artefacts;
 	}

@@ -2,7 +2,9 @@ package view.closed.ui.gui.workers;
 
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
+import view.closed.ui.gui.GuiTasks;
 import view.closed.ui.gui.GuiWorker;
+import view.closed.ui.gui.utils.GuiDialogSize;
 import view.closed.ui.gui.utils.GuiSignalSender;
 import view.open.ButtonId;
 
@@ -20,7 +22,7 @@ public class					GuiWorkerOnInfo extends GuiWorker
 	public void					execute(Requests.Abstract request)
 	{
 		parseRequest(request);
-		showInDialog(buildPanel());
+		showInNewDialog("Info", GuiDialogSize.SMALL, buildPanel());
 	}
 
 // --------------------------->	Private methods : UI
@@ -31,15 +33,26 @@ public class					GuiWorkerOnInfo extends GuiWorker
 		JButton					button;
 
 		panel = new JPanel();
-		panel.setLayout(new MigLayout("fill"));
+		panel.setLayout(new MigLayout("fill, wrap 1", "", "[]push[]"));
 
 		button = new JButton("Ok");
 		button.addActionListener(new GuiSignalSender(ButtonId.INFO_OK));
 
-		panel.add(new JLabel(request.message), "wrap");
-		panel.add(button);
+		panel.add(buildText(), "grow");
+		panel.add(button, "center");
 
 		return panel;
+	}
+
+	private JComponent			buildText()
+	{
+		JLabel					label;
+
+		label = new JLabel();
+		label.setText(String.format("<HTML>%s</HTML>", request.getMessage()));
+		label.setHorizontalAlignment(JLabel.CENTER);
+
+		return label;
 	}
 
 // --------------------------->	Private methods : Service
