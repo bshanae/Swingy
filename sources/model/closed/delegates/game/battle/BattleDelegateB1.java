@@ -1,4 +1,4 @@
-package model.closed.delegates.game;
+package model.closed.delegates.game.battle;
 
 import controller.open.Commands;
 import model.closed.delegates.Delegate;
@@ -22,7 +22,7 @@ public class					BattleDelegateB1 extends Delegate
 		if (command instanceof Commands.Ok)
 			requestResolution();
 		else
-			throw new UnrecognizedCommandException(command);
+			throw new UnexpectedCommandException(command);
 	}
 
 	@Override

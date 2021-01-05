@@ -126,6 +126,28 @@ public abstract class						Requests
 		}
 	}
 
+	public static class						HeroStats implements Ui
+	{
+		@Getter
+		private final Pockets.Hero			hero;
+
+		public 								HeroStats(model.closed.creatures.hero.Hero hero)
+		{
+			this.hero = new Pockets.Hero(hero);
+		}
+	}
+
+	public static class						HeroInventory implements Ui
+	{
+		@Getter
+		private final Pockets.HeroInventory	inventory;
+
+		public 								HeroInventory(model.closed.creatures.hero.HeroInventory inventory)
+		{
+			this.inventory = new Pockets.HeroInventory(inventory);
+		}
+	}
+
 	public static class						Battle implements Ui
 	{
 		@Getter

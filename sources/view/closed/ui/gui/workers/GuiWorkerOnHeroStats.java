@@ -1,7 +1,6 @@
 package view.closed.ui.gui.workers;
 
 import application.utils.Point;
-import model.open.Pockets;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiWorker;
@@ -11,11 +10,11 @@ import view.open.ButtonId;
 
 import javax.swing.*;
 
-public class						GuiWorkerOnHeroInfo extends GuiWorker
+public class						GuiWorkerOnHeroStats extends GuiWorker
 {
 // -------------------------------> Attributes
 
-	private Requests.HeroInfo		request;
+	private Requests.HeroStats		request;
 
 // -------------------------------> Public
 
@@ -23,7 +22,7 @@ public class						GuiWorkerOnHeroInfo extends GuiWorker
 	public void						execute(Requests.Abstract request)
 	{
 		parseRequest(request);
-		showInDialog("Hero info", new Point(300, 370), buildMainPanel());
+		showInDialog("Hero stats", new Point(260, 230), buildMainPanel());
 	}
 
 // -------------------------------> Private : UI
@@ -34,24 +33,22 @@ public class						GuiWorkerOnHeroInfo extends GuiWorker
 		JButton						button;
 
 		panel = new JPanel();
-		panel.setLayout(new MigLayout("fill, wrap 1", "", "[][]push[]"));
+		panel.setLayout(new MigLayout("fill", "", "[]push[]"));
 
 		button = new JButton("Ok");
-		button.addActionListener(new GuiSignalSender(ButtonId.HERO_INFO_OK));
+		button.addActionListener(new GuiSignalSender(ButtonId.HERO_STATS_OK));
 
-		panel.add(buildStatsPanel(), "width 270!, center");
-		panel.add(buildInventoryPanel(), "width 270!, center");
+		panel.add(buildInfoPanel(), "width 230!, center, wrap");
 		panel.add(button, "center");
 
 		return panel;
 	}
 
-	private JPanel					buildStatsPanel()
+	private JPanel					buildInfoPanel()
 	{
 		GuiDictionaryPanelBuilder	builder;
 
 		builder = new GuiDictionaryPanelBuilder();
-		builder.getPanel().setBorder(BorderFactory.createTitledBorder("Stats"));
 
 		builder.put("Name", request.getHero().getName());
 		builder.put("Class", request.getHero().getHeroClass());
@@ -61,29 +58,10 @@ public class						GuiWorkerOnHeroInfo extends GuiWorker
 		return builder.getPanel();
 	}
 
-	private JPanel					buildInventoryPanel()
-	{
-		GuiDictionaryPanelBuilder	builder;
-
-		builder = new GuiDictionaryPanelBuilder();
-		builder.getPanel().setBorder(BorderFactory.createTitledBorder("Inventory"));
-
-		builder.put("Helm", getArtefactName(request.getInventory().getHelm()));
-		builder.put("Armor", getArtefactName(request.getInventory().getArmor()));
-		builder.put("Weapon", getArtefactName(request.getInventory().getWeapon()));
-
-		return builder.getPanel();
-	}
-
-	private String					getArtefactName(Pockets.Artefact artefact)
-	{
-		return artefact != null ? artefact.getName() : "none";
-	}
-
 // -------------------------------> Private : Service
 
 	private void					parseRequest(Requests.Abstract request)
 	{
-		this.request = (Requests.HeroInfo)request;
+		this.request = (Requests.HeroStats)request;
 	}
 }

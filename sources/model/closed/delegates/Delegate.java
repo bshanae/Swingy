@@ -15,19 +15,11 @@ public abstract class				Delegate
 
 	protected static abstract class	ResolutionMessage {}
 
-	public static class				UnrecognizedCommandException extends RuntimeException
-	{
-		public						UnrecognizedCommandException(Commands.Abstract command)
-		{
-			super("Can't recognize command of type '" + command.getClass() + "'");
-		}
-	}
-
 	public static class				UnexpectedCommandException extends RuntimeException
 	{
-		public						UnexpectedCommandException(Commands.Abstract command)
+		public UnexpectedCommandException(Commands.Abstract command)
 		{
-			super("Didn't expect command of type '" + command.getClass() + "'");
+			super("Can't recognize command of type '" + command.getClass() + "'");
 		}
 	}
 

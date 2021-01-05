@@ -11,11 +11,11 @@ import view.open.ButtonId;
 
 import javax.swing.*;
 
-public class						GuiWorkerOnHeroInfo extends GuiWorker
+public class						GuiWorkerOnHeroInventory extends GuiWorker
 {
 // -------------------------------> Attributes
 
-	private Requests.HeroInfo		request;
+	private Requests.HeroInventory	request;
 
 // -------------------------------> Public
 
@@ -23,7 +23,7 @@ public class						GuiWorkerOnHeroInfo extends GuiWorker
 	public void						execute(Requests.Abstract request)
 	{
 		parseRequest(request);
-		showInDialog("Hero info", new Point(300, 370), buildMainPanel());
+		showInDialog("Hero inventory", new Point(260, 200), buildMainPanel());
 	}
 
 // -------------------------------> Private : UI
@@ -34,39 +34,22 @@ public class						GuiWorkerOnHeroInfo extends GuiWorker
 		JButton						button;
 
 		panel = new JPanel();
-		panel.setLayout(new MigLayout("fill, wrap 1", "", "[][]push[]"));
+		panel.setLayout(new MigLayout("fill", "", "[]push[]"));
 
 		button = new JButton("Ok");
-		button.addActionListener(new GuiSignalSender(ButtonId.HERO_INFO_OK));
+		button.addActionListener(new GuiSignalSender(ButtonId.HERO_INVENTORY_OK));
 
-		panel.add(buildStatsPanel(), "width 270!, center");
-		panel.add(buildInventoryPanel(), "width 270!, center");
+		panel.add(buildInfoPanel(), "width 230!, center, wrap");
 		panel.add(button, "center");
 
 		return panel;
 	}
 
-	private JPanel					buildStatsPanel()
+	private JPanel					buildInfoPanel()
 	{
 		GuiDictionaryPanelBuilder	builder;
 
 		builder = new GuiDictionaryPanelBuilder();
-		builder.getPanel().setBorder(BorderFactory.createTitledBorder("Stats"));
-
-		builder.put("Name", request.getHero().getName());
-		builder.put("Class", request.getHero().getHeroClass());
-		builder.put("Level", request.getHero().getLevel());
-		builder.put("Experience", request.getHero().getExperience());
-
-		return builder.getPanel();
-	}
-
-	private JPanel					buildInventoryPanel()
-	{
-		GuiDictionaryPanelBuilder	builder;
-
-		builder = new GuiDictionaryPanelBuilder();
-		builder.getPanel().setBorder(BorderFactory.createTitledBorder("Inventory"));
 
 		builder.put("Helm", getArtefactName(request.getInventory().getHelm()));
 		builder.put("Armor", getArtefactName(request.getInventory().getArmor()));
@@ -84,6 +67,6 @@ public class						GuiWorkerOnHeroInfo extends GuiWorker
 
 	private void					parseRequest(Requests.Abstract request)
 	{
-		this.request = (Requests.HeroInfo)request;
+		this.request = (Requests.HeroInventory)request;
 	}
 }

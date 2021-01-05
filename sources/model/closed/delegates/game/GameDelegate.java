@@ -2,6 +2,7 @@ package model.closed.delegates.game;
 
 import controller.open.Commands;
 import model.closed.delegates.Delegate;
+import model.closed.delegates.game.map.MapDelegate;
 
 public class				GameDelegate extends Delegate
 {

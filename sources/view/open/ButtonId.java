@@ -44,6 +44,14 @@ public enum			ButtonId
 	MAP_ARROW_LEFT,
 	MAP_ARROW_RIGHT,
 	MAP_ARROW_DOWN,
+	MAP_HERO_STATS,
+	MAP_HERO_INVENTORY,
+
+	// Hero stats
+	HERO_STATS_OK,
+
+	// Hero inventory
+	HERO_INVENTORY_OK,
 
 	// Battle
 	BATTLE_PROCEED;

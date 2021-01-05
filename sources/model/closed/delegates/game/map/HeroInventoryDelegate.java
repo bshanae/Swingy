@@ -1,23 +1,16 @@
-package model.closed.delegates.heroSelection;
+package model.closed.delegates.game.map;
 
 import controller.open.Commands;
-import model.closed.creatures.hero.Hero;
+import model.closed.Session;
 import model.closed.delegates.Delegate;
 import model.open.Requests;
 
-public class				HeroInfoDelegate extends Delegate
+public class				HeroInventoryDelegate extends Delegate
 {
-	private final Hero		hero;
-
-	public					HeroInfoDelegate(Hero hero)
-	{
-		this.hero = hero;
-	}
-
 	@Override
 	public void				whenActivated(boolean isFirstTimeActivated)
 	{
-		sendRequest(new Requests.HeroInfo(hero));
+		sendRequest(new Requests.HeroInventory(Session.getHero().getInventory()));
 	}
 
 	@Override

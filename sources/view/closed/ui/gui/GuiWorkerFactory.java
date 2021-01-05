@@ -34,11 +34,13 @@ public class						GuiWorkerFactory extends UiWorkerFactory
 	{
 		updateRequestHistory(request);
 
+		// Common
 		if (request instanceof Requests.Info)
 			return new GuiWorkerOnInfo();
 		if (request instanceof Requests.Question)
 			return new GuiWorkerOnQuestion();
 
+		// Hero selector
 		if (request instanceof Requests.HeroSelector)
 			return new GuiWorkerOnHeroSelector();
 		if (request instanceof Requests.HeroInfo)
@@ -47,8 +49,14 @@ public class						GuiWorkerFactory extends UiWorkerFactory
 			return new GuiWorkerOnNameEntry();
 		if (request instanceof Requests.ClassSelector)
 			return new GuiWorkerOnClassSelector();
+
+		// Game
 		if (request instanceof Requests.Map)
 			return new GuiWorkerOnMap();
+		if (request instanceof Requests.HeroStats)
+			return new GuiWorkerOnHeroStats();
+		if (request instanceof Requests.HeroInventory)
+			return new GuiWorkerOnHeroInventory();
 		if (request instanceof Requests.Battle)
 			return new GuiWorkerOnBattle();
 

@@ -74,6 +74,18 @@ public class					GuiSignalTranslator extends SignalTranslator
 			case MAP_ARROW_DOWN:
 				return new Commands.GoSouth();
 
+			case MAP_HERO_STATS:
+				return new Commands.Stats();
+
+			case MAP_HERO_INVENTORY:
+				return new Commands.Inventory();
+
+			case HERO_STATS_OK:
+				return new Commands.Ok();
+
+			case HERO_INVENTORY_OK:
+				return new Commands.Ok();
+
 			case BATTLE_PROCEED:
 				return new Commands.Ok();
 

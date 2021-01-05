@@ -136,7 +136,16 @@ public class							GuiWorkerOnMap extends GuiWorker
 
 	private JComponent					buildHeroButtons()
 	{
-		return buildSideMenu("Hero", new JButton("Stats"), new JButton("Inventory"));
+		JButton							buttonStats;
+		JButton							buttonInventory;
+
+		buttonStats = new JButton("Stats");
+		buttonStats.addActionListener(new GuiSignalSender(ButtonId.MAP_HERO_STATS));
+
+		buttonInventory = new JButton("Inventory");
+		buttonInventory.addActionListener(new GuiSignalSender(ButtonId.MAP_HERO_INVENTORY));
+
+		return buildSideMenu("Hero", buttonStats, buttonInventory);
 	}
 
 	private JComponent					buildSystemButtons()

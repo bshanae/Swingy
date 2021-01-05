@@ -1,4 +1,4 @@
-package model.closed.delegates.game;
+package model.closed.delegates.game.battle;
 
 import controller.open.Commands;
 import model.closed.creatures.enemy.Enemy;
@@ -45,7 +45,7 @@ public class BattleDelegateA extends Delegate
 		else if (command instanceof Commands.AnswerB)
 			fight();
 		else
-			throw new UnrecognizedCommandException(command);
+			throw new UnexpectedCommandException(command);
 	}
 
 	@Override

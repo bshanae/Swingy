@@ -1,4 +1,4 @@
-package model.closed.delegates.game;
+package model.closed.delegates.game.battle;
 
 import controller.open.Commands;
 import model.closed.Session;
@@ -42,7 +42,7 @@ public class					ArtefactDelegate extends Delegate
 		else if (command instanceof Commands.AnswerB)
 			Session.getHero().getInventory().setArtefact(artefact);
 		else
-			throw new UnrecognizedCommandException(command);
+			throw new UnexpectedCommandException(command);
 
 		requestResolution();
 	}

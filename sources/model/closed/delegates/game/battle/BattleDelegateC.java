@@ -1,4 +1,4 @@
-package model.closed.delegates.game;
+package model.closed.delegates.game.battle;
 
 import controller.open.Commands;
 import model.closed.battle.Battle;

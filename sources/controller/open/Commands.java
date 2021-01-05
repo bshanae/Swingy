@@ -91,6 +91,10 @@ public abstract class				Commands
 		}
 	}
 
+	public static class				Stats implements Abstract {}
+
+	public static class				Inventory implements Abstract {}
+
 	public static class				AnswerA implements Abstract {}
 
 	public static class				AnswerB implements Abstract {}
