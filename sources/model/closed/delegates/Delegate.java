@@ -23,6 +23,14 @@ public abstract class				Delegate
 		}
 	}
 
+	public static class				UnexpectedCommandException extends RuntimeException
+	{
+		public						UnexpectedCommandException(Commands.Abstract command)
+		{
+			super("Didn't expect command of type '" + command.getClass() + "'");
+		}
+	}
+
 // -------------------------------> Fields
 
 	private boolean					isActivated;

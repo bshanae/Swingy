@@ -1,8 +1,8 @@
 package view.closed.ui.gui;
 
 import application.patterns.server.ServerTask;
+import application.utils.Point;
 import lombok.Getter;
-import view.closed.ui.gui.utils.GuiDialogSize;
 
 import javax.swing.*;
 
@@ -36,7 +36,7 @@ public abstract class				GuiTasks
 		private final boolean		buildNewDialog;
 
 		@Getter
-		private final GuiDialogSize	size;
+		private final Point			size;
 
 		@Getter
 		private final JPanel		panel;
@@ -45,7 +45,7 @@ public abstract class				GuiTasks
 									(
 										String title,
 										boolean buildNewDialog,
-										GuiDialogSize size,
+										Point size,
 										JPanel panel
 									)
 		{

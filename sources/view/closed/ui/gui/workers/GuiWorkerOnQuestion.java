@@ -1,15 +1,13 @@
 package view.closed.ui.gui.workers;
 
+import application.utils.Point;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
-import view.closed.ui.gui.GuiTasks;
 import view.closed.ui.gui.GuiWorker;
-import view.closed.ui.gui.utils.GuiDialogSize;
 import view.closed.ui.gui.utils.GuiSignalSender;
 import view.open.ButtonId;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class					GuiWorkerOnQuestion extends GuiWorker
 {
@@ -23,7 +21,7 @@ public class					GuiWorkerOnQuestion extends GuiWorker
 	public void					execute(Requests.Abstract request)
 	{
 		parseRequest(request);
-		showInNewDialog("Question", GuiDialogSize.SMALL, buildPanel());
+		showInNewDialog("Question", new Point(380, 140), buildPanel());
 	}
 
 // --------------------------->	Private methods : UI

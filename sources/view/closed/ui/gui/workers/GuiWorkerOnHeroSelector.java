@@ -78,7 +78,7 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 
 	private JComponent			buildTitle()
 	{
-		Font font;
+		Font					font;
 		JLabel					label;
 
 		font = new Font(GuiSettings.FONT_NAME, Font.BOLD, 40);
@@ -101,10 +101,13 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 	private JPanel				buildExistingHeroPanel(Pockets.Hero hero, int heroIndex)
 	{
 		JPanel					panel;
-		JLabel					nameLabel;
-		JLabel					levelLabel;
 
-		ButtonId deleteButtonId;
+		JLabel					nameLabel;
+
+		ButtonId				infoButtonId;
+		JButton					infoButton;
+
+		ButtonId				deleteButtonId;
 		JButton					deleteButton;
 
 		ButtonId				selectButtonId;
@@ -117,8 +120,9 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 		nameLabel = new JLabel(hero.getName());
 		nameLabel.setFont(new Font(GuiSettings.FONT_NAME, Font.BOLD, 25));
 
-		levelLabel = new JLabel("Level 5");
-		levelLabel.setFont(new Font(GuiSettings.FONT_NAME, Font.PLAIN, 15));
+		infoButtonId = ButtonId.HERO_SELECTOR_INFO_0.applyOffset(heroIndex);
+		infoButton = new JButton("Info");
+		infoButton.addActionListener(new GuiSignalSender(infoButtonId));
 
 		deleteButtonId = ButtonId.HERO_SELECTOR_DELETE_0.applyOffset(heroIndex);
 		deleteButton = new JButton("Delete");
@@ -129,7 +133,7 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 		selectButton.addActionListener(new GuiSignalSender(selectButtonId));
 
 		panel.add(nameLabel, "wrap");
-		panel.add(levelLabel, "push, aligny 50%");
+		panel.add(infoButton, "push, aligny 50%");
 		panel.add(deleteButton);
 		panel.add(selectButton);
 

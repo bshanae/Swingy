@@ -10,14 +10,29 @@ public abstract class					Pockets
 {
 	public interface					Abstract {}
 
+	public static class					Artefact implements Abstract
+	{
+		@Getter
+		private final String			name;
+
+		public							Artefact(model.closed.artefacts.artefact.Artefact artefact)
+		{
+			name = artefact.getName();
+		}
+	}
+
 	public static class					Creature implements Abstract
 	{
 		@Getter
+		private final String			name;
+
+		@Getter
 		private final Point				position;
 
-		public							Creature(Point position)
+		public							Creature(model.closed.creatures.Creature creature)
 		{
-			this.position = position;
+			this.name = creature.getName();
+			this.position = creature.getPosition();
 		}
 	}
 
@@ -25,19 +40,52 @@ public abstract class					Pockets
 	{
 		public 							Enemy(model.closed.creatures.enemy.Enemy enemy)
 		{
-			super(enemy.getPosition());
+			super(enemy);
 		}
 	}
 
 	public static class					Hero extends Creature
 	{
 		@Getter
-		private final String			name;
+		private final String			heroClass;
+
+		@Getter
+		private final int				level;
+
+		@Getter
+		private final int				experience;
 
 		public 							Hero(model.closed.creatures.hero.Hero hero)
 		{
-			super(hero.getPosition());
-			this.name = hero.getName();
+			super(hero);
+
+			heroClass = hero.getHeroClass().toString();
+			level = hero.getLevel();
+			experience = hero.getExperience();
+		}
+	}
+
+	public static class					HeroInventory implements Abstract
+	{
+		@Getter
+		private final Artefact			helm;
+
+		@Getter
+		private final Artefact			armor;
+
+		@Getter
+		private final Artefact			weapon;
+
+		public 							HeroInventory(model.closed.creatures.hero.HeroInventory inventory)
+		{
+			helm = buildArtefact(inventory.getHelm());
+			armor = buildArtefact(inventory.getArmor());
+			weapon = buildArtefact(inventory.getWeapon());
+		}
+
+		private Artefact				buildArtefact(model.closed.artefacts.artefact.Artefact artefact)
+		{
+			return artefact != null ? new Artefact(artefact) : null;
 		}
 	}
 

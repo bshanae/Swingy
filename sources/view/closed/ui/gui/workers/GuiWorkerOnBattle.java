@@ -3,7 +3,6 @@ package view.closed.ui.gui.workers;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiWorker;
-import view.closed.ui.gui.utils.GuiDialogSize;
 import view.closed.ui.gui.utils.GuiSignalSender;
 import view.open.ButtonId;
 
@@ -22,7 +21,7 @@ public class					GuiWorkerOnBattle extends GuiWorker
 	public void					execute(Requests.Abstract request)
 	{
 		parseRequest(request);
-		showInDialog("Battle", GuiDialogSize.BIG, buildMainPanel());
+		showInDialog("Battle", new application.utils.Point(700, 400), buildMainPanel());
 	}
 
 // --------------------------->	Private methods : UI

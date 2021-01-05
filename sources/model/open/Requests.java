@@ -87,6 +87,21 @@ public abstract class						Requests
 		}
 	}
 
+	public static class						HeroInfo implements Ui
+	{
+		@Getter
+		private final Pockets.Hero			hero;
+
+		@Getter
+		private final Pockets.HeroInventory	inventory;
+
+		public 								HeroInfo(model.closed.creatures.hero.Hero hero)
+		{
+			this.hero = new Pockets.Hero(hero);
+			this.inventory = new Pockets.HeroInventory(hero.getInventory());
+		}
+	}
+
 	public static class						Map implements Ui
 	{
 		@Getter

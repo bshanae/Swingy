@@ -38,8 +38,11 @@ public class						GuiWorkerFactory extends UiWorkerFactory
 			return new GuiWorkerOnInfo();
 		if (request instanceof Requests.Question)
 			return new GuiWorkerOnQuestion();
+
 		if (request instanceof Requests.HeroSelector)
 			return new GuiWorkerOnHeroSelector();
+		if (request instanceof Requests.HeroInfo)
+			return new GuiWorkerOnHeroInfo();
 		if (request instanceof Requests.NameEntry)
 			return new GuiWorkerOnNameEntry();
 		if (request instanceof Requests.ClassSelector)

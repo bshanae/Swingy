@@ -47,6 +47,18 @@ public class					GuiSignalTranslator extends SignalTranslator
 			case HERO_SELECTOR_DELETE_3:
 				return new Commands.Delete(3);
 
+			case HERO_SELECTOR_INFO_0:
+				return new Commands.Info(0);
+			case HERO_SELECTOR_INFO_1:
+				return new Commands.Info(1);
+			case HERO_SELECTOR_INFO_2:
+				return new Commands.Info(2);
+			case HERO_SELECTOR_INFO_3:
+				return new Commands.Info(3);
+
+			case HERO_INFO_OK:
+				return new Commands.Ok();
+
 			case NAME_ENTRY_ENTER:
 				return new Commands.Enter((String)guiSignal.getLinkedData());
 

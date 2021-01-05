@@ -2,10 +2,6 @@ package view.closed.ui.gui;
 
 import application.patterns.SingletonMap;
 import application.patterns.server.Server;
-import application.service.Debug;
-import application.service.Exceptions;
-import application.service.LogGroup;
-import view.closed.ui.gui.utils.GuiDialogSize;
 import view.closed.ui.gui.utils.GuiSettings;
 
 import javax.swing.*;
@@ -163,7 +159,7 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 
 		private void					setSize()
 		{
-			dialog.setSize(task.getSize().getWidth(), task.getSize().getHeight());
+			dialog.setSize(task.getSize().x, task.getSize().y);
 		}
 
 		private void					setPanel()

@@ -1,7 +1,7 @@
 package view.closed.ui.gui;
 
+import application.utils.Point;
 import view.closed.ui.UiWorker;
-import view.closed.ui.gui.utils.GuiDialogSize;
 
 import javax.swing.*;
 
@@ -14,7 +14,7 @@ public abstract class		GuiWorker extends UiWorker
 		GuiServer.getInstance().execute(new GuiTasks.ShowInFrame(panel));
 	}
 
-	protected static void	showInDialog(String title, GuiDialogSize size, JPanel panel)
+	protected static void	showInDialog(String title, Point size, JPanel panel)
 	{
 		boolean				buildNewDialog;
 
@@ -22,7 +22,7 @@ public abstract class		GuiWorker extends UiWorker
 		showInDialog(title, buildNewDialog, size, panel);
 	}
 
-	protected static void	showInNewDialog(String title, GuiDialogSize size, JPanel panel)
+	protected static void	showInNewDialog(String title, Point size, JPanel panel)
 	{
 		showInDialog(title, true, size, panel);
 	}
@@ -33,7 +33,7 @@ public abstract class		GuiWorker extends UiWorker
 							(
 								String title,
 								boolean buildNewDialog,
-								GuiDialogSize size,
+								Point size,
 								JPanel panel
 							)
 	{

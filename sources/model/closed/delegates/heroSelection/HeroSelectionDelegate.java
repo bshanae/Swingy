@@ -35,6 +35,8 @@ public class				HeroSelectionDelegate extends Delegate
 			trySelectHero((Commands.Select)command);
 		else if (command instanceof Commands.Delete)
 			tryDeleteHero((Commands.Delete)command);
+		else if (command instanceof Commands.Info)
+			tryShowInfo((Commands.Info)command);
 	}
 
 	@Override
@@ -60,14 +62,14 @@ public class				HeroSelectionDelegate extends Delegate
 	{
 		try
 		{
-			Hero			hero = null;
+			Hero			hero;
 
 			if (command.getValueAsInteger() != null)
 				hero = HeroStorage.getInstance().get(command.getValueAsInteger());
 			else if (command.getValueAsString() != null)
 				hero = HeroStorage.getInstance().find(command.getValueAsString());
 			else
-				assert false;
+				throw new Exceptions.UnexpectedCodeBranch();
 
 			Session.setHero(hero);
 			requestResolution();
@@ -90,6 +92,27 @@ public class				HeroSelectionDelegate extends Delegate
 				assert false;
 
 			showHeroSelectionScreen();
+		}
+		catch (Exceptions.ObjectNotFound exception)
+		{
+			linkChild(new ErrorDelegate("Hero not found"));
+		}
+	}
+
+	private void			tryShowInfo(Commands.Info command)
+	{
+		try
+		{
+			Hero			hero;
+
+			if (command.getValueAsInteger() != null)
+				hero = HeroStorage.getInstance().get(command.getValueAsInteger());
+			else if (command.getValueAsString() != null)
+				hero = HeroStorage.getInstance().find(command.getValueAsString());
+			else
+				throw new Exceptions.UnexpectedCodeBranch();
+
+			linkChild(new HeroInfoDelegate(hero));
 		}
 		catch (Exceptions.ObjectNotFound exception)
 		{

@@ -25,6 +25,8 @@ public class							Hero extends Creature
 	private final HeroInventory			inventory;
 
 	private int							level;
+
+	@Getter
 	private int							experience;
 
 // -----------------------------------> Properties
