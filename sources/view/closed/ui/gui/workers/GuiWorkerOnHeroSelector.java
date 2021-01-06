@@ -15,13 +15,6 @@ import java.util.List;
 
 public class					GuiWorkerOnHeroSelector extends GuiWorker
 {
-// ---------------------------> Constants
-
-	private static final int	GAP_FROM_TOP_TO_TITLE = 60;
-	private static final int	GAP_FROM_TITLE_TO_HERO_PANELS = 60;
-	private static final int	GAP_BETWEEN_HERO_PANELS = 5;
-	private static final int	GAP_FROM_HERO_PANELS_TO_BOTTOM = 50;
-
 // ---------------------------> Attributes
 
 	private List<Pockets.Hero> heroes;
@@ -39,39 +32,16 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 
 	private JPanel				buildMainPanel()
 	{
-		String					layoutConfig;
-		String					columnConfig;
-		String					rowConfig;
-		String					heroPanelConfig;
-
 		JPanel					panel;
+		LayoutManager			layout;
 
-		layoutConfig = "fill, wrap 1";
-		columnConfig = "[center]";
-
-		rowConfig = String.format
-			(
-				"%d[]%d[]%d[]%d[]%d[]%d",
-				GAP_FROM_TOP_TO_TITLE,
-				GAP_FROM_TITLE_TO_HERO_PANELS,
-				GAP_BETWEEN_HERO_PANELS,
-				GAP_BETWEEN_HERO_PANELS,
-				GAP_BETWEEN_HERO_PANELS,
-				GAP_FROM_HERO_PANELS_TO_BOTTOM
-			);
-
-		heroPanelConfig = "growx, width ::600, height 60";
+		layout = new MigLayout("fill, wrap 1", "center", "push[]push[]push");
 
 		panel = new JPanel();
-		panel.setLayout(new MigLayout(layoutConfig, columnConfig, rowConfig));
+		panel.setLayout(layout);
 
-		{
-			panel.add(buildTitle());
-			panel.add(buildHeroPanel(0), heroPanelConfig);
-			panel.add(buildHeroPanel(1), heroPanelConfig);
-			panel.add(buildHeroPanel(2), heroPanelConfig);
-			panel.add(buildHeroPanel(3), heroPanelConfig);
-		}
+		panel.add(buildTitle());
+		panel.add(buildHeroesPanel(), "growx");
 
 		return panel;
 	}
@@ -90,27 +60,30 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 		return label;
 	}
 
-	private JPanel				buildHeroPanel(int heroIndex)
+	private JPanel				buildHeroesPanel()
 	{
-		Pockets.Hero			hero;
+		final String			ITEM_CONFIG = "center, growx, width ::600";
 
-		hero = getHeroAt(heroIndex);
-		return hero != null ? buildExistingHeroPanel(hero, heroIndex) : buildEmptyHeroPanel(heroIndex);
-	}
-
-	private JPanel				buildExistingHeroPanel(Pockets.Hero hero, int heroIndex)
-	{
 		JPanel					panel;
 
+		panel = new JPanel();
+		panel.setLayout(new MigLayout("fillx, wrap 1"));
+
+		for (Pockets.Hero hero : heroes)
+			panel.add(buildHeroPanel(hero), ITEM_CONFIG);
+
+		if (heroes.size() < 4)
+			panel.add(buildEmptyHeroPanel(), ITEM_CONFIG);
+
+		return panel;
+	}
+
+	private JPanel				buildHeroPanel(Pockets.Hero hero)
+	{
+		JPanel					panel;
 		JLabel					nameLabel;
-
-		ButtonId				infoButtonId;
 		JButton					infoButton;
-
-		ButtonId				deleteButtonId;
 		JButton					deleteButton;
-
-		ButtonId				selectButtonId;
 		JButton					selectButton;
 
 		panel = new JPanel();
@@ -120,17 +93,14 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 		nameLabel = new JLabel(hero.getName());
 		nameLabel.setFont(new Font(GuiSettings.FONT_NAME, Font.BOLD, 25));
 
-		infoButtonId = ButtonId.HERO_SELECTOR_INFO_0.applyOffset(heroIndex);
 		infoButton = new JButton("Info");
-		infoButton.addActionListener(new GuiSignalSender(infoButtonId));
+		infoButton.addActionListener(new GuiSignalSender(ButtonId.HERO_SELECTOR_INFO, hero.getName()));
 
-		deleteButtonId = ButtonId.HERO_SELECTOR_DELETE_0.applyOffset(heroIndex);
 		deleteButton = new JButton("Delete");
-		deleteButton.addActionListener(new GuiSignalSender(deleteButtonId));
+		deleteButton.addActionListener(new GuiSignalSender(ButtonId.HERO_SELECTOR_DELETE, hero.getName()));
 
-		selectButtonId = ButtonId.HERO_SELECTOR_SELECT_0.applyOffset(heroIndex);
 		selectButton = new JButton("Select");
-		selectButton.addActionListener(new GuiSignalSender(selectButtonId));
+		selectButton.addActionListener(new GuiSignalSender(ButtonId.HERO_SELECTOR_SELECT, hero.getName()));
 
 		panel.add(nameLabel, "wrap");
 		panel.add(infoButton, "push, aligny 50%");
@@ -140,7 +110,7 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 		return panel;
 	}
 
-	private JPanel				buildEmptyHeroPanel(int heroIndex)
+	private JPanel				buildEmptyHeroPanel()
 	{
 		JPanel					panel;
 		JLabel					nameLabel;
@@ -154,7 +124,8 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 		nameLabel = new JLabel("Empty");
 		nameLabel.setFont(new Font(GuiSettings.FONT_NAME, Font.BOLD, 25));
 
-		buttonId = ButtonId.HERO_SELECTOR_CREATE_0.applyOffset(heroIndex);
+		// TODO
+		buttonId = ButtonId.HERO_SELECTOR_CREATE;
 
 		button = new JButton("Create");
 		button.addActionListener(new GuiSignalSender(buttonId));

@@ -1,5 +1,7 @@
 package controller.open;
 
+import lombok.Getter;
+
 public abstract class				Commands
 {
 // -------------------------------> Abstract
@@ -8,43 +10,14 @@ public abstract class				Commands
 
 	public static class				Null implements Abstract {}
 
-	private static abstract class	CommandWithValue implements Abstract
+	private static abstract class	CommandWithString implements Abstract
 	{
-		private final Object		value;
+		@Getter
+		private final String		string;
 
-		private boolean				isCached;
-		private Integer				valueAsInteger;
-		private String				valueAsString;
-
-		public Integer				getValueAsInteger()
+		public						CommandWithString(String string)
 		{
-			if (!isCached)
-				cache();
-
-			assert valueAsInteger != null;
-			return valueAsInteger;
-		}
-
-		public String				getValueAsString()
-		{
-			if (!isCached)
-				cache();
-
-			assert valueAsString != null;
-			return valueAsString;
-		}
-
-		public						CommandWithValue(Object value)
-		{
-			this.value = value;
-		}
-
-		private void				cache()
-		{
-			valueAsInteger = value instanceof Integer ? (Integer)value : null;
-			valueAsString = value instanceof String ? (String)value : null;
-
-			isCached = true;
+			this.string = string;
 		}
 	}
 
@@ -59,35 +32,35 @@ public abstract class				Commands
 	public static class				GoSouth implements Abstract {}
 	public static class				GoWest implements Abstract {}
 
-	public static class				Enter extends CommandWithValue
+	public static class				Enter extends CommandWithString
 	{
-		public						Enter(String value)
+		public						Enter(String string)
 		{
-			super(value);
+			super(string);
 		}
 	}
 
-	public static class				Select extends CommandWithValue
+	public static class				Select extends CommandWithString
 	{
-		public						Select(Object value)
+		public						Select(String string)
 		{
-			super(value);
+			super(string);
 		}
 	}
 
-	public static class				Delete extends CommandWithValue
+	public static class				Delete extends CommandWithString
 	{
-		public						Delete(Object value)
+		public						Delete(String string)
 		{
-			super(value);
+			super(string);
 		}
 	}
 
-	public static class				Info extends CommandWithValue
+	public static class				Info extends CommandWithString
 	{
-		public						Info(Object value)
+		public						Info(String string)
 		{
-			super(value);
+			super(string);
 		}
 	}
 

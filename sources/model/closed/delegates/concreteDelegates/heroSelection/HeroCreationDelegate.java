@@ -103,7 +103,7 @@ public class						HeroCreationDelegate extends AbstractDelegate
 	{
 		if (command.getCommand() instanceof Commands.Enter)
 		{
-			heroName = ((Commands.Enter)command.getCommand()).getValueAsString();
+			heroName = ((Commands.Enter)command.getCommand()).getString();
 			state = State.RECEIVED_NAME;
 
 			command.markExecuted();
@@ -125,7 +125,7 @@ public class						HeroCreationDelegate extends AbstractDelegate
 
 		if (command.getCommand() instanceof Commands.Select)
 		{
-			classString = ((Commands.Select)command.getCommand()).getValueAsString();
+			classString = ((Commands.Select)command.getCommand()).getString();
 
 			heroClass = HeroClass.fromString(classString);
 			state = State.RECEIVED_CLASS;

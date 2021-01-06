@@ -16,9 +16,9 @@ public class		GuiSignalSender implements ActionListener
 		signal = new Signals.Gui(buttonId);
 	}
 
-	public			GuiSignalSender(ButtonId buttonId, Object data)
+	public			GuiSignalSender(ButtonId buttonId, String string)
 	{
-		signal = new Signals.Gui(buttonId, data);
+		signal = new Signals.Gui(buttonId, string);
 	}
 
 	@Override

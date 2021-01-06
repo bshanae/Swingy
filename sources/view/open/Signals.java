@@ -33,18 +33,18 @@ public abstract class					Signals
 		private final ButtonId			buttonId;
 
 		@Getter
-		private final Object			linkedData;
+		private final String			string;
 
 		public 							Gui(ButtonId buttonId)
 		{
 			this.buttonId = buttonId;
-			this.linkedData = null;
+			this.string = null;
 		}
 
-		public 							Gui(ButtonId buttonId, Object linkedData)
+		public 							Gui(ButtonId buttonId, String string)
 		{
 			this.buttonId = buttonId;
-			this.linkedData = linkedData;
+			this.string = string;
 		}
 	}
 }

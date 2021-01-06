@@ -65,16 +65,7 @@ public class				HeroSelectionDelegate extends AbstractDelegate
 	{
 		try
 		{
-			Hero			hero;
-
-			if (command.getValueAsInteger() != null)
-				hero = HeroStorageFactory.buildInstance().get(command.getValueAsInteger());
-			else if (command.getValueAsString() != null)
-				hero = HeroStorageFactory.buildInstance().find(command.getValueAsString());
-			else
-				throw new Exceptions.UnexpectedCodeBranch();
-
-			Session.setHero(hero);
+			Session.setHero(HeroStorageFactory.buildInstance().find(command.getString()));
 			resolveLater(new ResolutionObject());
 		}
 		catch (Exceptions.ObjectNotFound exception)
@@ -91,13 +82,7 @@ public class				HeroSelectionDelegate extends AbstractDelegate
 
 		try
 		{
-			if (command.getValueAsInteger() != null)
-				heroStorage.delete(command.getValueAsInteger());
-			else if (command.getValueAsString() != null)
-				heroStorage.delete(heroStorage.find(command.getValueAsString()));
-			else
-				assert false;
-
+			heroStorage.delete(heroStorage.find(command.getString()));
 			showHeroSelectionScreen();
 		}
 		catch (Exceptions.ObjectNotFound exception)
@@ -112,13 +97,7 @@ public class				HeroSelectionDelegate extends AbstractDelegate
 		{
 			Hero			hero;
 
-			if (command.getValueAsInteger() != null)
-				hero = HeroStorageFactory.buildInstance().get(command.getValueAsInteger());
-			else if (command.getValueAsString() != null)
-				hero = HeroStorageFactory.buildInstance().find(command.getValueAsString());
-			else
-				throw new Exceptions.UnexpectedCodeBranch();
-
+			hero = HeroStorageFactory.buildInstance().find(command.getString());
 			stackChildLater(new HeroInfoDelegate(hero));
 		}
 		catch (Exceptions.ObjectNotFound exception)
