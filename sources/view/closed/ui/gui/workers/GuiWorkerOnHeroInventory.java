@@ -23,7 +23,7 @@ public class						GuiWorkerOnHeroInventory extends GuiWorker
 	public void						execute(Requests.Abstract request)
 	{
 		parseRequest(request);
-		showInDialog("Hero inventory", new Point(260, 200), buildMainPanel());
+		showInDialog("Hero inventory", new Point(260, 180), buildMainPanel());
 	}
 
 // -------------------------------> Private : UI

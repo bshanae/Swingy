@@ -53,7 +53,6 @@ public class						GuiWorkerOnHeroInfo extends GuiWorker
 		builder = new GuiDictionaryPanelBuilder();
 		builder.getPanel().setBorder(BorderFactory.createTitledBorder("Stats"));
 
-		builder.put("Name", request.getHero().getName());
 		builder.put("Class", request.getHero().getHeroClass());
 		builder.put("Level", request.getHero().getLevel());
 		builder.put("Experience", request.getHero().getExperience());

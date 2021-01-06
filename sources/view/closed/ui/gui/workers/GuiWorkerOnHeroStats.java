@@ -22,7 +22,7 @@ public class						GuiWorkerOnHeroStats extends GuiWorker
 	public void						execute(Requests.Abstract request)
 	{
 		parseRequest(request);
-		showInDialog("Hero stats", new Point(260, 230), buildMainPanel());
+		showInDialog("Hero stats", new Point(260, 180), buildMainPanel());
 	}
 
 // -------------------------------> Private : UI
@@ -50,7 +50,6 @@ public class						GuiWorkerOnHeroStats extends GuiWorker
 
 		builder = new GuiDictionaryPanelBuilder();
 
-		builder.put("Name", request.getHero().getName());
 		builder.put("Class", request.getHero().getHeroClass());
 		builder.put("Level", request.getHero().getLevel());
 		builder.put("Experience", request.getHero().getExperience());
