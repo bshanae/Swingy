@@ -9,6 +9,7 @@ import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.artefacts.artefact.Artefact;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
 import model.closed.delegates.abstractDelegate.ExecutableCommand;
+import model.closed.delegates.concreteDelegates.common.InfoDelegate;
 import model.closed.delegates.concreteDelegates.common.QuestionDelegate;
 import model.open.Requests;
 
@@ -34,7 +35,8 @@ public class					BattleDelegate extends AbstractDelegate
 	private enum				State
 	{
 		PROCESSING_BATTLE,
-		PROCESSING_ARTEFACT_DROP
+		PROCESSING_ARTEFACT_DROP,
+		PROCESSING_NEW_LEVEL
 	}
 
 // ---------------------------> Constants
@@ -42,9 +44,11 @@ public class					BattleDelegate extends AbstractDelegate
 	private static final float	LOG_DELAY = 1.f;
 	private static final float	MILLISECONDS_IN_A_SECOND = 1000;
 
-	private static final String	QUESTION = "DO you wish to take '%s'?";
-	private static final String	ANSWER_A = "Leave";
-	private static final String	ANSWER_B = "Take";
+	private static final String	ARTEFACT_QUESTION = "Do you wish to take '%s'?";
+	private static final String	ARTEFACT_ANSWER_A = "Leave";
+	private static final String	ARTEFACT_ANSWER_B = "Take";
+
+	private static final String	LEVEL_INFO = "Congratulations! You've upgraded to level %d.";
 
 // ---------------------------> Attributes
 
@@ -55,6 +59,7 @@ public class					BattleDelegate extends AbstractDelegate
 	private boolean				shouldExecuteTurn;
 
 	private Artefact			droppedArtefact;
+	private final int			levelBeforeBattle;
 
 // ---------------------------> Constructor
 
@@ -66,6 +71,9 @@ public class					BattleDelegate extends AbstractDelegate
 		state = State.PROCESSING_BATTLE;
 		timer = null;
 		shouldExecuteTurn = false;
+
+		droppedArtefact = null;
+		levelBeforeBattle = Session.getHero().getLevel();
 	}
 
 // ---------------------------> Implementations
@@ -90,39 +98,47 @@ public class					BattleDelegate extends AbstractDelegate
 	@Override
 	protected void				tryToExecuteCommand(ExecutableCommand command)
 	{
-		switch (state)
+		if (state != State.PROCESSING_BATTLE)
+			return ;
+
+		if (command.getCommand() instanceof Commands.Ok)
 		{
-			case PROCESSING_BATTLE:
-				if (command.getCommand() instanceof Commands.Ok)
-				{
-					if (tryGetArtefact(battle.getOpponent()))
-						state = State.PROCESSING_ARTEFACT_DROP;
-					else
-						resolveLater(new ResolutionObject());
-
-					command.markExecuted();
-				}
-				break;
-
-			case PROCESSING_ARTEFACT_DROP:
-				if (command.getCommand() instanceof Commands.AnswerA)
-					;
-				else if (command.getCommand() instanceof Commands.AnswerB)
-					Session.getHero().getInventory().setArtefact(droppedArtefact);
-				else
-					return;
-
+			if (tryGetArtefact(battle.getOpponent()))
+				state = State.PROCESSING_ARTEFACT_DROP;
+			else if (tryTellAboutNewLevel())
+				state = State.PROCESSING_NEW_LEVEL;
+			else
 				resolveLater(new ResolutionObject());
-				command.markExecuted();
-				break;
 
+			command.markExecuted();
 		}
 	}
 
 	@Override
 	public void					whenChildResolved(AbstractResolutionObject object)
 	{
-		resolveLater(new ResolutionObject());
+		switch (state)
+		{
+			case PROCESSING_ARTEFACT_DROP:
+				if (object instanceof QuestionDelegate.ResolutionObject)
+				{
+					if (((QuestionDelegate.ResolutionObject)object).getAnswer() == QuestionDelegate.ResolutionObject.Answer.B)
+						Session.getHero().getInventory().setArtefact(droppedArtefact);
+
+					if (tryTellAboutNewLevel())
+						state = State.PROCESSING_NEW_LEVEL;
+					else
+						resolveLater(new ResolutionObject());
+				}
+				break;
+
+			case PROCESSING_NEW_LEVEL:
+				if (object instanceof InfoDelegate.ResolutionObject)
+					resolveLater(new ResolutionObject());
+
+				break;
+		}
+
 	}
 
 // ---------------------------> Private methods
@@ -162,11 +178,25 @@ public class					BattleDelegate extends AbstractDelegate
 		droppedArtefact = enemy.getArtefactDropper().drop();
 		if (droppedArtefact != null)
 		{
-			question = String.format(QUESTION, droppedArtefact.getName());
-			stackChildLater(new QuestionDelegate(question, ANSWER_A, ANSWER_B));
+			question = String.format(ARTEFACT_QUESTION, droppedArtefact.getName());
+			stackChildLater(new QuestionDelegate(question, ARTEFACT_ANSWER_A, ARTEFACT_ANSWER_B));
 			return true;
 		}
 
 		return false;
 	}
+
+	private boolean				tryTellAboutNewLevel()
+	{
+		final int				levelAfterBattle = Session.getHero().getLevel();
+
+		if (levelAfterBattle > levelBeforeBattle)
+		{
+			stackChildLater(new InfoDelegate(String.format(LEVEL_INFO, levelAfterBattle)));
+			return true;
+		}
+
+		return false;
+	}
+
 }

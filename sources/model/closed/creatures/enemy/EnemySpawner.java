@@ -42,7 +42,7 @@ public abstract class				EnemySpawner
 		list = new LinkedList<>();
 		for (Enemy enemy : EnemyStorage.getInstance())
 		{
-			if (enemy.getLevel() <= Session.getLevel())
+			if (enemy.getLevel() <= Session.getHero().getLevel())
 				list.add(enemy);
 		}
 
@@ -75,17 +75,19 @@ public abstract class				EnemySpawner
 	{
 		int							currentLevel;
 		int							appearanceLevel;
+		int							levelDelta;
 
 		float						appearProbabilityMultiplier;
 
-		currentLevel = Session.getLevel();
+		currentLevel = Session.getHero().getLevel();
 		appearanceLevel = enemy.getLevel();
+		levelDelta = currentLevel - appearanceLevel;
 
 		appearProbabilityMultiplier = 1.f;
 
-		if (currentLevel > appearanceLevel)
+		if (levelDelta > 0)
 		{
-			appearProbabilityMultiplier = 1.f - 0.05f * (currentLevel - appearanceLevel);
+			appearProbabilityMultiplier = 1.f - 0.05f * levelDelta * levelDelta;
 			appearProbabilityMultiplier = Math.max(0.f, appearProbabilityMultiplier);
 		}
 

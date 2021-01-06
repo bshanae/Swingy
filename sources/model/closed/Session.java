@@ -18,11 +18,6 @@ public class				Session
 		Session.hero = hero;
 	}
 
-	public static int		getLevel()
-	{
-		return hero.getLevel();
-	}
-
 	public static Map		getMap()
 	{
 		return map;

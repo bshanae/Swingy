@@ -36,7 +36,7 @@ public class							MapGenerator
 		Enemy							enemy;
 
 		hero = Session.getHero();
-		level = Session.getLevel();
+		level = Session.getHero().getLevel();
 
 		map = new Map(new Point(getSizeForLevel(level)));
 
