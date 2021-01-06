@@ -32,6 +32,11 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 
 // -----------------------------------> Private methods : Execute
 
+	private void						execute(GuiTasks.Terminate task)
+	{
+		EventQueue.invokeLater(new Terminator());
+	}
+
 	private void						execute(GuiTasks.Enable task)
 	{
 		EventQueue.invokeLater(new Enabler());
@@ -53,6 +58,18 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 	}
 
 // -----------------------------------> Nested classes for GUI queuing
+
+	private class						Terminator implements Runnable
+	{
+		@Override
+		public void						run()
+		{
+			if (dialog != null)
+				dialog.dispose();
+
+			frame.dispose();
+		}
+	}
 
 	private class						Enabler implements Runnable
 	{

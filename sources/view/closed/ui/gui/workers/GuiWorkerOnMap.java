@@ -3,9 +3,11 @@ package view.closed.ui.gui.workers;
 import application.utils.Point;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
+import view.closed.ui.gui.GuiTasks;
 import view.closed.ui.gui.GuiWorker;
 import view.closed.ui.gui.utils.GuiSettings;
-import view.closed.ui.gui.utils.GuiSignalSender;
+import view.closed.ui.gui.utils.senders.GuiServerTaskSender;
+import view.closed.ui.gui.utils.senders.GuiSignalSender;
 import view.closed.ui.utils.MapGenerator;
 import view.open.ButtonId;
 
@@ -150,7 +152,16 @@ public class							GuiWorkerOnMap extends GuiWorker
 
 	private JComponent					buildSystemButtons()
 	{
-		return buildSideMenu("System", new JButton("Console"), new JButton("Exit"));
+		JButton							buttonConsole;
+		JButton							buttonExit;
+
+		buttonConsole = new JButton("Console");
+
+		buttonExit = new JButton("Exit");
+		buttonExit.addActionListener(new GuiSignalSender(ButtonId.EXIT));
+		buttonExit.addActionListener(new GuiServerTaskSender(new GuiTasks.Terminate()));
+
+		return buildSideMenu("System", buttonConsole, buttonExit);
 	}
 
 	private JComponent					buildSideMenu(String title, JButton upperButton, JButton lowerButton)

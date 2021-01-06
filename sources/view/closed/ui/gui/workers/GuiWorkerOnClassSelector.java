@@ -4,16 +4,12 @@ import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiWorker;
 import view.closed.ui.gui.utils.GuiSettings;
-import view.closed.ui.gui.utils.GuiSignalSender;
+import view.closed.ui.gui.utils.senders.GuiSignalSender;
 import view.open.ButtonId;
-import view.open.Signals;
-import view.open.View;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class					GuiWorkerOnClassSelector extends GuiWorker
 {

@@ -8,9 +8,9 @@ import javax.swing.*;
 
 public abstract class				GuiTasks
 {
-// -------------------------------> Nested types
-
 	public interface				Abstract extends ServerTask {}
+
+	public static class				Terminate implements Abstract {}
 
 	public static class				Enable implements Abstract {}
 

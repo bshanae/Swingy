@@ -4,7 +4,7 @@ import application.utils.Point;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiWorker;
-import view.closed.ui.gui.utils.GuiSignalSender;
+import view.closed.ui.gui.utils.senders.GuiSignalSender;
 import view.open.ButtonId;
 
 import javax.swing.*;

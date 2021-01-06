@@ -12,7 +12,7 @@ public class							MapGenerator
 {
 // -----------------------------------> Constants
 
-	private static final float			ENEMY_DENSITY = 0.4f;
+	private static final float			ENEMY_DENSITY = 0.3f;
 	private static final int			LIMIT_OF_ATTEMPTS_TO_GENERATE_POSITION = 100;
 
 // -----------------------------------> Attributes

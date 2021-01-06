@@ -138,6 +138,8 @@ public class				MapDelegate extends AbstractDelegate
 		{
 			if (((RunAwayDelegate.ResolutionObject)object).shouldStartBattle())
 				startBattle();
+			else
+				isProcessingBattle = false;
 		}
 		else if (object instanceof BattleDelegate.ResolutionObject)
 			isProcessingBattle = false;
