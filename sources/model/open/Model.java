@@ -55,6 +55,6 @@ public class								Model
 	public void								listen(Commands.Abstract command)
 	{
 		Debug.logFormat(LogGroup.MVC, "[Model/Model] Received command of type '%s'", command.getClass());
-		Game.getInstance().respondToCommand(command);
+		Game.getInstance().executeCommand(command);
 	}
 }

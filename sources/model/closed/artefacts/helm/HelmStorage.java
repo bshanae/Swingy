@@ -1,7 +1,7 @@
 package model.closed.artefacts.helm;
 
 import application.patterns.SingletonMap;
-import application.utils.ResourceManager;
+import application.utils.resources.ResourceManager;
 import model.closed.utils.AbstractStorage;
 import model.closed.utils.YamlParser;
 

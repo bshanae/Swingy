@@ -1,0 +1,11 @@
+INSERT INTO swingy.heroes
+VALUES
+(
+	"%name%",
+	"%class%",
+	%level%,
+	%experience%,
+	"%helm%",
+	"%armor%",
+	"%weapon%"
+)

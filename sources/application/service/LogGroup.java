@@ -23,8 +23,8 @@ public enum								LogGroup
 
 // -----------------------------------> Properties
 
-	public ApplicationOptions			getApplicationOption()
+	public boolean						isEnabled()
 	{
-		return option;
+		return ApplicationOptions.get(option) || ApplicationOptions.get(ApplicationOptions.LOG_FULL);
 	}
 }

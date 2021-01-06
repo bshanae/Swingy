@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS swingy.heroes
+(
+    name VARCHAR(255),
+    class VARCHAR(255),
+    level INT,
+    experience INT,
+    helm VARCHAR(255),
+    armor VARCHAR(255),
+    weapon VARCHAR(255),
+    PRIMARY KEY(name)
+)

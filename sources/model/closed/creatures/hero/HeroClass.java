@@ -1,5 +1,6 @@
 package model.closed.creatures.hero;
 
+import application.service.Exceptions;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public enum					HeroClass
@@ -30,6 +31,20 @@ public enum					HeroClass
 	{
 		this.string = string;
 		this.flag = flag;
+	}
+
+	public static HeroClass	fromString(String string)
+	{
+		if (string.equalsIgnoreCase(WARRIOR.toString()))
+			return WARRIOR;
+		else if (string.equalsIgnoreCase(SWORDSMAN.toString()))
+			return SWORDSMAN;
+		else if (string.equalsIgnoreCase(ASSASSIN.toString()))
+			return ASSASSIN;
+		else if (string.equalsIgnoreCase(MAGE.toString()))
+			return MAGE;
+		else
+			throw new Exceptions.UnexpectedCodeBranch();
 	}
 
 // -----------------------> Public methods

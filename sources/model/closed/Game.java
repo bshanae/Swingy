@@ -1,14 +1,16 @@
 package model.closed;
 
 import application.patterns.SingletonMap;
+import application.service.Debug;
+import application.service.LogGroup;
 import controller.open.Commands;
 import model.closed.artefacts.armor.ArmorStorage;
 import model.closed.artefacts.helm.HelmStorage;
 import model.closed.artefacts.weapon.WeaponStorage;
 import model.closed.creatures.enemy.EnemyStorage;
-import model.closed.creatures.hero.HeroStorage;
+import model.closed.creatures.hero.heroStorage.HeroStorageFactory;
 import model.closed.creatures.hero.heroTemplate.HeroTemplateStorage;
-import model.closed.delegates.core.CoreDelegate;
+import model.closed.delegates.concreteDelegates.core.CoreDelegate;
 
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -50,6 +52,8 @@ public class						Game
 
 	public void						run()
 	{
+		Debug.log(LogGroup.GAME, "[Model/Game] Running");
+
 		state = State.RUNNING;
 
 		HelmStorage.getInstance().download();
@@ -57,7 +61,7 @@ public class						Game
 		WeaponStorage.getInstance().download();
 
 		HeroTemplateStorage.getInstance().download();
-		HeroStorage.getInstance().download();
+		HeroStorageFactory.buildInstance().download();
 		EnemyStorage.getInstance().download();
 
 		coreDelegate.run();
@@ -65,9 +69,11 @@ public class						Game
 
 	public void						terminate()
 	{
+		Debug.log(LogGroup.GAME, "[Model/Game] Terminating");
+
 		state = State.TERMINATED;
 
-		HeroStorage.getInstance().upload();
+		HeroStorageFactory.buildInstance().upload();
 		coreDelegate.terminate();
 	}
 
@@ -78,10 +84,10 @@ public class						Game
 		lock.unlock();
 	}
 
-	public void						respondToCommand(Commands.Abstract command)
+	public void						executeCommand(Commands.Abstract command)
 	{
 		lock.lock();
-		coreDelegate.respond(command);
+		coreDelegate.tryToExecuteCommand(command);
 		lock.unlock();
 	}
 }

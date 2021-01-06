@@ -1,0 +1,1 @@
+SELECT name, class, level, experience, helm, armor, weapon FROM swingy.heroes

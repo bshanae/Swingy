@@ -3,10 +3,14 @@ package model.closed.creatures.hero;
 import application.service.Debug;
 import application.service.LogGroup;
 import lombok.Getter;
+import model.closed.artefacts.armor.Armor;
+import model.closed.artefacts.artefact.ArtefactAlias;
+import model.closed.artefacts.helm.Helm;
 import model.closed.artefacts.weapon.Weapon;
 import model.closed.battle.Attack;
 import model.closed.creatures.Creature;
 import model.closed.creatures.hero.heroTemplate.HeroTemplate;
+import model.closed.creatures.hero.heroTemplate.HeroTemplateStorage;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -55,18 +59,65 @@ public class							Hero extends Creature
 		return transformAttacks(getWeaponAttacks(), calculateAttackGainViaLevel());
 	}
 
-// -----------------------------------> Constructor
+// -----------------------------------> Constructors
 
-	public								Hero(HeroTemplate template, String name)
+	public static Hero					create(HeroTemplate template, String name)
 	{
+		Hero							hero;
+
+		hero = new Hero(name, template.getHeroClass(), template.getHealth(), template.getDefense());
+		hero.inventory.setWeapon((Weapon)template.getWeapon().get());
+
+		logCreatingHero(name, template.getHeroClass());
+
+		return hero;
+	}
+
+	public static Hero					restore
+										(
+											String name,
+											HeroClass heroClass,
+											int level,
+											int experience,
+											Helm helm,
+											Armor armor,
+											Weapon weapon
+										)
+	{
+		HeroTemplate					template;
+		Hero							hero;
+
+		template = HeroTemplateStorage.getInstance().find(heroClass);
+		hero = new Hero(name, heroClass, template.getHealth(), template.getDefense());
+
+		hero.inventory.setHelm(helm);
+		hero.inventory.setArmor(armor);
+		hero.inventory.setWeapon(weapon);
+
+		hero.level = level;
+		hero.experience = experience;
+
+		logRestoringHero(name, heroClass, level, experience, helm, armor, weapon);
+
+		return hero;
+	}
+
+	private								Hero
+										(
+											String name,
+											HeroClass heroClass,
+											int baseHealth,
+											int baseDefense
+										)
+	{
+
 		super(name);
 
-		this.heroClass = template.getHeroClass();
-		this.baseHealth = template.getHealth();
-		this.baseDefense = template.getDefense();
+		this.heroClass = heroClass;
+		this.baseHealth = baseHealth;
+		this.baseDefense = baseDefense;
 
 		this.inventory = new HeroInventory();
-		this.inventory.setWeapon((Weapon)template.getWeapon().get());
 
 		this.level = 0;
 		this.experience = 0;
@@ -151,5 +202,42 @@ public class							Hero extends Creature
 			attacks.add(rawAttack.applyGain(gain));
 
 		return attacks;
+	}
+// -----------------------------------> Private methods : Logging
+
+	private static void					logCreatingHero(String name, HeroClass heroClass)
+	{
+		Debug.logFormat
+		(
+			LogGroup.GAME,
+			"[Model/Hero] Creating new hero '%s' using class '%s'",
+			name,
+			heroClass.toString()
+		);
+	}
+
+	private static void 				logRestoringHero
+										(
+											String name,
+											HeroClass heroCLass,
+											int level,
+											int experience,
+											Helm helm,
+											Armor armor,
+											Weapon weapon
+										)
+	{
+		Debug.logFormat
+		(
+			LogGroup.GAME,
+			"[Model/Hero] Restoring hero '%s' from data : class = '%s', level = %d, experience = %d, helm = %s, armor = %s, weapon = %s",
+			name,
+			heroCLass.toString(),
+			level,
+			experience,
+			helm != null ? helm.getName() : "",
+			armor != null ? armor.getName() : "",
+			weapon != null ? weapon.getName() : ""
+		);
 	}
 }

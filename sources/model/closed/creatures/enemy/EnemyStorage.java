@@ -1,7 +1,7 @@
 package model.closed.creatures.enemy;
 
 import application.patterns.SingletonMap;
-import application.utils.ResourceManager;
+import application.utils.resources.ResourceManager;
 import model.closed.utils.YamlParser;
 import model.closed.utils.AbstractStorage;
 

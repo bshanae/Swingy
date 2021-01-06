@@ -25,19 +25,19 @@ public class								HeroInventory
 
 	public void				setHelm(Helm helm)
 	{
-		Debug.logFormat(LogGroup.GAME, "[Model/HeroInventory] Setting weapon to '%s'", helm.getName());
+		logSettingHelm(helm);
 		this.helm = helm;
 	}
 
 	public void				setArmor(Armor armor)
 	{
-		Debug.logFormat(LogGroup.GAME, "[Model/HeroInventory] Setting armor to '%s'", armor.getName());
+		logSettingArmor(armor);
 		this.armor = armor;
 	}
 
 	public void				setWeapon(Weapon weapon)
 	{
-		Debug.logFormat(LogGroup.GAME, "[Model/HeroInventory] Setting weapon to '%s'", weapon.getName());
+		logSettingWeapon(weapon);
 		this.weapon = weapon;
 	}
 
@@ -51,5 +51,37 @@ public class								HeroInventory
 			setArmor((Armor)artefact);
 		else if (artefact instanceof Weapon)
 			setWeapon((Weapon)artefact);
+	}
+
+// -----------------------> Private methods
+
+	private static void		logSettingHelm(Helm helm)
+	{
+		Debug.logFormat
+		(
+			LogGroup.GAME,
+			"[Model/HeroInventory] Setting helm to '%s'",
+			helm != null ? helm.getName() : ""
+		);
+	}
+
+	private static void		logSettingArmor(Armor armor)
+	{
+		Debug.logFormat
+		(
+			LogGroup.GAME,
+			"[Model/HeroInventory] Setting armor to '%s'",
+			armor != null ? armor.getName() : ""
+		);
+	}
+
+	private static void		logSettingWeapon(Weapon weapon)
+	{
+		Debug.logFormat
+		(
+			LogGroup.GAME,
+			"[Model/HeroInventory] Setting weapon to '%s'",
+			weapon != null ? weapon.getName() : ""
+		);
 	}
 }

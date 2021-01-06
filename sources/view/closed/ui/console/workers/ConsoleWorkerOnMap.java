@@ -3,17 +3,19 @@ package view.closed.ui.console.workers;
 import application.utils.Point;
 import model.open.Requests;
 import view.closed.ui.utils.MapGenerator;
-import application.utils.ResourceManager;
-import view.closed.ui.console.utils.Template;
+import application.utils.resources.ResourceManager;
+import application.utils.resources.Template;
 import view.closed.ui.console.ConsoleWorker;
 import view.open.Context;
+
+import java.io.File;
 
 public class							ConsoleWorkerOnMap extends ConsoleWorker
 {
 	private static final Point			CANVAS_SIZE = new Point(65, 7);
 	private static final MapGenerator	mapGenerator;
 
-	private Template					mapTemplate;
+	private Template					template;
 	private Requests.Map				request;
 
 	static
@@ -43,15 +45,12 @@ public class							ConsoleWorkerOnMap extends ConsoleWorker
 		prepareTemplate();
 		writeMapToTemplate();
 
-		return mapTemplate.toString();
+		return template.toString();
 	}
 
 	private void						prepareTemplate()
 	{
-		String							rawTemplate;
-
-		rawTemplate = ResourceManager.getText("/view/console/templates/Map.txt");
-		mapTemplate = new Template(rawTemplate);
+		template = ResourceManager.getTemplate("/view/console/templates/Map.txt");
 	}
 
 	private void						writeMapToTemplate()
@@ -60,6 +59,6 @@ public class							ConsoleWorkerOnMap extends ConsoleWorker
 
 		map = mapGenerator.generate(request);
 		for (int y = 0; y < CANVAS_SIZE.y; y++)
-			mapTemplate.replace("LINE" + y, new String(map[y]));
+			template.put("LINE" + y, new String(map[y]));
 	}
 }

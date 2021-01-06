@@ -2,7 +2,7 @@ package model.closed.creatures.hero.heroTemplate;
 
 import application.patterns.SingletonMap;
 import application.service.Exceptions;
-import application.utils.ResourceManager;
+import application.utils.resources.ResourceManager;
 import model.closed.creatures.hero.HeroClass;
 import model.closed.utils.AbstractStorage;
 import model.closed.utils.YamlParser;

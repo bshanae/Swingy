@@ -3,9 +3,13 @@ package view.closed.ui.gui;
 import application.patterns.SingletonMap;
 import application.patterns.server.Server;
 import view.closed.ui.gui.utils.GuiSettings;
+import view.open.ButtonId;
+import view.open.Signals;
+import view.open.View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
 
 public class							GuiServer extends Server<GuiTasks.Abstract>
 {
@@ -70,6 +74,16 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 
 	private class						Constructor implements Runnable
 	{
+		private class					ExitListener extends WindowAdapter
+		{
+			@Override
+			public void					windowClosing(java.awt.event.WindowEvent event)
+			{
+				View.getInstance().sendSignal(new Signals.Gui(ButtonId.EXIT));
+				event.getWindow().dispose();
+			}
+		}
+
 		@Override
 		public void						run()
 		{
@@ -79,9 +93,10 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 			frame.setSize(GuiSettings.WINDOW_WIDTH, GuiSettings.WINDOW_HEIGHT);
 			frame.setResizable(false);
 
-			frame.setLayout(null);
+			frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+			frame.addWindowListener(new ExitListener());
 
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setLayout(null);
 			frame.setLocationRelativeTo(null);
 		}
 	}

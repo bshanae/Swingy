@@ -2,11 +2,12 @@ package view.closed.ui.console.workers;
 
 import model.open.Pockets;
 import model.open.Requests;
-import application.utils.ResourceManager;
-import view.closed.ui.console.utils.Template;
+import application.utils.resources.ResourceManager;
+import application.utils.resources.Template;
 import view.closed.ui.console.ConsoleWorker;
 import view.open.Context;
 
+import java.io.File;
 import java.util.List;
 
 public class					ConsoleWorkerOnHeroSelector extends ConsoleWorker
@@ -22,19 +23,17 @@ public class					ConsoleWorkerOnHeroSelector extends ConsoleWorker
 	private String				getText(Requests.Abstract request)
 	{
 		Requests.HeroSelector	heroSelectorRequest;
-		String					rawTemplate;
 		Template				template;
 
 		heroSelectorRequest = (Requests.HeroSelector)request;
-		rawTemplate = ResourceManager.getText("/view/console/templates/HeroSelector.txt");
-		template = new Template(rawTemplate);
+		template = ResourceManager.getTemplate("/view/console/templates/HeroSelector.txt");
 
 		List<Pockets.Hero>		heroes = heroSelectorRequest.getHeroes();
 		int						numberOfHeroes = heroes.size();
 
 		for (int i = 0; i < 4; i++)
 		{
-			template.replace
+			template.put
 			(
 				"HERO" + i,
 				i < numberOfHeroes ? heroes.get(i).getName() : "Empty"

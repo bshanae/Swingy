@@ -7,22 +7,22 @@ import view.open.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class			GuiSignalSender implements ActionListener
+public class		GuiSignalSender implements ActionListener
 {
-	Signals.Gui			signal;
+	Signals.Gui		signal;
 
-	public 				GuiSignalSender(ButtonId buttonId)
+	public			GuiSignalSender(ButtonId buttonId)
 	{
 		signal = new Signals.Gui(buttonId);
 	}
 
-	public 				GuiSignalSender(ButtonId buttonId, Object data)
+	public			GuiSignalSender(ButtonId buttonId, Object data)
 	{
 		signal = new Signals.Gui(buttonId, data);
 	}
 
 	@Override
-	public void			actionPerformed(ActionEvent event)
+	public void		actionPerformed(ActionEvent event)
 	{
 		View.getInstance().sendSignal(signal);
 	}

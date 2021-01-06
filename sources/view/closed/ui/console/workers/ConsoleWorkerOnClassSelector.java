@@ -1,7 +1,7 @@
 package view.closed.ui.console.workers;
 
 import model.open.Requests;
-import application.utils.ResourceManager;
+import application.utils.resources.ResourceManager;
 import view.closed.ui.console.ConsoleWorker;
 import view.open.Context;
 

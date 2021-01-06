@@ -14,6 +14,9 @@ public class					GuiSignalTranslator extends SignalTranslator
 		guiSignal = (Signals.Gui)signal;
 		switch (guiSignal.getButtonId())
 		{
+			case EXIT:
+				return new Commands.Exit();
+
 			case INFO_OK:
 				return new Commands.Ok();
 

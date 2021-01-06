@@ -2,6 +2,8 @@ package view.open;
 
 public enum			ButtonId
 {
+	EXIT,
+
 	// Info
 	INFO_OK,
 

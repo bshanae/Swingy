@@ -7,13 +7,18 @@ public enum								ApplicationOptions
 {
 // -----------------------------------> Values
 
-	LAUNCH_CONSOLE("view/console"),
-	LAUNCH_GUI("view/gui"),
+	LAUNCH_CONSOLE("console"),
+	LAUNCH_GUI("gui"),
+
 	DEBUG("debug"),
+	IDE("ide"),
+
 	LOG_MVC("log-mvc"),
 	LOG_DELEGATE("log-delegate"),
 	LOG_GAME("log-game"),
-	IDE("ide");
+	LOG_FULL("log-full"),
+
+	USE_DATABASE("use-database");
 
 // -----------------------------------> Attributes
 
