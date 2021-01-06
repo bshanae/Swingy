@@ -40,7 +40,7 @@ public class					RunAwayDelegate extends AbstractDelegate
 	private static final String	ANSWER_ESCAPE = "Try to escape";
 	private static final String	ANSWER_FIGHT = "Fight";
 
-	private static final String	RESULT_DID_ESCAPE = "You run away from enemy!";
+	private static final String	RESULT_DID_ESCAPE = "You ran away from enemy!";
 	private static final String	RESULT_DID_NOT_ESCAPE = "You couldn't run away. You will fight your enemy.";
 
 // ---------------------------> Attributes

@@ -100,6 +100,7 @@ public class				MapDelegate extends AbstractDelegate
 	private final Hero		hero;
 	private final Map		map;
 
+	private Point			previousPosition;
 	private boolean			isProcessingBattle;
 	private Enemy			opponent;
 
@@ -139,7 +140,10 @@ public class				MapDelegate extends AbstractDelegate
 			if (((RunAwayDelegate.ResolutionObject)object).shouldStartBattle())
 				startBattle();
 			else
+			{
+				revertHeroPosition();
 				isProcessingBattle = false;
+			}
 		}
 		else if (object instanceof BattleDelegate.ResolutionObject)
 			isProcessingBattle = false;
@@ -188,6 +192,8 @@ public class				MapDelegate extends AbstractDelegate
 	{
 		boolean				shouldStartBattle;
 
+		saveHeroPosition();
+
 		if (!tryMoveHero(shift))
 			return;
 
@@ -230,6 +236,19 @@ public class				MapDelegate extends AbstractDelegate
 		}
 
 		return null;
+	}
+
+	private void			saveHeroPosition()
+	{
+		previousPosition = hero.getPosition();
+	}
+
+	private void 			revertHeroPosition()
+	{
+		hero.setPosition(previousPosition);
+		previousPosition = null;
+
+		drawMap(true);
 	}
 
 	private void			drawMap(boolean heroMovementAllowed)
