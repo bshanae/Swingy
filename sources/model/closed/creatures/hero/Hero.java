@@ -4,7 +4,6 @@ import application.service.Debug;
 import application.service.LogGroup;
 import lombok.Getter;
 import model.closed.artefacts.armor.Armor;
-import model.closed.artefacts.artefact.ArtefactAlias;
 import model.closed.artefacts.helm.Helm;
 import model.closed.artefacts.weapon.Weapon;
 import model.closed.battle.Attack;

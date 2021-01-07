@@ -12,3 +12,4 @@
 * [Cool custom Swing layout](http://www.miglayout.com)
 * [YAML parsing tutorial](https://dev-gang.ru/article/cztenie-i-zapis-yaml-failov-na-java-s-jackson-r81jqcddv0/)
 * [Automatic getters and setters via annotation](https://projectlombok.org/features/GetterSetter)
+* [Java Bean Validation Basics](https://www.baeldung.com/javax-validation)

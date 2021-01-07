@@ -37,6 +37,8 @@ public class						GuiWorkerFactory extends UiWorkerFactory
 		// Common
 		if (request instanceof Requests.Info)
 			return new GuiWorkerOnInfo();
+		if (request instanceof Requests.Error)
+			return new GuiWorkerOnError();
 		if (request instanceof Requests.Question)
 			return new GuiWorkerOnQuestion();
 
