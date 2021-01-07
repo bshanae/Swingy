@@ -4,6 +4,7 @@ import model.open.Pockets;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiWorker;
+import view.closed.ui.gui.utils.FontRedactor;
 import view.closed.ui.gui.utils.GuiSettings;
 import view.closed.ui.gui.utils.senders.GuiSignalSender;
 import view.open.ButtonId;
@@ -48,13 +49,10 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 
 	private JComponent			buildTitle()
 	{
-		Font					font;
 		JLabel					label;
 
-		font = new Font(GuiSettings.FONT_NAME, Font.BOLD, 40);
-
 		label = new JLabel("Select hero");
-		label.setFont(font);
+		label.setFont(new FontRedactor(label.getFont()).changeStyle(Font.BOLD).changeSize(40).get());
 		label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
 		return label;
@@ -91,7 +89,7 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
 		nameLabel = new JLabel(hero.getName());
-		nameLabel.setFont(new Font(GuiSettings.FONT_NAME, Font.BOLD, 25));
+		nameLabel.setFont(new FontRedactor(nameLabel.getFont()).changeStyle(Font.BOLD).changeSize(25).get());
 
 		infoButton = new JButton("Info");
 		infoButton.addActionListener(new GuiSignalSender(ButtonId.HERO_SELECTOR_INFO, hero.getName()));
@@ -114,7 +112,6 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 	{
 		JPanel					panel;
 		JLabel					nameLabel;
-		ButtonId				buttonId;
 		JButton					button;
 
 		panel = new JPanel();
@@ -122,13 +119,10 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
 		nameLabel = new JLabel("Empty");
-		nameLabel.setFont(new Font(GuiSettings.FONT_NAME, Font.BOLD, 25));
-
-		// TODO
-		buttonId = ButtonId.HERO_SELECTOR_CREATE;
+		nameLabel.setFont(new FontRedactor(nameLabel.getFont()).changeStyle(Font.BOLD).changeSize(25).get());
 
 		button = new JButton("Create");
-		button.addActionListener(new GuiSignalSender(buttonId));
+		button.addActionListener(new GuiSignalSender(ButtonId.HERO_SELECTOR_CREATE));
 
 		panel.add(nameLabel, "push");
 		panel.add(button);

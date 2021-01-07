@@ -10,9 +10,6 @@ public class			GuiDictionaryPanelBuilder
 {
 // -------------------> Attributes
 
-	private Font		fontForKey;
-	private Font		fontForValue;
-
 	@Getter
 	private JPanel		panel;
 
@@ -20,7 +17,6 @@ public class			GuiDictionaryPanelBuilder
 
 	public 				GuiDictionaryPanelBuilder()
 	{
-		initializeFonts();
 		initializePanel();
 	}
 
@@ -28,23 +24,17 @@ public class			GuiDictionaryPanelBuilder
 
 	public void			put(String key, String value)
 	{
-		panel.add(buildLabelWithFont(key + " :", fontForKey));
-		panel.add(buildLabelWithFont(value, fontForValue), "wrap");
+		panel.add(buildLabelWithStyle(key + " :", Font.BOLD));
+		panel.add(buildLabelWithStyle(value, Font.PLAIN), "wrap");
 	}
 
 	public void			put(String key, int value)
 	{
-		panel.add(buildLabelWithFont(key + " :", fontForKey));
-		panel.add(buildLabelWithFont(((Integer)value).toString(), fontForValue), "wrap");
+		panel.add(buildLabelWithStyle(key + " :", Font.BOLD));
+		panel.add(buildLabelWithStyle(((Integer)value).toString(), Font.PLAIN), "wrap");
 	}
 
 // -------------------> Private methods
-
-	private void		initializeFonts()
-	{
-		fontForKey = new Font(GuiSettings.FONT_NAME, Font.BOLD, 15);
-		fontForValue = new Font(GuiSettings.FONT_NAME, Font.PLAIN, 15);
-	}
 
 	private void		initializePanel()
 	{
@@ -52,13 +42,13 @@ public class			GuiDictionaryPanelBuilder
 		panel.setLayout(new MigLayout("insets 5", "[50%!]10[50%!]"));
 	}
 
-	private JLabel		buildLabelWithFont(String text, Font font)
+	private JLabel		buildLabelWithStyle(String text, int style)
 	{
 		JLabel			label;
 
 		label = new JLabel();
 		label.setText(text);
-		label.setFont(font);
+		label.setFont(new FontRedactor(label.getFont()).changeStyle(style).get());
 
 		return label;
 	}

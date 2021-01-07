@@ -23,7 +23,7 @@ public class						GuiWorkerOnHeroInfo extends GuiWorker
 	public void						execute(Requests.Abstract request)
 	{
 		parseRequest(request);
-		showInDialog("Hero info", new Point(300, 370), buildMainPanel());
+		showInDialog("Hero info", new Point(300, 320), buildMainPanel());
 	}
 
 // -------------------------------> Private : UI

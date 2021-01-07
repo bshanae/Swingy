@@ -2,6 +2,9 @@ package view.closed.ui.gui;
 
 import application.patterns.SingletonMap;
 import application.patterns.server.Server;
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import view.closed.ui.gui.utils.GuiSettings;
 import view.open.ButtonId;
 import view.open.Signals;
@@ -13,6 +16,10 @@ import java.awt.event.WindowAdapter;
 
 public class							GuiServer extends Server<GuiTasks.Abstract>
 {
+// -----------------------------------> Exceptions
+
+	public static class					CantInitializeTheme extends RuntimeException {}
+
 // -----------------------------------> Attributes
 
 	private JFrame						frame;
@@ -99,6 +106,12 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 				View.getInstance().sendSignal(new Signals.Gui(ButtonId.EXIT));
 				event.getWindow().dispose();
 			}
+		}
+
+		public							Constructor()
+		{
+			if (!FlatIntelliJLaf.install())
+				throw new CantInitializeTheme();
 		}
 
 		@Override

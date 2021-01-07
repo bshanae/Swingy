@@ -3,6 +3,7 @@ package view.closed.ui.gui.workers;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiWorker;
+import view.closed.ui.gui.utils.FontRedactor;
 import view.closed.ui.gui.utils.GuiSettings;
 import view.closed.ui.gui.utils.senders.GuiSignalSender;
 import view.open.ButtonId;
@@ -44,8 +45,7 @@ public class					GuiWorkerOnClassSelector extends GuiWorker
 		JLabel					title;
 
 		title = new JLabel("Select hero class");
-		title.setFont(new Font(GuiSettings.FONT_NAME, Font.BOLD, 40));
-
+		title.setFont(new FontRedactor(title.getFont()).changeStyle(Font.BOLD).changeSize(40).get());
 		return title;
 	}
 
@@ -77,7 +77,7 @@ public class					GuiWorkerOnClassSelector extends GuiWorker
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
 		label = new JLabel(className);
-		label.setFont(new Font(GuiSettings.FONT_NAME, Font.PLAIN, 22));
+		label.setFont(new FontRedactor(label.getFont()).changeSize(22).get());
 
 		button = new JButton("Select");
 		button.addActionListener(new GuiSignalSender(ButtonId.CLASS_SELECTOR_SELECT, className));

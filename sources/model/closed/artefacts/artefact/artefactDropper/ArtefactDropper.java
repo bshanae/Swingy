@@ -34,6 +34,9 @@ public class							ArtefactDropper
 		DroppableArtefact				droppableArtefact;
 		Artefact						artefact;
 
+		if (artefacts == null)
+			return null;
+
 		for (int i = 0; i < NUMBER_OF_ATTEMPTS_TO_SELECT_SUPPORTED_ARTEFACT; i++)
 		{
 			index = RandomGenerator.randomBetween(0, artefacts.size() - 1);

@@ -5,6 +5,7 @@ import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiTasks;
 import view.closed.ui.gui.GuiWorker;
+import view.closed.ui.gui.utils.FontRedactor;
 import view.closed.ui.gui.utils.GuiSettings;
 import view.closed.ui.gui.utils.senders.GuiServerTaskSender;
 import view.closed.ui.gui.utils.senders.GuiSignalSender;
@@ -80,7 +81,7 @@ public class							GuiWorkerOnMap extends GuiWorker
 		JLabel							label;
 
 		label = new JLabel();
-		label.setFont(new Font(GuiSettings.FONT_NAME, Font.PLAIN, 13));
+		label.setFont(new FontRedactor(label.getFont()).changeSize(13).get());
 		label.setHorizontalAlignment(JLabel.CENTER);
 		label.setText("" + character);
 

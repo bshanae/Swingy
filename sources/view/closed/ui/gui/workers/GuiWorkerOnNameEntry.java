@@ -3,6 +3,7 @@ package view.closed.ui.gui.workers;
 import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiWorker;
+import view.closed.ui.gui.utils.FontRedactor;
 import view.closed.ui.gui.utils.GuiSettings;
 import view.open.ButtonId;
 import view.open.Signals;
@@ -35,7 +36,7 @@ public class					GuiWorkerOnNameEntry extends GuiWorker
 		panel.setLayout(new MigLayout("fillx", "[center]", "push[]push[]push"));
 
 		title = new JLabel("Enter hero name");
-		title.setFont(new Font(GuiSettings.FONT_NAME, Font.BOLD, 40));
+		title.setFont(new FontRedactor(title.getFont()).changeStyle(Font.BOLD).changeSize(40).get());
 
 		panel.add(title, "wrap");
 		panel.add(buildContent(), "width 400px!, height 150px!");
@@ -54,7 +55,8 @@ public class					GuiWorkerOnNameEntry extends GuiWorker
 		panel.setBorder(LineBorder.createGrayLineBorder());
 
 		textField = new JTextField();
-		textField.setFont(new Font(GuiSettings.FONT_NAME, Font.PLAIN, 22));
+		textField.setFont(new FontRedactor(textField.getFont()).changeSize(22).get());
+
 		textField.setBorder
 		(
 			BorderFactory.createCompoundBorder
