@@ -3,7 +3,7 @@ health : 1000
 defense : 30
 
 level : 1
-spawn chance : 0.5
+spawn chance : 0.3
 
 attacks :
   - name : Punch

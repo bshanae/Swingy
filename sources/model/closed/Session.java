@@ -1,30 +1,39 @@
 package model.closed;
 
+import application.patterns.SingletonMap;
+import lombok.Getter;
+import lombok.Setter;
 import model.closed.creatures.hero.Hero;
+import model.closed.creatures.hero.HeroBackup;
 import model.closed.map.Map;
 
 public class				Session
 {
-	private static Hero		hero;
-	private static Map map;
+// -----------------------> Attributes
 
-	public static Hero		getHero()
+	@Getter @Setter
+	private Hero			hero;
+	private HeroBackup		heroBackup;
+
+	@Getter @Setter
+	private Map				map;
+
+// -----------------------> Properties
+
+	public static Session	getInstance()
 	{
-		return hero;
+		return SingletonMap.getInstanceOf(Session.class);
 	}
 
-	public static void		setHero(Hero hero)
+// -----------------------> Public methods
+
+	public void 			createHeroBackup()
 	{
-		Session.hero = hero;
+		heroBackup = new HeroBackup(hero);
 	}
 
-	public static Map		getMap()
+	public void 			applyHeroBackup()
 	{
-		return map;
-	}
-
-	public static void		setMap(Map map)
-	{
-		Session.map = map;
+		heroBackup.apply();
 	}
 }

@@ -14,7 +14,7 @@ public class				HeroInventoryDelegate extends AbstractDelegate
 	@Override
 	public void				whenActivated(boolean isFirstTime)
 	{
-		sendRequest(new Requests.HeroInventory(Session.getHero().getInventory()));
+		sendRequest(new Requests.HeroInventory(Session.getInstance().getHero().getInventory()));
 	}
 
 	@Override

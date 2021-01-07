@@ -45,7 +45,7 @@ public class					Battle
 
 	public						Battle(Enemy opponent)
 	{
-		this.hero = Session.getHero();
+		this.hero = Session.getInstance().getHero();
 		this.opponent = opponent;
 
 		hero.resetHealth();
@@ -118,6 +118,6 @@ public class					Battle
 			hero.addExperience(enemy.getExperienceForDefeating());
 		}
 
-		Session.getMap().getCreatures().remove(loser);
+		Session.getInstance().getMap().getCreatures().remove(loser);
 	}
 }

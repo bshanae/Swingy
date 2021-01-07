@@ -26,12 +26,10 @@ public class							Hero extends Creature
 	private final int					baseDefense;
 
 	@Getter
-	private final HeroInventory			inventory;
-
-	private int							level;
-
+	HeroInventory						inventory;
+	int									level;
 	@Getter
-	private int							experience;
+	int									experience;
 
 // -----------------------------------> Properties
 
@@ -133,7 +131,7 @@ public class							Hero extends Creature
 		updateLevel();
 	}
 
-// -----------------------------------> Private methods
+// -----------------------------------> Private methods : Calculations
 
 	private int							calculateHealthGainViaLevel()
 	{
@@ -169,15 +167,23 @@ public class							Hero extends Creature
 		return inventory.getWeapon().getAttacks();
 	}
 
+	private List<Attack>				transformAttacks(List<Attack> rawAttacks, int gain)
+	{
+		List<Attack>					attacks;
+
+		attacks = new LinkedList<>();
+		for (Attack rawAttack : rawAttacks)
+			attacks.add(rawAttack.applyGain(gain));
+
+		return attacks;
+	}
+
 	private int							calculateAttackGainViaLevel()
 	{
 		return 10 * (level + 1);
 	}
 
-	private int							calculateExperienceForNextLevel()
-	{
-		return level * 1000 + (level - 1) * (level - 1) * 450;
-	}
+// -----------------------------------> Private methods : Leveling
 
 	private void						updateLevel()
 	{
@@ -193,16 +199,11 @@ public class							Hero extends Creature
 		}
 	}
 
-	private List<Attack>				transformAttacks(List<Attack> rawAttacks, int gain)
+	private int							calculateExperienceForNextLevel()
 	{
-		List<Attack>					attacks;
-
-		attacks = new LinkedList<>();
-		for (Attack rawAttack : rawAttacks)
-			attacks.add(rawAttack.applyGain(gain));
-
-		return attacks;
+		return level * 1000 + (level - 1) * (level - 1) * 450;
 	}
+
 // -----------------------------------> Private methods : Logging
 
 	private static void					logCreatingHero(String name, HeroClass heroClass)

@@ -108,13 +108,14 @@ public class				MapDelegate extends AbstractDelegate
 
 	public					MapDelegate()
 	{
-		hero = Session.getHero();
+		hero = Session.getInstance().getHero();
 		map = MapGenerator.getInstance().generate();
 
 		isProcessingBattle = false;
 		opponent = null;
 
-		Session.setMap(map);
+		Session.getInstance().setMap(map);
+		Session.getInstance().createHeroBackup();
 	}
 
 // -----------------------> Implementations
@@ -146,7 +147,12 @@ public class				MapDelegate extends AbstractDelegate
 			}
 		}
 		else if (object instanceof BattleDelegate.ResolutionObject)
-			isProcessingBattle = false;
+		{
+			if (!((BattleDelegate.ResolutionObject)object).didHeroWon())
+				resolveLater(new ResolutionObject());
+			else
+				isProcessingBattle = false;
+		}
 	}
 
 	@Override
@@ -183,7 +189,7 @@ public class				MapDelegate extends AbstractDelegate
 	{
 		if (map.isOnBorder(hero.getPosition()))
 		{
-			Session.setMap(null);
+			Session.getInstance().setMap(null);
 			resolveLater(new ResolutionObject());
 		}
 	}

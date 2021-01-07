@@ -14,7 +14,7 @@ public class				HeroStatsDelegate extends AbstractDelegate
 	@Override
 	public void				whenActivated(boolean isFirstTime)
 	{
-		sendRequest(new Requests.HeroStats(Session.getHero()));
+		sendRequest(new Requests.HeroStats(Session.getInstance().getHero()));
 	}
 
 	@Override

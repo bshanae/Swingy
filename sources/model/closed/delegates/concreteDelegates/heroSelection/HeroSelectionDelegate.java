@@ -65,7 +65,7 @@ public class				HeroSelectionDelegate extends AbstractDelegate
 	{
 		try
 		{
-			Session.setHero(HeroStorageFactory.buildInstance().find(command.getString()));
+			Session.getInstance().setHero(HeroStorageFactory.buildInstance().find(command.getString()));
 			resolveLater(new ResolutionObject());
 		}
 		catch (Exceptions.ObjectNotFound exception)

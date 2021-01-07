@@ -56,7 +56,7 @@ public class							ArtefactDropper
 		int								currentClass;
 
 		supportedHeroClasses = artefact.getSupportedClassesFlags();
-		currentClass = Session.getHero().getHeroClass().toFlag();
+		currentClass = Session.getInstance().getHero().getHeroClass().toFlag();
 
 		return (supportedHeroClasses & currentClass) == currentClass;
 	}
