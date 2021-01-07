@@ -41,5 +41,5 @@ public enum			ButtonId
 	HERO_INVENTORY_OK,
 
 	// Battle
-	BATTLE_PROCEED;
+	BATTLE_CONTINUE
 }

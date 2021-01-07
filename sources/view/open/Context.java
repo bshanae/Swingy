@@ -7,10 +7,16 @@ import java.util.Map;
 
 public enum					Context
 {
+	// Common
 	ERROR,
+
+	// Hero selector
 	HERO_SELECTOR,
+	HERO_INFO,
 	NAME_ENTRY,
 	CLASS_SELECTOR,
+
+	// Game
 	MAP,
 	BATTLE;
 
@@ -19,6 +25,7 @@ public enum					Context
 	{{
 		put(Requests.Error.class, ERROR);
 		put(Requests.HeroSelector.class, HERO_SELECTOR);
+		put(Requests.HeroInfo.class, HERO_INFO);
 		put(Requests.NameEntry.class, NAME_ENTRY);
 		put(Requests.ClassSelector.class, HERO_SELECTOR);
 		put(Requests.Map.class, MAP);

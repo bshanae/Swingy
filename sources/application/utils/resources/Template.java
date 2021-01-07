@@ -1,6 +1,7 @@
 package application.utils.resources;
 
-import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class					Template
 {
@@ -10,16 +11,16 @@ public class					Template
 
 // ---------------------------> Attributes
 
-	private String				originalText;
-	private String				modifiedText;
+	private final String		originalText;
 
+	protected String			modifiedText;
 	private boolean				isValid;
 
 // ---------------------------> Constructor
 
-	public						Template(String source)
+	public						Template(String pathToFile)
 	{
-		originalText = source;
+		originalText = ResourceManager.getInstance().readText(pathToFile);
 		modifiedText = originalText;
 	}
 
@@ -39,7 +40,7 @@ public class					Template
 		modifiedText = modifiedText.replaceFirst(buildKeyRegex(key), value);
 	}
 
-	public void 				validate()
+	public final void 			validate()
 	{
 		if (modifiedText.matches(buildAnyKeyRegex()))
 			throw new TemplateIsNotReadyException();
@@ -47,22 +48,23 @@ public class					Template
 		isValid = true;
 	}
 
-	public void 				reset()
+	public void					reset()
 	{
 		modifiedText = originalText;
 		isValid = false;
 	}
 
-// ---------------------------> Private methods
+// ---------------------------> Protected methods
 
-	private String				buildKeyRegex(String key)
+	protected String			buildKeyRegex(String key)
 	{
-		return String.format("%%%s *%%", key);
+		return String.format("(%%%s *%%)", key);
 	}
+
+// ---------------------------> Private methods
 
 	private String				buildAnyKeyRegex()
 	{
 		return "%%*%%";
 	}
-
 }

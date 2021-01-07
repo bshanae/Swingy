@@ -72,9 +72,9 @@ public class					GuiWorkerOnBattle extends GuiWorker
 	{
 		JButton					button;
 
-		button = new JButton("Proceed");
+		button = new JButton("Continue");
 		button.setEnabled(request.isBattleFinished());
-		button.addActionListener(new GuiSignalSender(ButtonId.BATTLE_PROCEED));
+		button.addActionListener(new GuiSignalSender(ButtonId.BATTLE_CONTINUE));
 
 		return button;
 	}

@@ -132,8 +132,6 @@ public class						HeroCreationDelegate extends AbstractDelegate
 			heroName = ((Commands.Enter)command.getCommand()).getString();
 			command.markExecuted();
 
-			System.out.println("Hero name = " + heroName);
-
 			if ((validationError = validateName()) != null)
 			{
 				stackChildLater(new ErrorDelegate(validationError));

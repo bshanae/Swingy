@@ -1,18 +1,12 @@
 package model.closed.artefacts.armor;
 
 import application.patterns.SingletonMap;
-import application.utils.resources.ResourceManager;
 import model.closed.utils.AbstractStorage;
+import model.closed.utils.ResourceManager;
 import model.closed.utils.YamlParser;
-
-import java.io.File;
 
 public class						ArmorStorage extends AbstractStorage<Armor>
 {
-// -------------------------------> Constants
-
-	private static final String		PATH_TO_ARMORS_FOLDER = "model/artefacts/armors";
-
 // -------------------------------> Constructor
 
 	public							ArmorStorage()
@@ -31,8 +25,8 @@ public class						ArmorStorage extends AbstractStorage<Armor>
 
 	public void						download()
 	{
-		for (File file : ResourceManager.getFiles(PATH_TO_ARMORS_FOLDER))
-			data.add(YamlParser.parse(file, Armor.class));
+		for (String path : ResourceManager.getInstance().readListing(Armor.class))
+			data.add(YamlParser.parse(ResourceManager.getInstance().readText(path), Armor.class));
 
 		super.markLoaded();
 	}

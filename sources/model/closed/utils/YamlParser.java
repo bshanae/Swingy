@@ -22,11 +22,11 @@ public class						YamlParser
 
 // -------------------------------> Public methods
 
-	public static <T> T				parse(File file, Class<T> dataClass)
+	public static <T> T				parse(String text, Class<T> dataClass)
 	{
 		try
 		{
-			return objectMapper.readValue(file, dataClass);
+			return objectMapper.readValue(text, dataClass);
 		}
 		catch (IOException exception)
 		{

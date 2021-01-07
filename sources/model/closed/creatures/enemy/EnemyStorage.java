@@ -2,6 +2,7 @@ package model.closed.creatures.enemy;
 
 import application.patterns.SingletonMap;
 import application.utils.resources.ResourceManager;
+import model.closed.artefacts.weapon.Weapon;
 import model.closed.utils.YamlParser;
 import model.closed.utils.AbstractStorage;
 
@@ -9,10 +10,6 @@ import java.io.File;
 
 public class						EnemyStorage extends AbstractStorage<Enemy>
 {
-// -------------------------------> Constants
-
-	private static final String		PATH_TO_ENEMIES_FOLDER = "model/creatures/enemies";
-
 // -------------------------------> Constructor
 
 	public							EnemyStorage()
@@ -31,8 +28,8 @@ public class						EnemyStorage extends AbstractStorage<Enemy>
 
 	public void						download()
 	{
-		for (File file : ResourceManager.getFiles(PATH_TO_ENEMIES_FOLDER))
-			data.add(YamlParser.parse(file, Enemy.class));
+		for (String path : model.closed.utils.ResourceManager.getInstance().readListing(Enemy.class))
+			data.add(YamlParser.parse(ResourceManager.getInstance().readText(path), Enemy.class));
 
 		super.markLoaded();
 	}

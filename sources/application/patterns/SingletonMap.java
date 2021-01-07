@@ -6,17 +6,30 @@ import java.util.Map;
 
 public abstract class		SingletonMap
 {
+// -----------------------> Exceptions
+
+	public static class		CantGetInstanceException extends RuntimeException {}
+	public static class		CantBuildInstanceException extends RuntimeException {}
+
+// -----------------------> Attributes
+
 	private static final
 	Map<Type, Object>		map = new HashMap<>();
+
+// -----------------------> Public methods
 
 	public static <T> T		getInstanceOf(Class<T> class_)
 	{
 		final Object		object = findOrAdd(class_);
 
-		assert class_.isInstance(object);
+		if (!class_.isInstance(object))
+			throw new CantGetInstanceException();
+
 		return (T)object;
 	}
-	
+
+// -----------------------> Private methods
+
 	private static Object	findOrAdd(Class<?> class_)
 	{
 		if (!map.containsKey(class_))
@@ -27,8 +40,7 @@ public abstract class		SingletonMap
 			}
 			catch (InstantiationException | IllegalAccessException exception)
 			{
-				exception.printStackTrace();
-				assert false;
+				throw new CantBuildInstanceException();
 			}
 		}			
 

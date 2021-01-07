@@ -106,7 +106,7 @@ public class					GuiSignalTranslator extends SignalTranslator
 			return new Commands.Ok();
 
 		// Battle
-		if (signal.getButtonId() == ButtonId.BATTLE_PROCEED)
+		if (signal.getButtonId() == ButtonId.BATTLE_CONTINUE)
 			return new Commands.Ok();
 
 		return null;

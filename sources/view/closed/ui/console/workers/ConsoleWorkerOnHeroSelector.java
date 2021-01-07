@@ -5,6 +5,7 @@ import model.open.Requests;
 import application.utils.resources.ResourceManager;
 import application.utils.resources.Template;
 import view.closed.ui.console.ConsoleWorker;
+import view.closed.ui.console.utils.ConsoleTemplate;
 import view.open.Context;
 
 import java.io.File;
@@ -12,6 +13,12 @@ import java.util.List;
 
 public class					ConsoleWorkerOnHeroSelector extends ConsoleWorker
 {
+// ---------------------------> Constants
+
+	private static final String	PATH_TO_TEMPLATE = "view/console/templates/HeroSelector.txt";
+
+// ---------------------------> Implementations
+
 	@Override
 	public void					execute(Requests.Abstract request)
 	{
@@ -20,26 +27,29 @@ public class					ConsoleWorkerOnHeroSelector extends ConsoleWorker
 		promptInput(Context.parse(request));
 	}
 
+// ---------------------------> Private methods
+
 	private String				getText(Requests.Abstract request)
 	{
 		Requests.HeroSelector	heroSelectorRequest;
-		Template				template;
+		ConsoleTemplate			template;
+		List<Pockets.Hero>		heroes;
 
 		heroSelectorRequest = (Requests.HeroSelector)request;
-		template = ResourceManager.getTemplate("/view/console/templates/HeroSelector.txt");
+		template = new ConsoleTemplate(PATH_TO_TEMPLATE);
 
-		List<Pockets.Hero>		heroes = heroSelectorRequest.getHeroes();
-		int						numberOfHeroes = heroes.size();
+		template.put("TITLE", "Choose hero : ", ConsoleTemplate.Style.BOLD);
+		template.put("COMMANDS", "Commands : ", ConsoleTemplate.Style.BOLD);
 
+		heroes = heroSelectorRequest.getHeroes();
 		for (int i = 0; i < 4; i++)
-		{
-			template.put
-			(
-				"HERO" + i,
-				i < numberOfHeroes ? heroes.get(i).getName() : "Empty"
-			);
-		}
+			template.put("HERO" + i, getHeroName(heroes, i));
 
 		return template.toString();
+	}
+
+	private String				getHeroName(List<Pockets.Hero> heroes, int index)
+	{
+		return index < heroes.size() ? heroes.get(index).getName() : "Empty";
 	}
 }

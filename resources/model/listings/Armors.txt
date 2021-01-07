@@ -1,0 +1,6 @@
+model/artefacts/armors/KnightArmor.yaml
+model/artefacts/armors/LeatherArmor.yaml
+model/artefacts/armors/LegendaryArmor.yaml
+model/artefacts/armors/OldArmor.yaml
+model/artefacts/armors/SoldierArmor.yaml
+model/artefacts/armors/SteelArmor.yaml

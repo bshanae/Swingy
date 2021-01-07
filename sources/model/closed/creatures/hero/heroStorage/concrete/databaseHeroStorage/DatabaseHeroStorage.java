@@ -90,11 +90,11 @@ public class							DatabaseHeroStorage extends AbstractHeroStorage
 
 	private void						loadCommandsFromTemplates()
 	{
-		commandCreateDatabase = ResourceManager.getText(PATH_TO_COMMAND_CREATE_DATABASE);
-		commandCreateTable = ResourceManager.getText(PATH_TO_COMMAND_CREATE_TABLE);
-		commandTruncateTable = ResourceManager.getText(PATH_TO_COMMAND_TRUNCATE_TABLE);
-		commandSelectHeroes = ResourceManager.getText(PATH_TO_COMMAND_SELECT_HEROES);
-		commandInsertHero = ResourceManager.getTemplate(PATH_TO_COMMAND_INSERT_HERO);
+		commandCreateDatabase = ResourceManager.getInstance().readText(PATH_TO_COMMAND_CREATE_DATABASE);
+		commandCreateTable = ResourceManager.getInstance().readText(PATH_TO_COMMAND_CREATE_TABLE);
+		commandTruncateTable = ResourceManager.getInstance().readText(PATH_TO_COMMAND_TRUNCATE_TABLE);
+		commandSelectHeroes = ResourceManager.getInstance().readText(PATH_TO_COMMAND_SELECT_HEROES);
+		commandInsertHero = new Template(PATH_TO_COMMAND_INSERT_HERO);
 	}
 
 // -----------------------------------> Private methods : Database connection

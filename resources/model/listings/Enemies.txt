@@ -1,0 +1,2 @@
+model/creatures/enemies/Hollow.yaml
+model/creatures/enemies/Ogre.yaml

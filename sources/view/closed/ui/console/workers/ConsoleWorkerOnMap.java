@@ -2,13 +2,12 @@ package view.closed.ui.console.workers;
 
 import application.utils.Point;
 import model.open.Requests;
+import view.closed.ui.console.utils.ConsoleTemplate;
 import view.closed.ui.utils.MapGenerator;
 import application.utils.resources.ResourceManager;
 import application.utils.resources.Template;
 import view.closed.ui.console.ConsoleWorker;
 import view.open.Context;
-
-import java.io.File;
 
 public class							ConsoleWorkerOnMap extends ConsoleWorker
 {
@@ -50,7 +49,7 @@ public class							ConsoleWorkerOnMap extends ConsoleWorker
 
 	private void						prepareTemplate()
 	{
-		template = ResourceManager.getTemplate("/view/console/templates/Map.txt");
+		template = new ConsoleTemplate("view/console/templates/Map.txt");
 	}
 
 	private void						writeMapToTemplate()

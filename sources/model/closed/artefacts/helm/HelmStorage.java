@@ -1,18 +1,15 @@
 package model.closed.artefacts.helm;
 
 import application.patterns.SingletonMap;
-import application.utils.resources.ResourceManager;
+import model.closed.artefacts.armor.Armor;
 import model.closed.utils.AbstractStorage;
+import model.closed.utils.ResourceManager;
 import model.closed.utils.YamlParser;
 
 import java.io.File;
 
 public class						HelmStorage extends AbstractStorage<Helm>
 {
-// -------------------------------> Constants
-
-	private static final String		PATH_TO_HELMS_FOLDER = "model/artefacts/helms";
-
 // -------------------------------> Constructor
 
 	public							HelmStorage()
@@ -31,8 +28,8 @@ public class						HelmStorage extends AbstractStorage<Helm>
 
 	public void						download()
 	{
-		for (File file : ResourceManager.getFiles(PATH_TO_HELMS_FOLDER))
-			data.add(YamlParser.parse(file, Helm.class));
+		for (String path : model.closed.utils.ResourceManager.getInstance().readListing(Helm.class))
+			data.add(YamlParser.parse(ResourceManager.getInstance().readText(path), Helm.class));
 
 		super.markLoaded();
 	}

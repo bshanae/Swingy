@@ -1,0 +1,4 @@
+model/creatures/hero/Template-Assassin.yaml
+model/creatures/hero/Template-Mage.yaml
+model/creatures/hero/Template-Swordsman.yaml
+model/creatures/hero/Template-Warrior.yaml

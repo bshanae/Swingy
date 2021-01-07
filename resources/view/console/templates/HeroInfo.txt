@@ -1,18 +1,19 @@
 ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
 │                                                                   │
-│   %TITLE                                                      %   │
+│   %TITLE         %                                                │
 │                                                                   │
-│   Warrior                                                         │
-│   Swordsman                                                       │
-│   Assassin                                                        │
-│   Mage                                                            │
+│   Class : %CLASS         %                                        │
+│   Level : %LEVEL%                                                 │
+│   Experience : %EXPERIENCE    %                                   │
+│                                                                   │
+│   Helm : %HELM          %                                         │
+│   Armor : %ARMOR         %                                        │
+│   Weapon : %WEAPON        %                                       │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
 │                                                                   │
-│   %COMMANDS      %                                                │
-│                                                                   │
-│   (select) [name of class]  :  Select class                       │
+│   Press enter to go back to menu...                               │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 

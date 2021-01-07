@@ -1,18 +1,15 @@
 package model.closed.artefacts.weapon;
 
 import application.patterns.SingletonMap;
-import application.utils.resources.ResourceManager;
+import model.closed.artefacts.helm.Helm;
 import model.closed.utils.AbstractStorage;
+import model.closed.utils.ResourceManager;
 import model.closed.utils.YamlParser;
 
 import java.io.File;
 
 public class						WeaponStorage extends AbstractStorage<Weapon>
 {
-// -------------------------------> Constants
-
-	private static final String		PATH_TO_WEAPONS_FOLDER = "model/artefacts/weapons";
-
 // -------------------------------> Constructor
 
 	public							WeaponStorage()
@@ -31,8 +28,8 @@ public class						WeaponStorage extends AbstractStorage<Weapon>
 
 	public void						download()
 	{
-		for (File file : ResourceManager.getFiles(PATH_TO_WEAPONS_FOLDER))
-			data.add(YamlParser.parse(file, Weapon.class));
+		for (String path : model.closed.utils.ResourceManager.getInstance().readListing(Weapon.class))
+			data.add(YamlParser.parse(ResourceManager.getInstance().readText(path), Weapon.class));
 
 		super.markLoaded();
 	}

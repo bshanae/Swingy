@@ -28,9 +28,16 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 				new Pattern(Commands.Create.class, Keyword.CREATE),
 				new Pattern(Commands.Select.class, Keyword.SELECT, Keyword.VALUE),
 				new Pattern(Commands.Delete.class, Keyword.DELETE, Keyword.VALUE),
-				new Pattern(Commands.Delete.class, Keyword.INFO, Keyword.VALUE)
+				new Pattern(Commands.Info.class, Keyword.INFO, Keyword.VALUE)
 			}
 		);
+
+		put
+		(
+			Context.HERO_INFO,
+			new Pattern[]{ new Pattern(Commands.Ok.class, Keyword.ANY) }
+		);
+
 
 		put
 		(
@@ -63,10 +70,7 @@ public class							ConsoleSignalTranslator extends SignalTranslator
 		put
 		(
 			Context.BATTLE,
-			new Pattern[]
-			{
-				new Pattern(Commands.Ok.class, Keyword.ANY)
-			}
+			new Pattern[]{ new Pattern(Commands.Ok.class, Keyword.ANY) }
 		);
 	}};
 

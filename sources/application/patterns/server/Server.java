@@ -38,6 +38,7 @@ public abstract class		Server<T extends ServerTask>
 		}
 		catch (IllegalAccessException | InvocationTargetException exception)
 		{
+			exception.printStackTrace();
 			throw new CantInvokeExecutionMethod();
 		}
 	}
