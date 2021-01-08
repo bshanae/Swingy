@@ -1,22 +1,22 @@
 package application.service;
 
-import application.ApplicationOptions;
+import application.applicationOptions.ApplicationOption;
 
 public enum								LogGroup
 {
 // -----------------------------------> Values
 
-	MVC(ApplicationOptions.LOG_MVC),
-	DELEGATE(ApplicationOptions.LOG_DELEGATE),
-	GAME(ApplicationOptions.LOG_GAME);
+	MVC(ApplicationOption.LOG_MVC),
+	DELEGATE(ApplicationOption.LOG_DELEGATE),
+	GAME(ApplicationOption.LOG_GAME);
 
 // -----------------------------------> Attributes
 
-	private final ApplicationOptions	option;
+	private final ApplicationOption option;
 
 // -----------------------------------> Constructor
 
-	private								LogGroup(ApplicationOptions option)
+	private								LogGroup(ApplicationOption option)
 	{
 		this.option = option;
 	}
@@ -25,6 +25,6 @@ public enum								LogGroup
 
 	public boolean						isEnabled()
 	{
-		return ApplicationOptions.get(option) || ApplicationOptions.get(ApplicationOptions.LOG_FULL);
+		return option.isDefined() || ApplicationOption.LOG_FULL.isDefined();
 	}
 }

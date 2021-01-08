@@ -1,6 +1,6 @@
 package view.closed.ui.console;
 
-import application.ApplicationOptions;
+import application.applicationOptions.ApplicationOption;
 import application.patterns.SingletonMap;
 import application.patterns.server.Server;
 import view.closed.utils.UiTerminator;
@@ -22,7 +22,7 @@ public class					ConsoleServer extends Server<ConsoleTasks.Abstract>
 
 	private void				execute(ConsoleTasks.Terminate task)
 	{
-		if (!ApplicationOptions.get(ApplicationOptions.IDE))
+		if (!ApplicationOption.IDE.isDefined())
 		{
 			System.out.print("\033\143");
 			System.out.flush();
@@ -33,7 +33,7 @@ public class					ConsoleServer extends Server<ConsoleTasks.Abstract>
 
 	private void				execute(ConsoleTasks.Clean task)
 	{
-		if (ApplicationOptions.get(ApplicationOptions.IDE))
+		if (ApplicationOption.IDE.isDefined())
 			return ;
 
 		System.out.print("\033\143");

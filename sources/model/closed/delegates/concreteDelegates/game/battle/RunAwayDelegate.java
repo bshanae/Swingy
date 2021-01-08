@@ -1,6 +1,6 @@
 package model.closed.delegates.concreteDelegates.game.battle;
 
-import application.ApplicationOptions;
+import application.applicationOptions.ApplicationOption;
 import application.service.Exceptions;
 import model.closed.creatures.enemy.Enemy;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
@@ -125,7 +125,7 @@ public class					RunAwayDelegate extends AbstractDelegate
 	{
 		didEscape = RandomGenerator.randomWithProbability(0.5f);
 
-		if (ApplicationOptions.get(ApplicationOptions.TEST_ALWAYS_ESCAPE))
+		if (ApplicationOption.TEST_ALWAYS_ESCAPE.isDefined())
 			didEscape = true;
 
 		stackChildLater(new InfoDelegate(didEscape ? RESULT_DID_ESCAPE : RESULT_DID_NOT_ESCAPE));

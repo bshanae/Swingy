@@ -1,8 +1,6 @@
 package model.closed.artefacts.artefact.artefactDropper;
 
-import application.ApplicationOptions;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import application.applicationOptions.ApplicationOption;
 import model.closed.Session;
 import model.closed.artefacts.artefact.Artefact;
 import model.closed.utils.RandomGenerator;
@@ -38,7 +36,7 @@ public class							ArtefactDropper
 		if (artefacts == null)
 			return null;
 
-		if (ApplicationOptions.get(ApplicationOptions.TEST_ARTEFACT_DROPPER))
+		if (ApplicationOption.TEST_ARTEFACT_DROPPER.isDefined())
 			return artefacts.get(0).getAlias().get();
 
 		for (int i = 0; i < NUMBER_OF_ATTEMPTS_TO_SELECT_SUPPORTED_ARTEFACT; i++)

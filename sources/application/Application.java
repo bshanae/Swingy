@@ -1,22 +1,33 @@
 package application;
 
+import application.applicationOptions.ApplicationOption;
+import application.applicationOptions.ApplicationOptionsParser;
+import application.applicationOptions.ApplicationOptionsValidator;
+import application.utils.resources.ResourceManager;
 import controller.open.Controller;
-import model.closed.creatures.enemy.EnemyStorage;
 import model.open.Model;
 import view.open.View;
 
 public class			Application
 {
+// -------------------> Public methods
+
 	public static void	main(String[] arguments)
 	{
 		try
 		{
-			ApplicationOptions.parse(arguments);
+			ApplicationOptionsParser.parse(arguments);
+			ApplicationOptionsValidator.validate();
+
 			execute();
+		}
+		catch (ApplicationOptionsValidator.InvalidOptionsException exception)
+		{
+			printUsage();
 		}
 		catch (Exception exception)
 		{
-			if (!ApplicationOptions.get(ApplicationOptions.DEBUG))
+			if (!ApplicationOption.DEBUG.isDefined())
 				System.out.println("Terminating with exception, enable debug mode for more info");
 			else
 			{
@@ -25,6 +36,8 @@ public class			Application
 			}
 		}
 	}
+
+// -------------------> Private methods
 
 	private static void	execute()
 	{
@@ -44,5 +57,13 @@ public class			Application
 
 		while (!model.isTerminated())
 			model.update();
+	}
+
+	private static void	printUsage()
+	{
+		String			string;
+
+		string = ResourceManager.getInstance().readText("application/Usage.txt");
+		System.out.println(string);
 	}
 }

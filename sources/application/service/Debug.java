@@ -1,18 +1,12 @@
 package application.service;
 
-import application.ApplicationOptions;
+import application.applicationOptions.ApplicationOption;
 
 public abstract class		Debug
 {
 	public static boolean	isEnabled()
 	{
-		return ApplicationOptions.get(ApplicationOptions.DEBUG);
-	}
-
-	public static void		throwException(String message)
-	{
-		if (isEnabled())
-			throw new RuntimeException(message);
+		return ApplicationOption.DEBUG.isDefined();
 	}
 
 	public static void		log(LogGroup group, String message)

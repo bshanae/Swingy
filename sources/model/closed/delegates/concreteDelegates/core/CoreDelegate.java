@@ -1,6 +1,6 @@
 package model.closed.delegates.concreteDelegates.core;
 
-import application.ApplicationOptions;
+import application.applicationOptions.ApplicationOption;
 import application.service.Exceptions;
 import controller.open.Commands;
 import model.closed.Game;
@@ -118,7 +118,7 @@ public class					CoreDelegate extends AbstractDelegate
 	{
 		this.activate();
 
-		if (ApplicationOptions.get(ApplicationOptions.LAUNCH_CONSOLE))
+		if (ApplicationOption.LAUNCH_CONSOLE.isDefined())
 			sendRequest(new Requests.SwitchToConsole());
 		else
 			sendRequest(new Requests.SwitchToGui());

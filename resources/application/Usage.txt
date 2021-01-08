@@ -1,0 +1,20 @@
+Usage :
+  java -jar swingy.jar [console/gui] (use-database)
+
+Mandatory flags :
+  console       -  launch in console mode
+  gui           -  launch in GUI mode
+
+Optional flags :
+  use-database  -  load heroes from database, needs MySQL server
+  debug         -  if you want to see, why it crashed...
+
+Description :
+  Swingy is simple game, where you play as hero, fighting monsters.
+  After defeating a monster, you get experience and may get an artefact,
+  which can be a helm, an armor or a weapon. Helms add HP to your hero,
+  armors add defense, weapons are needed for fighting. When you collect
+  enough experience, you get new level. Goal of the game is to get to level 8.
+
+  There are four classes : warrior, swordsman, assassin and mage.
+  Each class has own features. However I won't describe them. Play the game.
