@@ -6,6 +6,7 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import view.closed.ui.gui.utils.GuiSettings;
+import view.closed.utils.UiTerminator;
 import view.open.ButtonId;
 import view.open.Signals;
 import view.open.View;
@@ -75,8 +76,7 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 				dialog.dispose();
 
 			frame.dispose();
-
-			View.getInstance().sendSignal(new Signals.FinishedTermination());
+			UiTerminator.getInstance().markGuiTerminated();
 		}
 	}
 

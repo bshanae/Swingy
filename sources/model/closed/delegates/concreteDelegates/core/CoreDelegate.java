@@ -29,6 +29,7 @@ public class					CoreDelegate extends AbstractDelegate
 // --------------------------->	Attributes
 
 	private State				state;
+	private boolean				isGameTerminated;
 
 // --------------------------->	Constructor
 
@@ -122,6 +123,4 @@ public class					CoreDelegate extends AbstractDelegate
 		else
 			sendRequest(new Requests.SwitchToGui());
 	}
-
-	public void					terminate() {}
 }

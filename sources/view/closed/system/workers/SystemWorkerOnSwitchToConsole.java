@@ -17,9 +17,7 @@ public class SystemWorkerOnSwitchToConsole extends SystemWorker
 		if (UiState.getInstance().wasGuiUsed())
 			GuiServer.getInstance().execute(new GuiTasks.Disable());
 
-		ConsoleServer.getInstance().execute(new ConsoleTasks.WriteLast());
 		UiState.getInstance().markConsoleUsed();
-
 		UiMode.setCurrentMode(UiMode.CONSOLE);
 	}
 }

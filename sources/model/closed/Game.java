@@ -76,7 +76,6 @@ public class						Game
 		state = State.TERMINATED;
 
 		HeroStorageFactory.buildInstance().upload();
-		coreDelegate.terminate();
 	}
 
 	public void						update()

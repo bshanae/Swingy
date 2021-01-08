@@ -3,6 +3,7 @@ package view.closed.ui.console;
 import application.ApplicationOptions;
 import application.patterns.SingletonMap;
 import application.patterns.server.Server;
+import view.closed.utils.UiTerminator;
 import view.open.Signals;
 import view.open.View;
 
@@ -27,8 +28,7 @@ public class					ConsoleServer extends Server<ConsoleTasks.Abstract>
 			System.out.flush();
 		}
 
-		View.getInstance().sendSignal(new Signals.FinishedTermination());
-
+		UiTerminator.getInstance().markConsoleTerminated();
 	}
 
 	private void				execute(ConsoleTasks.Clean task)
@@ -44,11 +44,6 @@ public class					ConsoleServer extends Server<ConsoleTasks.Abstract>
 	{
 		System.out.print(task.getText());
 		System.out.flush();
-	}
-
-	private void				execute(ConsoleTasks.WriteLast task)
-	{
-		// TODO
 	}
 
 	private void				execute(ConsoleTasks.PromptInput task)

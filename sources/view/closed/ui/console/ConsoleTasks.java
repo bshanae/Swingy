@@ -23,8 +23,6 @@ public abstract class			ConsoleTasks
 		}
 	}
 
-	public static class			WriteLast implements Abstract {}
-
 	public static class			PromptInput implements Abstract
 	{
 		@Getter

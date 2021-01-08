@@ -11,7 +11,7 @@ import view.open.Context;
 
 public class							ConsoleWorkerOnMap extends ConsoleWorker
 {
-	private static final Point			CANVAS_SIZE = new Point(67, 8);
+	private static final Point			CANVAS_SIZE = new Point(33, 8);
 	private static final MapGenerator	mapGenerator;
 
 	private ConsoleTemplate				template;
@@ -57,9 +57,21 @@ public class							ConsoleWorkerOnMap extends ConsoleWorker
 	private void						writeMapToTemplate()
 	{
 		char[][]						map;
+		StringBuilder					stringBuilder;
 
 		map = mapGenerator.generate(request);
 		for (int y = 0; y < CANVAS_SIZE.y; y++)
-			template.put("LINE" + y, new String(map[y]));
+		{
+			stringBuilder = new StringBuilder();
+			for (int x = 0; x < CANVAS_SIZE.x; x++)
+			{
+				stringBuilder.append(map[y][x]);
+
+				if (x < CANVAS_SIZE.x - 1)
+					stringBuilder.append(" ");
+			}
+
+			template.put("LINE" + y, stringBuilder.toString());
+		}
 	}
 }
