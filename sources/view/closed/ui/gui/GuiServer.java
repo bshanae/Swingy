@@ -86,6 +86,7 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 		public void						run()
 		{
 			frame.setVisible(true);
+			frame.setAlwaysOnTop(true);
 		}
 	}
 
@@ -105,7 +106,7 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 			@Override
 			public void					windowClosing(java.awt.event.WindowEvent event)
 			{
-				View.getInstance().sendSignal(new Signals.Gui(ButtonId.EXIT));
+				View.getInstance().sendSignal(new Signals.Gui(ButtonId.FRAME_EXIT));
 				event.getWindow().dispose();
 			}
 		}

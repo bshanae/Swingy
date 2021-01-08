@@ -154,9 +154,10 @@ public class							GuiWorkerOnMap extends GuiWorker
 		JButton							buttonExit;
 
 		buttonConsole = new JButton("Console");
+		buttonConsole.addActionListener(new GuiSignalSender(ButtonId.MAP_CONSOLE));
 
 		buttonExit = new JButton("Exit");
-		buttonExit.addActionListener(new GuiSignalSender(ButtonId.EXIT));
+		buttonExit.addActionListener(new GuiSignalSender(ButtonId.MAP_EXIT));
 
 		return buildSideMenu("System", buttonConsole, buttonExit);
 	}

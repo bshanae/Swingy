@@ -37,6 +37,7 @@ public class					ConsoleSignalTranslator extends SignalTranslator
 				Pattern.create(Commands.Delete.class, Keyword.create(Keyword.DELETE), Keyword.createWildcard()),
 				Pattern.create(Commands.Info.class, Keyword.create(Keyword.INFO), Keyword.createWildcard()),
 
+				Pattern.create(Commands.Gui.class, Keyword.create(Keyword.GUI)),
 				Pattern.create(Commands.Exit.class, Keyword.create(Keyword.EXIT))
 			}
 		);
@@ -75,6 +76,7 @@ public class					ConsoleSignalTranslator extends SignalTranslator
 
 				Pattern.create(Commands.HeroStats.class, Keyword.create(Keyword.STATS)),
 				Pattern.create(Commands.HeroInventory.class, Keyword.create(Keyword.INVENTORY)),
+				Pattern.create(Commands.Gui.class, Keyword.create(Keyword.GUI)),
 				Pattern.create(Commands.Exit.class, Keyword.create(Keyword.EXIT))
 			}
 		);

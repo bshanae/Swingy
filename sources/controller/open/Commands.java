@@ -24,16 +24,13 @@ public abstract class				Commands
 	public static class				Unknown implements Abstract {}
 	public static class				FinishTermination implements Abstract {}
 
-// -------------------------------> Concrete : UI
+// -------------------------------> Concrete : UI, Global
 
 	public static class				Exit implements Abstract {}
 
-	public static class				Create implements Abstract {}
+	public static class				Console implements Abstract {}
 
-	public static class				GoNorth implements Abstract {}
-	public static class				GoEast implements Abstract {}
-	public static class				GoSouth implements Abstract {}
-	public static class				GoWest implements Abstract {}
+	public static class				Gui implements Abstract {}
 
 	public static class				Enter extends CommandWithString
 	{
@@ -67,13 +64,24 @@ public abstract class				Commands
 		}
 	}
 
-	public static class				HeroStats implements Abstract {}
-
-	public static class				HeroInventory implements Abstract {}
-
 	public static class				AnswerA implements Abstract {}
 
 	public static class				AnswerB implements Abstract {}
 
 	public static class				Ok implements Abstract {}
+
+// -------------------------------> Concrete : UI, Hero selector
+
+	public static class				Create implements Abstract {}
+
+// -------------------------------> Concrete : UI, Map
+
+	public static class				GoNorth implements Abstract {}
+	public static class				GoEast implements Abstract {}
+	public static class				GoSouth implements Abstract {}
+	public static class				GoWest implements Abstract {}
+
+	public static class				HeroStats implements Abstract {}
+
+	public static class				HeroInventory implements Abstract {}
 }

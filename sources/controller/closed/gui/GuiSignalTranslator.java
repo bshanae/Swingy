@@ -35,6 +35,8 @@ public class					GuiSignalTranslator extends SignalTranslator
 			return command;
 		if ((command = tryTranslateMapSignals(guiSignal)) != null)
 			return command;
+		if ((command = tryTranslateBattleSignals(guiSignal)) != null)
+			return command;
 
 		throw new UnrecognizedSignalException(signal);
 	}
@@ -43,7 +45,7 @@ public class					GuiSignalTranslator extends SignalTranslator
 
 	private Commands.Abstract	tryTranslateCommonSignals(Signals.Gui signal)
 	{
-		if (signal.getButtonId() == ButtonId.EXIT)
+		if (signal.getButtonId() == ButtonId.FRAME_EXIT)
 			return new Commands.Exit();
 		if (signal.getButtonId() == ButtonId.INFO_OK)
 			return new Commands.Ok();
@@ -106,6 +108,16 @@ public class					GuiSignalTranslator extends SignalTranslator
 			return new Commands.Ok();
 
 		// Battle
+		if (signal.getButtonId() == ButtonId.MAP_EXIT)
+			return new Commands.Exit();
+		if (signal.getButtonId() == ButtonId.MAP_CONSOLE)
+			return new Commands.Console();
+
+		return null;
+	}
+
+	private Commands.Abstract	tryTranslateBattleSignals(Signals.Gui signal)
+	{
 		if (signal.getButtonId() == ButtonId.BATTLE_CONTINUE)
 			return new Commands.Ok();
 

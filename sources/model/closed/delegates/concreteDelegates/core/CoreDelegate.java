@@ -7,6 +7,7 @@ import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
 import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
 import model.closed.delegates.abstractDelegate.commands.LostCommand;
+import model.closed.delegates.concreteDelegates.common.AutoResolvableDelegate;
 import model.closed.delegates.concreteDelegates.common.ErrorDelegate;
 import model.closed.delegates.concreteDelegates.game.GameDelegate;
 import model.closed.delegates.concreteDelegates.heroSelection.HeroSelectionDelegate;
@@ -83,16 +84,24 @@ public class					CoreDelegate extends AbstractDelegate
 	@Override
 	protected void				tryToExecuteCommandSilently(ExecutableCommand command)
 	{
-		if (command.getCommand() instanceof Commands.Exit)
+		if (command.getCommand() instanceof Commands.Console)
 		{
-			command.markExecuted();
+			sendRequest(new Requests.SwitchToConsole());
+			stackChildLater(new AutoResolvableDelegate());
+		}
+		else if (command.getCommand() instanceof Commands.Gui)
+		{
+			sendRequest(new Requests.SwitchToGui());
+			stackChildLater(new AutoResolvableDelegate());
+		}
+		else if (command.getCommand() instanceof Commands.Exit)
 			sendRequest(new Requests.Terminate());
-		}
 		else if (command.getCommand() instanceof Commands.FinishTermination)
-		{
-			command.markExecuted();
 			Game.getInstance().terminate();
-		}
+		else
+			return;
+
+		command.markExecuted();
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package view.open;
 
 public enum			ButtonId
 {
-	EXIT,
+	FRAME_EXIT,
 
 	// Info
 	INFO_OK,
@@ -33,6 +33,8 @@ public enum			ButtonId
 	MAP_ARROW_DOWN,
 	MAP_HERO_STATS,
 	MAP_HERO_INVENTORY,
+	MAP_EXIT,
+	MAP_CONSOLE,
 
 	// Hero stats
 	HERO_STATS_OK,
