@@ -102,6 +102,12 @@ public class						NameEntryDelegate extends AbstractDelegate
 		for (ConstraintViolation<NameEntryDelegate> violation : getValidator().validate(this))
 			return violation.getMessage();
 
+		for (Hero hero : HeroStorageFactory.buildInstance())
+		{
+			if (hero.getName().equalsIgnoreCase(heroName))
+				return "Hero with same name already exists";
+		}
+
 		return null;
 	}
 }
