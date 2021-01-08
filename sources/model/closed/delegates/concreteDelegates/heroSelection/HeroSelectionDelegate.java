@@ -35,7 +35,12 @@ public class				HeroSelectionDelegate extends AbstractDelegate
 	public void				tryToExecuteCommand(ExecutableCommand command)
 	{
 		if (command.getCommand() instanceof Commands.Create)
-			stackChildLater(new HeroCreationDelegate());
+		{
+			if (HeroStorageFactory.buildInstance().size() >= 4)
+				stackChildLater(new ErrorDelegate("Can't create more heroes"));
+			else
+				stackChildLater(new HeroCreationDelegate());
+		}
 		else if (command.getCommand() instanceof Commands.Select)
 			trySelectHero((Commands.Select)command.getCommand());
 		else if (command.getCommand() instanceof Commands.Delete)
@@ -64,10 +69,17 @@ public class				HeroSelectionDelegate extends AbstractDelegate
 
 	private void			trySelectHero(Commands.Select command)
 	{
+		Hero				selectedHero;
+
 		try
 		{
-			Session.getInstance().setHero(HeroStorageFactory.buildInstance().find(command.getString()));
+			selectedHero = HeroStorageFactory.buildInstance().find(command.getString());
 			resolveLater(new ResolutionObject());
+
+			if (selectedHero.didFinishGame())
+				stackChildLater(new ErrorDelegate("Can't select this hero"));
+			else
+				Session.getInstance().setHero(selectedHero);
 		}
 		catch (Exceptions.ObjectNotFound exception)
 		{

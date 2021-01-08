@@ -74,7 +74,7 @@ public class					CoreDelegate extends AbstractDelegate
 				break;
 
 			case PLAYING_GAME:
-				state = State.PLAYED_GAME;
+				state = State.WAITING;
 				break;
 
 			default:

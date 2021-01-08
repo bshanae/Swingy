@@ -7,6 +7,7 @@ import model.closed.creatures.hero.heroTemplate.HeroTemplate;
 import model.closed.creatures.hero.heroTemplate.HeroTemplateStorage;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
+import model.closed.delegates.concreteDelegates.common.ErrorDelegate;
 
 public class						HeroCreationDelegate extends AbstractDelegate
 {

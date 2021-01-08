@@ -56,6 +56,11 @@ public class							Hero extends Creature
 		return transformAttacks(getWeaponAttacks(), calculateAttackGainViaLevel());
 	}
 
+	public boolean						didFinishGame()
+	{
+		return level >= 8;
+	}
+
 // -----------------------------------> Constructors
 
 	public static Hero					create(HeroTemplate template, String name)

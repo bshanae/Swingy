@@ -145,6 +145,8 @@ public class				MapDelegate extends AbstractDelegate
 		{
 			if (!((BattleDelegate.ResolutionObject)object).didHeroWon())
 				resolveLater(new ResolutionObject());
+			else if (Session.getInstance().getHero().didFinishGame())
+				resolveLater(new ResolutionObject());
 			else
 				isProcessingBattle = false;
 

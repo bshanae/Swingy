@@ -58,6 +58,7 @@ public class					BattleDelegate extends AbstractDelegate
 	private static final float	MILLISECONDS_IN_A_SECOND = 1000;
 
 	private static final String	LEVEL_INFO = "Congratulations! You've upgraded to level %d.";
+	private static final String	FINISHED_INFO = "Congratulations! You've upgraded to level %d and finished the game.";
 	private static final String	LOST_INFO = "You lost battle... All your progress on this map is lost.";
 
 // ---------------------------> Attributes
@@ -205,7 +206,11 @@ public class					BattleDelegate extends AbstractDelegate
 
 	private void				tellAboutNewLevel()
 	{
-		stackChildLater(new InfoDelegate(String.format(LEVEL_INFO, Session.getInstance().getHero().getLevel())));
+		if (Session.getInstance().getHero().didFinishGame())
+			stackChildLater(new InfoDelegate(String.format(FINISHED_INFO, Session.getInstance().getHero().getLevel())));
+		else
+			stackChildLater(new InfoDelegate(String.format(LEVEL_INFO, Session.getInstance().getHero().getLevel())));
+
 		state = State.SHOWING_NEW_LEVEL;
 	}
 }

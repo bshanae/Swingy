@@ -98,6 +98,7 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 
 		selectButton = new JButton("Select");
 		selectButton.addActionListener(new GuiSignalSender(ButtonId.HERO_SELECTOR_SELECT, hero.getName()));
+		selectButton.setEnabled(!hero.didFinishGame());
 
 		panel.add(nameLabel, "wrap");
 		panel.add(infoButton, "push, aligny 50%");

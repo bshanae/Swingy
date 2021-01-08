@@ -55,6 +55,8 @@ public abstract class					Pockets
 		@Getter
 		private final int				experience;
 
+		private final boolean			didFinishGame;
+
 		public 							Hero(model.closed.creatures.hero.Hero hero)
 		{
 			super(hero);
@@ -62,6 +64,12 @@ public abstract class					Pockets
 			heroClass = hero.getHeroClass().toString();
 			level = hero.getLevel();
 			experience = hero.getExperience();
+			didFinishGame = hero.didFinishGame();
+		}
+
+		public boolean					didFinishGame()
+		{
+			return didFinishGame;
 		}
 	}
 

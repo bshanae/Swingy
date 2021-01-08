@@ -42,7 +42,12 @@ public class				GameDelegate extends AbstractDelegate
 		if (object instanceof InfoDelegate.ResolutionObject)
 			showMap();
 		else if (object instanceof MapDelegate.ResolutionObject)
-			showInfo();
+		{
+			if (Session.getInstance().getHero().didFinishGame())
+				resolveLater(new ResolutionObject());
+			else
+				showInfo();
+		}
 	}
 
 // -----------------------> Private methods

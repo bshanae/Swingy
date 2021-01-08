@@ -47,6 +47,14 @@ public class					ConsoleWorkerOnHeroSelector extends ConsoleWorker
 
 	private String				getHeroName(List<Pockets.Hero> heroes, int index)
 	{
-		return index < heroes.size() ? heroes.get(index).getName() : "Empty";
+		Pockets.Hero			hero;
+
+		if (index < heroes.size())
+		{
+			hero = heroes.get(index);
+			return hero.getName() + (hero.didFinishGame() ? " (Finished game)" : "");
+		}
+		else
+			return "Empty";
 	}
 }
