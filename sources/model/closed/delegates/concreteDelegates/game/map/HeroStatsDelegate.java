@@ -4,7 +4,7 @@ import controller.open.Commands;
 import model.closed.Session;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
-import model.closed.delegates.abstractDelegate.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
 import model.open.Requests;
 
 public class				HeroStatsDelegate extends AbstractDelegate
@@ -12,7 +12,7 @@ public class				HeroStatsDelegate extends AbstractDelegate
 	public static class		ResolutionObject implements AbstractResolutionObject {}
 
 	@Override
-	public void				whenActivated(boolean isFirstTime)
+	public void				whenActivated()
 	{
 		sendRequest(new Requests.HeroStats(Session.getInstance().getHero()));
 	}
@@ -20,6 +20,8 @@ public class				HeroStatsDelegate extends AbstractDelegate
 	@Override
 	public void				tryToExecuteCommand(ExecutableCommand command)
 	{
+		command.lock();
+
 		if (command.getCommand() instanceof Commands.Ok)
 		{
 			resolveLater(new ResolutionObject());

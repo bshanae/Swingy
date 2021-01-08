@@ -10,6 +10,8 @@ import model.closed.artefacts.weapon.WeaponStorage;
 import model.closed.creatures.enemy.EnemyStorage;
 import model.closed.creatures.hero.heroStorage.HeroStorageFactory;
 import model.closed.creatures.hero.heroTemplate.HeroTemplateStorage;
+import model.closed.delegates.abstractDelegate.AbstractDelegate;
+import model.closed.delegates.concreteDelegates.common.ErrorDelegate;
 import model.closed.delegates.concreteDelegates.core.CoreDelegate;
 
 import java.util.concurrent.locks.ReentrantLock;

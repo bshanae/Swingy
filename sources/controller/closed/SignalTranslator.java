@@ -1,6 +1,7 @@
 package controller.closed;
 
 import application.patterns.SingletonMap;
+import application.service.Exceptions;
 import controller.closed.console.ConsoleSignalTranslator;
 import controller.closed.gui.GuiSignalTranslator;
 import controller.open.Commands;
@@ -12,7 +13,9 @@ public abstract class						SignalTranslator
 	{
 		SignalTranslator					instance;
 
-		if (signal instanceof Signals.Console)
+		if (signal instanceof Signals.FinishedTermination)
+			return new Commands.FinishTermination();
+		else if (signal instanceof Signals.Console)
 		{
 			instance = SingletonMap.getInstanceOf(ConsoleSignalTranslator.class);
 			return instance.translateImplementation(signal);
@@ -23,7 +26,7 @@ public abstract class						SignalTranslator
 			return instance.translateImplementation(signal);
 		}
 		else
-			return new Commands.Null();
+			throw new Exceptions.UnexpectedCodeBranch();
 	}
 
 	protected abstract Commands.Abstract	translateImplementation(Signals.Abstract signal);

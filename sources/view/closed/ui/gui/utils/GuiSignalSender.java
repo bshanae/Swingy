@@ -1,4 +1,4 @@
-package view.closed.ui.gui.utils.senders;
+package view.closed.ui.gui.utils;
 
 import view.open.ButtonId;
 import view.open.Signals;

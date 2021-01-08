@@ -4,7 +4,7 @@ import controller.open.Commands;
 import lombok.Getter;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
-import model.closed.delegates.abstractDelegate.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
 import model.open.Requests;
 
 public class					QuestionDelegate extends AbstractDelegate
@@ -46,16 +46,17 @@ public class					QuestionDelegate extends AbstractDelegate
 // ---------------------------> Implementations
 
 	@Override
-	protected void				whenActivated(boolean isFirstTime)
+	protected void				whenActivated()
 	{
-		if (isFirstTime)
-			showQuestion();
+		showQuestion();
 	}
 
 	@Override
 	protected void				tryToExecuteCommand(ExecutableCommand command)
 	{
 		ResolutionObject.Answer	answer;
+
+		command.lock();
 
 		if (command.getCommand() instanceof Commands.AnswerA)
 			answer = ResolutionObject.Answer.A;

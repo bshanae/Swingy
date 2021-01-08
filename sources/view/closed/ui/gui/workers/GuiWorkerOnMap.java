@@ -6,14 +6,11 @@ import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiTasks;
 import view.closed.ui.gui.GuiWorker;
 import view.closed.ui.gui.utils.FontRedactor;
-import view.closed.ui.gui.utils.GuiSettings;
-import view.closed.ui.gui.utils.senders.GuiServerTaskSender;
-import view.closed.ui.gui.utils.senders.GuiSignalSender;
+import view.closed.ui.gui.utils.GuiSignalSender;
 import view.closed.ui.utils.MapGenerator;
 import view.open.ButtonId;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class							GuiWorkerOnMap extends GuiWorker
 {
@@ -160,7 +157,6 @@ public class							GuiWorkerOnMap extends GuiWorker
 
 		buttonExit = new JButton("Exit");
 		buttonExit.addActionListener(new GuiSignalSender(ButtonId.EXIT));
-		buttonExit.addActionListener(new GuiServerTaskSender(new GuiTasks.Terminate()));
 
 		return buildSideMenu("System", buttonConsole, buttonExit);
 	}

@@ -2,17 +2,23 @@
 │                                                                   │
 │   %TITLE                                                      %   │
 │                                                                   │
-│   Warrior                                                         │
-│   Swordsman                                                       │
-│   Assassin                                                        │
-│   Mage                                                            │
+│   %HERO0                                                      %   │
+│   %HERO1                                                      %   │
+│   %HERO2                                                      %   │
+│   %HERO3                                                      %   │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
 │                                                                   │
 │   %COMMANDS      %                                                │
 │                                                                   │
-│   (select) [name of class]  :  Select class                       │
+│   create         :  Create hero                                   │
+│   select [hero]  :  Select hero                                   │
+│   info [hero]    :  Info about hero                               │
+│   delete [hero]  :  Delete hero                                   │
+│                                                                   │
+│   gui            :  Switch to GUI                                 │
+│   exit           :  Terminate application                         │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 

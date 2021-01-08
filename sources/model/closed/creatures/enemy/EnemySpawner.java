@@ -1,6 +1,7 @@
 package model.closed.creatures.enemy;
 
 import application.service.Debug;
+import application.service.Exceptions;
 import application.service.LogGroup;
 import model.closed.Session;
 import model.closed.utils.RandomGenerator;
@@ -67,8 +68,7 @@ public abstract class				EnemySpawner
 				return selectedMeta;
 		}
 
-		Debug.throwException("Can't select enemy");
-		return list.get(0);
+		throw new Exceptions.UnexpectedCodeBranch();
 	}
 
 	private static float			getTransformedAppearanceProbability(Enemy enemy)

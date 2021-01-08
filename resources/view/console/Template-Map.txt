@@ -1,0 +1,24 @@
+┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
+│%LINE0                                                            %│
+│%LINE1                                                            %│
+│%LINE2                                                            %│
+│%LINE3                                                            %│
+│%LINE4                                                            %│
+│%LINE5                                                            %│
+│%LINE6                                                            %│
+│%LINE7                                                            %│
+┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
+┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
+│                                                                   │
+│   %COMMANDS      %                                                │
+│                                                                   │
+│   north/south/east/west  :  Move in the direction                 │
+│                                                                   │
+│   stats                  :  Show stats of the hero                │
+│   inventory              :  Show inventory of the hero            │
+│   gui                    :  Switch to GUI                         │
+│   exit                   :  Terminate application                 │
+│                                                                   │
+┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
+
+> 

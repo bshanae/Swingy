@@ -1,4 +1,4 @@
-package model.closed.delegates.abstractDelegate;
+package model.closed.delegates.abstractDelegate.commands;
 
 import controller.open.Commands;
 import lombok.Getter;
@@ -12,6 +12,9 @@ public class			ExecutableCommand
 	@Getter
 	private boolean		isExecuted;
 
+	@Getter
+	private boolean		isLocked;
+
 	public				ExecutableCommand(Commands.Abstract command)
 	{
 		this.command = command;
@@ -20,5 +23,10 @@ public class			ExecutableCommand
 	public void			markExecuted()
 	{
 		isExecuted = true;
+	}
+
+	public void 		lock()
+	{
+		isLocked = true;
 	}
 }

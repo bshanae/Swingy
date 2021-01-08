@@ -19,6 +19,18 @@ public class					ConsoleServer extends Server<ConsoleTasks.Abstract>
 
 // ---------------------------> Private methods
 
+	private void				execute(ConsoleTasks.Terminate task)
+	{
+		if (!ApplicationOptions.get(ApplicationOptions.IDE))
+		{
+			System.out.print("\033\143");
+			System.out.flush();
+		}
+
+		View.getInstance().sendSignal(new Signals.FinishedTermination());
+
+	}
+
 	private void				execute(ConsoleTasks.Clean task)
 	{
 		if (ApplicationOptions.get(ApplicationOptions.IDE))
@@ -30,7 +42,7 @@ public class					ConsoleServer extends Server<ConsoleTasks.Abstract>
 
 	private void				execute(ConsoleTasks.Write task)
 	{
-		System.out.print(task.text);
+		System.out.print(task.getText());
 		System.out.flush();
 	}
 
@@ -44,6 +56,22 @@ public class					ConsoleServer extends Server<ConsoleTasks.Abstract>
 		String					input;
 
 		input = new Scanner(System.in).nextLine();
-		View.getInstance().sendSignal(new Signals.Console(task.context, input));
+		View.getInstance().sendSignal(new Signals.Console(task.getContext(), input));
+	}
+
+	private void				execute(ConsoleTasks.PromptExpectedInput task)
+	{
+		String					input;
+		Signals.Console			signal;
+
+		input = new Scanner(System.in).nextLine();
+		signal = new Signals.Console
+		(
+			task.getContext(),
+			input,
+			new Signals.Console.ExpectedCommands(task.getCommandA(), task.getCommandB())
+		);
+
+		View.getInstance().sendSignal(signal);
 	}
 }

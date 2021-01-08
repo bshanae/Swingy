@@ -2,20 +2,17 @@ package view.closed.ui.console.workers;
 
 import model.open.Pockets;
 import model.open.Requests;
-import application.utils.resources.ResourceManager;
-import application.utils.resources.Template;
 import view.closed.ui.console.ConsoleWorker;
 import view.closed.ui.console.utils.ConsoleTemplate;
 import view.open.Context;
 
-import java.io.File;
 import java.util.List;
 
 public class					ConsoleWorkerOnHeroSelector extends ConsoleWorker
 {
 // ---------------------------> Constants
 
-	private static final String	PATH_TO_TEMPLATE = "view/console/templates/HeroSelector.txt";
+	private static final String	PATH_TO_TEMPLATE = "view/console/Template-HeroSelector.txt";
 
 // ---------------------------> Implementations
 

@@ -44,7 +44,7 @@ public enum					HeroClass
 		else if (string.equalsIgnoreCase(MAGE.toString()))
 			return MAGE;
 		else
-			throw new Exceptions.UnexpectedCodeBranch();
+			throw new Exceptions.ObjectNotFound();
 	}
 
 // -----------------------> Public methods

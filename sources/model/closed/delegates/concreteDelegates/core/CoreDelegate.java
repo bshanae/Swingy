@@ -5,7 +5,9 @@ import controller.open.Commands;
 import model.closed.Game;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
-import model.closed.delegates.abstractDelegate.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.LostCommand;
+import model.closed.delegates.concreteDelegates.common.ErrorDelegate;
 import model.closed.delegates.concreteDelegates.game.GameDelegate;
 import model.closed.delegates.concreteDelegates.heroSelection.HeroSelectionDelegate;
 import model.open.Requests;
@@ -84,8 +86,20 @@ public class					CoreDelegate extends AbstractDelegate
 		if (command.getCommand() instanceof Commands.Exit)
 		{
 			command.markExecuted();
+			sendRequest(new Requests.Terminate());
+		}
+		else if (command.getCommand() instanceof Commands.FinishTermination)
+		{
+			command.markExecuted();
 			Game.getInstance().terminate();
 		}
+	}
+
+	@Override
+	public void					tryCatchLostCommand(LostCommand command)
+	{
+		stackChildLater(new ErrorDelegate("Unknown command"));
+		command.markCaught();
 	}
 
 // --------------------------->	Public methods

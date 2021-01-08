@@ -6,7 +6,7 @@ import view.closed.ui.console.ConsoleWorker;
 import view.closed.ui.console.utils.ConsoleTemplate;
 import view.open.Context;
 
-public class					ConsoleWorkerOnHeroInfo extends ConsoleWorker
+public class					ConsoleWorkerOnHeroStats extends ConsoleWorker
 {
 // ---------------------------> Implementations
 
@@ -22,11 +22,11 @@ public class					ConsoleWorkerOnHeroInfo extends ConsoleWorker
 
 	private String				getText(Requests.Abstract request)
 	{
-		Requests.HeroInfo		heroInfoRequest;
+		Requests.HeroStats		heroInfoRequest;
 		ConsoleTemplate			template;
 
-		heroInfoRequest = (Requests.HeroInfo)request;
-		template = new ConsoleTemplate("view/console/Template-HeroInfo.txt");
+		heroInfoRequest = (Requests.HeroStats)request;
+		template = new ConsoleTemplate("view/console/Template-HeroStats.txt");
 
 		template.put("TITLE", "Hero info", ConsoleTemplate.Style.BOLD);
 
@@ -34,15 +34,6 @@ public class					ConsoleWorkerOnHeroInfo extends ConsoleWorker
 		template.put("LEVEL", String.valueOf(heroInfoRequest.getHero().getLevel()));
 		template.put("EXPERIENCE", String.valueOf(heroInfoRequest.getHero().getExperience()));
 
-		template.put("HELM", getArtefactName(heroInfoRequest.getInventory().getHelm()));
-		template.put("ARMOR", getArtefactName(heroInfoRequest.getInventory().getArmor()));
-		template.put("WEAPON", getArtefactName(heroInfoRequest.getInventory().getWeapon()));
-
 		return template.toString();
-	}
-
-	private String					getArtefactName(Pockets.Artefact artefact)
-	{
-		return artefact != null ? artefact.getName() : "none";
 	}
 }

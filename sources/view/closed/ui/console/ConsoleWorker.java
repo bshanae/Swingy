@@ -19,4 +19,9 @@ public abstract class		ConsoleWorker extends UiWorker
 	{
 		ConsoleServer.getInstance().execute(new ConsoleTasks.PromptInput(context));
 	}
+
+	protected static void	promptExpectedInput(Context context, String commandA, String commandB)
+	{
+		ConsoleServer.getInstance().execute(new ConsoleTasks.PromptExpectedInput(context, commandA, commandB));
+	}
 }

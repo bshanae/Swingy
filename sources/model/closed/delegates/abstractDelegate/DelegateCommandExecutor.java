@@ -1,12 +1,24 @@
 package model.closed.delegates.abstractDelegate;
 
 import controller.open.Commands;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.LostCommand;
 
 class								DelegateCommandExecutor
 {
+// -----------------------------------> Exceptions
+
+	public static class					CommandIsNotExecutedAndNotCaught extends RuntimeException
+	{
+		public							CommandIsNotExecutedAndNotCaught(Commands.Abstract command)
+		{
+			super("Command of type '" + command.getClass() + "' was not executed");
+		}
+	}
+
 // -------------------------------> Attributes
 
-	private final ExecutableCommand	command;
+	private final ExecutableCommand command;
 
 // -------------------------------> Constructor
 
@@ -25,7 +37,7 @@ class								DelegateCommandExecutor
 		executor.tryToExecuteCommandRecursivelyWithCheck(delegate);
 	}
 
-// -------------------------------> Private methods
+// -------------------------------> Private methods : Executing
 
 	private void					tryToExecuteCommandRecursivelyWithCheck(AbstractDelegate delegate)
 	{
@@ -34,16 +46,21 @@ class								DelegateCommandExecutor
 		tryToExecuteCommandRecursivelyWithoutCheck(delegate);
 
 		if (!command.isExecuted())
-			throw new AbstractDelegate.CommandIsNotExecuted(command.getCommand());
+		{
+			if (!throwLostCommand(delegate, command).isCaught())
+				throw new CommandIsNotExecutedAndNotCaught(command.getCommand());
+		}
 	}
 
 	private void					tryToExecuteCommandRecursivelyWithoutCheck(AbstractDelegate delegate)
 	{
 		DelegateVerifier.checkNotResolved(delegate);
-		tryToExecuteCommand(delegate, command);
 
-		if (!command.isExecuted() && delegate.hasChild())
+		if (delegate.hasChild())
 			tryToExecuteCommandRecursivelyWithoutCheck(delegate.getChild());
+
+		if (!command.isExecuted() && !command.isLocked())
+			tryToExecuteCommand(delegate, command);
 	}
 
 	private void 					tryToExecuteCommand(AbstractDelegate delegate, ExecutableCommand command)
@@ -58,5 +75,27 @@ class								DelegateCommandExecutor
 			DelegateLogger.logTryingToExecuteCommandSilently(delegate, command.getCommand());
 			delegate.tryToExecuteCommandSilently(command);
 		}
+	}
+
+// -------------------------------> Private methods : Throwing
+
+	private LostCommand				throwLostCommand(AbstractDelegate delegate, ExecutableCommand command)
+	{
+		LostCommand					lostCommand;
+
+		lostCommand = new LostCommand(command);
+		throwLostCommandRecursively(delegate, lostCommand);
+
+		return lostCommand;
+	}
+
+	private void					throwLostCommandRecursively(AbstractDelegate delegate, LostCommand command)
+	{
+		DelegateVerifier.checkNotResolved(delegate);
+
+		delegate.tryCatchLostCommand(command);
+
+		if (delegate.hasChild() && !command.isCaught())
+			throwLostCommandRecursively(delegate.getChild(), command);
 	}
 }

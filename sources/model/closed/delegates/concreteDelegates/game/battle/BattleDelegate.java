@@ -8,7 +8,7 @@ import model.closed.battle.BattleLogger;
 import model.closed.creatures.enemy.Enemy;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
-import model.closed.delegates.abstractDelegate.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
 import model.closed.delegates.concreteDelegates.common.InfoDelegate;
 import model.open.Requests;
 
@@ -87,9 +87,9 @@ public class					BattleDelegate extends AbstractDelegate
 // ---------------------------> Implementations
 
 	@Override
-	protected void				whenActivated(boolean isFirstTime)
+	protected void				whenActivated()
 	{
-		if (isFirstTime)
+		if (state == State.PROCESSING_BATTLE)
 			showLog();
 	}
 
@@ -106,10 +106,9 @@ public class					BattleDelegate extends AbstractDelegate
 	@Override
 	protected void				tryToExecuteCommand(ExecutableCommand command)
 	{
-		if (state != State.PROCESSING_BATTLE)
-			return ;
+		command.lock();
 
-		if (command.getCommand() instanceof Commands.Ok)
+		if (state == State.PROCESSING_BATTLE && command.getCommand() instanceof Commands.Ok)
 		{
 			if (battle.getHero().isDead())
 				tellThatHeroLost();

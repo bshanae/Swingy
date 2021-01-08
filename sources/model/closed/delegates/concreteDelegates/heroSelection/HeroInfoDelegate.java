@@ -4,7 +4,7 @@ import controller.open.Commands;
 import model.closed.creatures.hero.Hero;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
-import model.closed.delegates.abstractDelegate.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
 import model.open.Requests;
 
 public class				HeroInfoDelegate extends AbstractDelegate
@@ -27,7 +27,7 @@ public class				HeroInfoDelegate extends AbstractDelegate
 // ----------------------->	Implementations
 
 	@Override
-	public void				whenActivated(boolean isFirstTime)
+	public void				whenActivated()
 	{
 		sendRequest(new Requests.HeroInfo(hero));
 	}
@@ -35,6 +35,8 @@ public class				HeroInfoDelegate extends AbstractDelegate
 	@Override
 	public void				tryToExecuteCommand(ExecutableCommand command)
 	{
+		command.lock();
+
 		if (command.getCommand() instanceof Commands.Ok)
 		{
 			resolveLater(new ResolutionObject());

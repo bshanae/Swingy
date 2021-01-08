@@ -75,6 +75,8 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 				dialog.dispose();
 
 			frame.dispose();
+
+			View.getInstance().sendSignal(new Signals.FinishedTermination());
 		}
 	}
 

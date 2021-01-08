@@ -2,29 +2,33 @@ package controller.closed.console;
 
 import controller.open.Commands;
 
-class								CommandBuilder
+class						CommandBuilder
 {
-	public static Commands.Abstract	build(CommandParser commandParser)
+// -----------------------> Exceptions
+
+	public static class 	CantInstantiateCommandException extends RuntimeException {}
+
+// -----------------------> Public methods
+
+	public static
+	Commands.Abstract		build(CommandParser commandParser)
 	{
-		Object						object;
-		Class<?>					class_;
+		final Class<?>		patternClass = commandParser.getPattern().getClass_();
 
-		assert commandParser.getPattern() != null;
-
-		class_ = commandParser.getPattern().getClass_();
-		object =
-			commandParser.hasValue() ?
-				buildWithValue(class_, commandParser.extractValue()) : buildWithoutValue(class_);
-
-		assert object instanceof Commands.Abstract;
-		return (Commands.Abstract)object;
+		if (commandParser.hasValue())
+			return buildWithValue(patternClass, commandParser.extractValue());
+		else
+			return buildWithoutValue(patternClass);
 	}
 
-	public static Object			buildWithValue(Class<?> class_, String value)
+// -----------------------> Private methods
+
+	private static
+	Commands.Abstract		buildWithValue(Class<?> class_, String value)
 	{
 		try
 		{
-			return class_.getConstructors()[0].newInstance(value);
+			return (Commands.Abstract)class_.getConstructors()[0].newInstance(value);
 		}
 		catch (Exception exception)
 		{
@@ -33,16 +37,16 @@ class								CommandBuilder
 		}
 	}
 
-	public static Object			buildWithoutValue(Class<?> class_)
+	private static
+	Commands.Abstract		buildWithoutValue(Class<?> class_)
 	{
 		try
 		{
-			return class_.newInstance();
+			return (Commands.Abstract)class_.newInstance();
 		}
 		catch (Exception exception)
 		{
-			exception.printStackTrace();
-			return null;
+			throw new CantInstantiateCommandException();
 		}
 	}
 }

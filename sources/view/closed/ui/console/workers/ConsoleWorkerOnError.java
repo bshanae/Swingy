@@ -5,22 +5,23 @@ import view.closed.ui.console.ConsoleWorker;
 import view.closed.ui.console.utils.ConsoleTemplate;
 import view.open.Context;
 
-public class			ConsoleWorkerOnNameEntry extends ConsoleWorker
+public class			ConsoleWorkerOnError extends ConsoleWorker
 {
 	@Override
 	public void			execute(Requests.Abstract request)
 	{
 		clean();
-		write(getText());
+		write(getText((Requests.Error)request));
 		promptInput(Context.parse(request));
 	}
 
-	private String		getText()
+	private String		getText(Requests.Error request)
 	{
 		ConsoleTemplate	template;
 
-		template = new ConsoleTemplate("view/console/Template-HeroNameEntry.txt");
-		template.put("TITLE", "Enter name : ", ConsoleTemplate.Style.BOLD);
+		template = new ConsoleTemplate("view/console/Template-Error.txt");
+		template.put("TITLE", "Error : ", ConsoleTemplate.Style.BOLD);
+		template.put("MESSAGE", request.getMessage());
 
 		return template.toString();
 	}

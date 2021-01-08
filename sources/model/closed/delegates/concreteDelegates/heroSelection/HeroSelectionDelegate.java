@@ -8,8 +8,9 @@ import model.closed.creatures.hero.heroStorage.AbstractHeroStorage;
 import model.closed.creatures.hero.heroStorage.HeroStorageFactory;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
-import model.closed.delegates.abstractDelegate.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
 import model.closed.delegates.concreteDelegates.common.ErrorDelegate;
+import model.closed.delegates.concreteDelegates.heroSelection.heroCreation.HeroCreationDelegate;
 import model.open.Pockets;
 import model.open.Requests;
 
@@ -18,14 +19,14 @@ import java.util.List;
 
 public class				HeroSelectionDelegate extends AbstractDelegate
 {
-// ------------------------------->	Nested types
+// ----------------------->	Nested types
 
 	public static class		ResolutionObject implements AbstractResolutionObject {}
 
 // ----------------------->	Implementations
 
 	@Override
-	public void				whenActivated(boolean isFirstTime)
+	public void				whenActivated()
 	{
 		showHeroSelectionScreen();
 	}

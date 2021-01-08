@@ -95,13 +95,13 @@ public class					GuiSignalTranslator extends SignalTranslator
 
 		// Stats
 		if (signal.getButtonId() == ButtonId.MAP_HERO_STATS)
-			return new Commands.Stats();
+			return new Commands.HeroStats();
 		if (signal.getButtonId() == ButtonId.HERO_STATS_OK)
 			return new Commands.Ok();
 
 		// Inventory
 		if (signal.getButtonId() == ButtonId.MAP_HERO_INVENTORY)
-			return new Commands.Inventory();
+			return new Commands.HeroInventory();
 		if (signal.getButtonId() == ButtonId.HERO_INVENTORY_OK)
 			return new Commands.Ok();
 

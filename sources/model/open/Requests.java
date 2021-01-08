@@ -7,54 +7,81 @@ import java.util.List;
 
 public abstract class						Requests
 {
-	public interface						Abstract {}
+	public static abstract class			Abstract
+	{
+		@Getter
+		private final boolean				isMandatory;
 
-	public interface						System extends  Abstract {}
+		protected							Abstract(boolean isMandatory)
+		{
+			this.isMandatory = isMandatory;
+		}
+	}
 
-	public interface						Ui extends  Abstract {}
+	public static abstract class			System extends Abstract
+	{
+		public								System()
+		{
+			super(true);
+		}
+	}
+
+	public static abstract class			Ui extends Abstract
+	{
+		public								Ui(boolean isMandatory)
+		{
+			super(isMandatory);
+		}
+	}
 
 // --------------------------------------->	Empty
 
-	public static class						SwitchToConsole implements System
-	{}
+	public static class						SwitchToConsole extends System {}
 
-	public static class						SwitchToGui implements System
-	{}
+	public static class						SwitchToGui extends System {}
 
-	public static class						HeroSelector implements Ui
+	public static class						Terminate extends System {}
+
+	public static class						HeroSelector extends Ui
 	{
 		@Getter
 		private final List<Pockets.Hero>	heroes;
 
 		public 								HeroSelector(List<Pockets.Hero> heroes)
 		{
+			super(true);
 			this.heroes = heroes;
 		}
 	}
 
-	public static class						NameEntry implements Ui {}
+	public static class						NameEntry extends Ui
+	{
+		public 								NameEntry()
+		{
+			super(true);
+		}
+	}
 
-	public static class						ClassSelector implements Ui {}
+	public static class						ClassSelector extends Ui
+	{
+		public 								ClassSelector()
+		{
+			super(true);
+		}
+	}
 
 
 // --------------------------------------->	With string
 
-	private static abstract class			WithMessage implements Ui
+	private static abstract class			WithMessage extends Ui
 	{
 		@Getter
 		private final String				message;
 
-		public								WithMessage(String message)
+		public								WithMessage(boolean isMandatory, String message)
 		{
+			super(isMandatory);
 			this.message = message;
-		}
-	}
-
-	public static class						Error extends WithMessage
-	{
-		public 								Error(String message)
-		{
-			super(message);
 		}
 	}
 
@@ -62,13 +89,21 @@ public abstract class						Requests
 	{
 		public 								Info(String message)
 		{
-			super(message);
+			super(true, message);
+		}
+	}
+
+	public static class						Error extends WithMessage
+	{
+		public 								Error(String message)
+		{
+			super(true, message);
 		}
 	}
 
 // --------------------------------------->	With complex structure
 
-	public static class						Question implements Ui
+	public static class						Question extends Ui
 	{
 		@Getter
 		private final String				question;
@@ -81,13 +116,15 @@ public abstract class						Requests
 
 		public 								Question(String question, String answerA, String answerB)
 		{
+			super(true);
+
 			this.question = question;
 			this.answerA = answerA;
 			this.answerB = answerB;
 		}
 	}
 
-	public static class						HeroInfo implements Ui
+	public static class						HeroInfo extends Ui
 	{
 		@Getter
 		private final Pockets.Hero			hero;
@@ -97,12 +134,14 @@ public abstract class						Requests
 
 		public 								HeroInfo(model.closed.creatures.hero.Hero hero)
 		{
+			super(true);
+
 			this.hero = new Pockets.Hero(hero);
 			this.inventory = new Pockets.HeroInventory(hero.getInventory());
 		}
 	}
 
-	public static class						Map implements Ui
+	public static class						Map extends Ui
 	{
 		@Getter
 		private final Pockets.Map			map;
@@ -110,45 +149,44 @@ public abstract class						Requests
 		@Getter
 		private final Point					pivot;
 
-		@Getter
-		private final boolean				heroMovementAllowed;
-
 		public								Map
 											(
 												model.closed.map.Map map,
 												Point pivot,
-												boolean heroMovementAllowed
+												boolean isMandatory
 											)
 		{
+			super(isMandatory);
 			this.map = new Pockets.Map(map);
 			this.pivot = pivot;
-			this.heroMovementAllowed = heroMovementAllowed;
 		}
 	}
 
-	public static class						HeroStats implements Ui
+	public static class						HeroStats extends Ui
 	{
 		@Getter
 		private final Pockets.Hero			hero;
 
 		public 								HeroStats(model.closed.creatures.hero.Hero hero)
 		{
+			super(true);
 			this.hero = new Pockets.Hero(hero);
 		}
 	}
 
-	public static class						HeroInventory implements Ui
+	public static class						HeroInventory extends Ui
 	{
 		@Getter
 		private final Pockets.HeroInventory	inventory;
 
 		public 								HeroInventory(model.closed.creatures.hero.HeroInventory inventory)
 		{
+			super(true);
 			this.inventory = new Pockets.HeroInventory(inventory);
 		}
 	}
 
-	public static class						Battle implements Ui
+	public static class						Battle extends Ui
 	{
 		@Getter
 		private final Pockets.BattleLog		log;
@@ -158,6 +196,7 @@ public abstract class						Requests
 
 		public								Battle(model.closed.battle.Battle battle)
 		{
+			super(true);
 			log = new Pockets.BattleLog(battle.getLogger());
 			isBattleFinished = battle.isFinished();
 		}

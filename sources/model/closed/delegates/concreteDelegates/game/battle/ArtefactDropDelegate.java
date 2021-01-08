@@ -6,6 +6,7 @@ import model.closed.artefacts.artefact.Artefact;
 import model.closed.creatures.enemy.Enemy;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
 import model.closed.delegates.concreteDelegates.common.QuestionDelegate;
 
 public class					ArtefactDropDelegate extends AbstractDelegate
@@ -22,28 +23,27 @@ public class					ArtefactDropDelegate extends AbstractDelegate
 
 // ---------------------------> Attributes
 
-	private final Enemy			opponent;
-	private Artefact			droppedArtefact;
+	private final Artefact		artefact;
 
 // ---------------------------> Constructor
 
 	public						ArtefactDropDelegate(Enemy opponent)
 	{
-		this.opponent = opponent;
+		this.artefact = opponent.getArtefactDropper().drop();
 	}
 
 // ---------------------------> Implementations
 
 	@Override
-	public void					whenActivated(boolean isFirstTime)
+	public void					whenActivated()
 	{
-		if (isFirstTime)
-		{
-			if (tryGetArtefact())
-				askQuestion();
-			else
-				resolveLater(new ArtefactDropDelegate.ResolutionObject());
-		}
+		if (waitingToResolve())
+			return;
+
+		if (artefact != null)
+			askQuestion();
+		else
+			resolveLater(new ArtefactDropDelegate.ResolutionObject());
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class					ArtefactDropDelegate extends AbstractDelegate
 		if (object instanceof QuestionDelegate.ResolutionObject)
 		{
 			if (((QuestionDelegate.ResolutionObject)object).getAnswer() == QuestionDelegate.ResolutionObject.Answer.B)
-				Session.getInstance().getHero().getInventory().setArtefact(droppedArtefact);
+				Session.getInstance().getHero().getInventory().setArtefact(artefact);
 
 			resolveLater(new ArtefactDropDelegate.ResolutionObject());
 		}
@@ -60,19 +60,19 @@ public class					ArtefactDropDelegate extends AbstractDelegate
 			throw new Exceptions.UnexpectedCodeBranch();
 	}
 
-// ---------------------------> Private methods
-
-	private boolean				tryGetArtefact()
+	@Override
+	public void					tryToExecuteCommand(ExecutableCommand command)
 	{
-		droppedArtefact = opponent.getArtefactDropper().drop();
-		return droppedArtefact != null;
+		command.lock();
 	}
+
+// ---------------------------> Private methods
 
 	private void				askQuestion()
 	{
 		String					question;
 
-		question = String.format(QUESTION, droppedArtefact.getName());
+		question = String.format(QUESTION, artefact.getName());
 		stackChildLater(new QuestionDelegate(question, ANSWER_A, ANSWER_B));
 	}
 }

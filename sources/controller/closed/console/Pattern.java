@@ -1,42 +1,62 @@
 package controller.closed.console;
 
+import lombok.Getter;
+
 class							Pattern
 {
+// ---------------------------> Attributes
+
+	@Getter
 	private final Class<?>		class_;
+
 	private final Keyword[]		keywords;
 
-	public Class<?>				getClass_()
+	@Getter
+	private final boolean		isWildcard;
+
+// ---------------------------> Constructor
+
+	public static Pattern		create(Class<?> class_, Keyword... keywords)
 	{
-		return class_;
+		return new Pattern(class_, false, keywords);
 	}
+
+	public static Pattern		createWildcard(Class<?> class_)
+	{
+		return new Pattern(class_, true);
+	}
+
+	private						Pattern(Class<?> class_, boolean isWildcard, Keyword... keywords)
+	{
+		this.class_ = class_;
+		this.isWildcard = isWildcard;
+		this.keywords = keywords;
+	}
+
+// ---------------------------> Properties
 
 	public Keyword[]			getKeywords()
 	{
 		return keywords;
 	}
 
-	public boolean				isWildcard()
+// ---------------------------> Public methods
+
+	public boolean				compare(String[] tokens)
 	{
-		return keywords.length == 1 && keywords[0].isWildcard();
+		return isWildcard || compareWithKeywords(tokens);
 	}
 
-	public 						Pattern(Class<?> class_, Keyword... keywords)
-	{
-		this.class_ = class_;
-		this.keywords = keywords;
-	}
+// ---------------------------> Public methods
 
-	public boolean				checkTokens(String[] tokens)
+	private boolean				compareWithKeywords(String[] tokens)
 	{
-		if (keywords.length == 1 && keywords[0] == Keyword.ANY)
-			return true;
-
 		if (keywords.length != tokens.length)
 			return false;
 
 		for (int i = 0; i < keywords.length; i++)
 		{
-			if (!keywords[i].checkToken(tokens[i]))
+			if (!keywords[i].compare(tokens[i]))
 				return false;
 		}
 

@@ -11,10 +11,10 @@ import view.open.Context;
 
 public class							ConsoleWorkerOnMap extends ConsoleWorker
 {
-	private static final Point			CANVAS_SIZE = new Point(65, 7);
+	private static final Point			CANVAS_SIZE = new Point(67, 8);
 	private static final MapGenerator	mapGenerator;
 
-	private Template					template;
+	private ConsoleTemplate				template;
 	private Requests.Map				request;
 
 	static
@@ -27,11 +27,12 @@ public class							ConsoleWorkerOnMap extends ConsoleWorker
 	{
 		parseRequest(request);
 
+		if (!this.request.isMandatory())
+			return;
+
 		clean();
 		write(getText());
-
-		if (this.request.isHeroMovementAllowed())
-			promptInput(Context.parse(request));
+		promptInput(Context.parse(request));
 	}
 
 	private void						parseRequest(Requests.Abstract request)
@@ -49,7 +50,8 @@ public class							ConsoleWorkerOnMap extends ConsoleWorker
 
 	private void						prepareTemplate()
 	{
-		template = new ConsoleTemplate("view/console/templates/Map.txt");
+		template = new ConsoleTemplate("view/console/Template-Map.txt");
+		template.put("COMMANDS", "Commands : ", ConsoleTemplate.Style.BOLD);
 	}
 
 	private void						writeMapToTemplate()

@@ -37,6 +37,9 @@ public class							ArtefactDropper
 		if (artefacts == null)
 			return null;
 
+		if (true)
+			return artefacts.get(0).getAlias().get();
+
 		for (int i = 0; i < NUMBER_OF_ATTEMPTS_TO_SELECT_SUPPORTED_ARTEFACT; i++)
 		{
 			index = RandomGenerator.randomBetween(0, artefacts.size() - 1);

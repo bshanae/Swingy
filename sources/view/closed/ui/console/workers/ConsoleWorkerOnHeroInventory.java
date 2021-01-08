@@ -6,7 +6,7 @@ import view.closed.ui.console.ConsoleWorker;
 import view.closed.ui.console.utils.ConsoleTemplate;
 import view.open.Context;
 
-public class					ConsoleWorkerOnHeroInfo extends ConsoleWorker
+public class					ConsoleWorkerOnHeroInventory extends ConsoleWorker
 {
 // ---------------------------> Implementations
 
@@ -22,17 +22,13 @@ public class					ConsoleWorkerOnHeroInfo extends ConsoleWorker
 
 	private String				getText(Requests.Abstract request)
 	{
-		Requests.HeroInfo		heroInfoRequest;
+		Requests.HeroInventory	heroInfoRequest;
 		ConsoleTemplate			template;
 
-		heroInfoRequest = (Requests.HeroInfo)request;
-		template = new ConsoleTemplate("view/console/Template-HeroInfo.txt");
+		heroInfoRequest = (Requests.HeroInventory)request;
+		template = new ConsoleTemplate("view/console/Template-HeroInventory.txt");
 
 		template.put("TITLE", "Hero info", ConsoleTemplate.Style.BOLD);
-
-		template.put("CLASS", heroInfoRequest.getHero().getHeroClass());
-		template.put("LEVEL", String.valueOf(heroInfoRequest.getHero().getLevel()));
-		template.put("EXPERIENCE", String.valueOf(heroInfoRequest.getHero().getExperience()));
 
 		template.put("HELM", getArtefactName(heroInfoRequest.getInventory().getHelm()));
 		template.put("ARMOR", getArtefactName(heroInfoRequest.getInventory().getArmor()));

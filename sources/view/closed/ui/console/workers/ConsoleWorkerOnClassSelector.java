@@ -1,7 +1,6 @@
 package view.closed.ui.console.workers;
 
 import model.open.Requests;
-import application.utils.resources.ResourceManager;
 import view.closed.ui.console.ConsoleWorker;
 import view.closed.ui.console.utils.ConsoleTemplate;
 import view.open.Context;
@@ -20,7 +19,7 @@ public class		ConsoleWorkerOnClassSelector extends ConsoleWorker
 	{
 		ConsoleTemplate	template;
 
-		template = new ConsoleTemplate("view/console/templates/ClassSelector.txt");
+		template = new ConsoleTemplate("view/console/Template-ClassSelector.txt");
 		template.put("TITLE", "Choose class : ", ConsoleTemplate.Style.BOLD);
 		template.put("COMMANDS", "Commands : ", ConsoleTemplate.Style.BOLD);
 

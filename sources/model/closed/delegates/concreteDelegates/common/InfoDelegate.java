@@ -3,7 +3,7 @@ package model.closed.delegates.concreteDelegates.common;
 import controller.open.Commands;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
-import model.closed.delegates.abstractDelegate.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
 import model.open.Requests;
 
 public class				InfoDelegate extends AbstractDelegate
@@ -26,15 +26,16 @@ public class				InfoDelegate extends AbstractDelegate
 // -----------------------> Implementations
 
 	@Override
-	public void				whenActivated(boolean isFirstTime)
+	public void				whenActivated()
 	{
-		if (isFirstTime)
-			sendRequest(new Requests.Info(message));
+		sendRequest(new Requests.Info(message));
 	}
 
 	@Override
 	public void				tryToExecuteCommand(ExecutableCommand command)
 	{
+		command.lock();
+
 		if (command.getCommand() instanceof Commands.Ok)
 		{
 			resolveLater(new ResolutionObject());

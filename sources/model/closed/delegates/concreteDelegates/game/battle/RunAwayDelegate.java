@@ -4,6 +4,7 @@ import application.service.Exceptions;
 import model.closed.creatures.enemy.Enemy;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
 import model.closed.delegates.concreteDelegates.common.InfoDelegate;
 import model.closed.delegates.concreteDelegates.common.QuestionDelegate;
 import model.closed.utils.RandomGenerator;
@@ -37,7 +38,7 @@ public class					RunAwayDelegate extends AbstractDelegate
 // ---------------------------> Constants
 
 	private static final String	QUESTION = "Do you wish to fight '%s' or try escape?";
-	private static final String	ANSWER_ESCAPE = "Try to escape";
+	private static final String	ANSWER_ESCAPE = "Escape";
 	private static final String	ANSWER_FIGHT = "Fight";
 
 	private static final String	RESULT_DID_ESCAPE = "You ran away from enemy!";
@@ -61,7 +62,7 @@ public class					RunAwayDelegate extends AbstractDelegate
 // ---------------------------> Implementations
 
 	@Override
-	public void					whenUpdated()
+	public void					whenActivated()
 	{
 		if (state == State.WAITING_TO_ASK_QUESTION)
 			askQuestion();
@@ -80,6 +81,12 @@ public class					RunAwayDelegate extends AbstractDelegate
 				resolveLater(new ResolutionObject(!didEscape));
 				break;
 		}
+	}
+
+	@Override
+	public void					tryToExecuteCommand(ExecutableCommand command)
+	{
+		command.lock();
 	}
 
 // ---------------------------> Private methods

@@ -2,20 +2,12 @@
 │                                                                   │
 │   %TITLE                                                      %   │
 │                                                                   │
-│   %HERO0                                                      %   │
-│   %HERO1                                                      %   │
-│   %HERO2                                                      %   │
-│   %HERO3                                                      %   │
+│   %MESSAGE                                                    %   │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
 │                                                                   │
-│   %COMMANDS      %                                                │
-│                                                                   │
-│   create                :  Create hero                            │
-│   (select) [hero name]  :  Select hero                            │
-│   info [hero name]      :  Info about hero                        │
-│   delete [hero name]    :  Delete hero                            │
+│   Press enter to continue...                                      │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 

@@ -6,7 +6,7 @@ import controller.open.Commands;
 import lombok.Getter;
 import model.closed.creatures.enemy.Enemy;
 import model.closed.delegates.abstractDelegate.AbstractResolutionObject;
-import model.closed.delegates.abstractDelegate.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
 import model.closed.delegates.concreteDelegates.game.battle.BattleDelegate;
 import model.closed.delegates.concreteDelegates.game.battle.RunAwayDelegate;
 import model.closed.map.Map;
@@ -88,9 +88,9 @@ public class				MapDelegate extends AbstractDelegate
 
 		private void		tryParseOther()
 		{
-			if (command instanceof Commands.Stats)
+			if (command instanceof Commands.HeroStats)
 				commandType = CommandType.OPEN_STATS;
-			else if (command instanceof Commands.Inventory)
+			else if (command instanceof Commands.HeroInventory)
 				commandType = CommandType.OPEN_INVENTORY;
 		}
 	}
@@ -121,16 +121,10 @@ public class				MapDelegate extends AbstractDelegate
 // -----------------------> Implementations
 
 	@Override
-	protected void			whenActivated(boolean isFirstTime)
-	{
-		drawMap(true);
-	}
-
-	@Override
-	public void				whenUpdated()
+	protected void			whenActivated()
 	{
 		if (!isProcessingBattle)
-			tryResolve();
+			draw(true);
 	}
 
 	@Override
@@ -145,6 +139,8 @@ public class				MapDelegate extends AbstractDelegate
 				revertHeroPosition();
 				isProcessingBattle = false;
 			}
+
+			draw(false);
 		}
 		else if (object instanceof BattleDelegate.ResolutionObject)
 		{
@@ -152,6 +148,9 @@ public class				MapDelegate extends AbstractDelegate
 				resolveLater(new ResolutionObject());
 			else
 				isProcessingBattle = false;
+
+			if (!resolveIfHeroIsOnBorder())
+				draw(true);
 		}
 	}
 
@@ -185,31 +184,34 @@ public class				MapDelegate extends AbstractDelegate
 
 // -----------------------> Private methods
 
-	private void			tryResolve()
+	private void			draw(boolean isMandatory)
+	{
+		sendRequest(new Requests.Map(map, hero.getPosition(), isMandatory));
+	}
+
+	private boolean			resolveIfHeroIsOnBorder()
 	{
 		if (map.isOnBorder(hero.getPosition()))
 		{
 			Session.getInstance().setMap(null);
 			resolveLater(new ResolutionObject());
+			return true;
 		}
+
+		return false;
 	}
 
 	private void			performMove(Point shift)
 	{
-		boolean				shouldStartBattle;
-
 		saveHeroPosition();
 
 		if (!tryMoveHero(shift))
 			return;
 
-		opponent = checkCollisionWithEnemy();
-		shouldStartBattle = opponent != null;
-
-		drawMap(!shouldStartBattle);
-
-		if (shouldStartBattle)
+		if ((opponent = checkCollisionWithEnemy()) != null)
 			tryRunAway();
+		else if (!resolveIfHeroIsOnBorder())
+			draw(true);
 	}
 
 	private boolean			tryMoveHero(Point shift)
@@ -254,12 +256,7 @@ public class				MapDelegate extends AbstractDelegate
 		hero.setPosition(previousPosition);
 		previousPosition = null;
 
-		drawMap(true);
-	}
-
-	private void			drawMap(boolean heroMovementAllowed)
-	{
-		sendRequest(new Requests.Map(map, hero.getPosition(), heroMovementAllowed));
+		draw(true);
 	}
 
 	private void			tryRunAway()

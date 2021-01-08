@@ -4,8 +4,7 @@ import model.open.Requests;
 import net.miginfocom.swing.MigLayout;
 import view.closed.ui.gui.GuiWorker;
 import view.closed.ui.gui.utils.FontRedactor;
-import view.closed.ui.gui.utils.GuiSettings;
-import view.closed.ui.gui.utils.senders.GuiSignalSender;
+import view.closed.ui.gui.utils.GuiSignalSender;
 import view.open.ButtonId;
 
 import javax.swing.*;

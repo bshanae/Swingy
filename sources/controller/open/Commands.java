@@ -8,8 +8,6 @@ public abstract class				Commands
 
 	public interface				Abstract {}
 
-	public static class				Null implements Abstract {}
-
 	private static abstract class	CommandWithString implements Abstract
 	{
 		@Getter
@@ -21,7 +19,12 @@ public abstract class				Commands
 		}
 	}
 
-// -------------------------------> Concrete
+// -------------------------------> Concrete : System
+
+	public static class				Unknown implements Abstract {}
+	public static class				FinishTermination implements Abstract {}
+
+// -------------------------------> Concrete : UI
 
 	public static class				Exit implements Abstract {}
 
@@ -64,9 +67,9 @@ public abstract class				Commands
 		}
 	}
 
-	public static class				Stats implements Abstract {}
+	public static class				HeroStats implements Abstract {}
 
-	public static class				Inventory implements Abstract {}
+	public static class				HeroInventory implements Abstract {}
 
 	public static class				AnswerA implements Abstract {}
 

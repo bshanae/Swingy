@@ -2,31 +2,19 @@ package model.closed.delegates.abstractDelegate;
 
 import controller.open.Commands;
 import lombok.Getter;
-import model.closed.delegates.concreteDelegates.common.ErrorDelegate;
+import model.closed.delegates.abstractDelegate.commands.ExecutableCommand;
+import model.closed.delegates.abstractDelegate.commands.LostCommand;
 import model.open.Model;
 import model.open.Requests;
 
 public abstract class AbstractDelegate
 {
-// -----------------------------------> Exceptions
-
-	public static class					CommandIsNotExecuted extends RuntimeException
-	{
-		public							CommandIsNotExecuted(Commands.Abstract command)
-		{
-			super("Command of type '" + command.getClass() + "' was not executed");
-		}
-	}
-
-// -----------------------------------> Fields
+// -----------------------------------> Attributes
 
 	@Getter
 	private boolean						isActivated;
 	@Getter
 	private boolean						isResolved;
-
-	private boolean						isFirstTime;
-	private boolean						isFirstTimeDeactivated;
 
 	@Getter
 	private AbstractDelegate			parent;
@@ -46,9 +34,6 @@ public abstract class AbstractDelegate
 		isActivated = false;
 		isResolved = false;
 
-		isFirstTime = true;
-		isFirstTimeDeactivated = true;
-
 		shouldResolve = false;
 		resolutionMessage = null;
 	}
@@ -65,6 +50,16 @@ public abstract class AbstractDelegate
 		return child != null;
 	}
 
+	public boolean						waitingToStackChild()
+	{
+		return shouldStackChild;
+	}
+
+	public boolean						waitingToResolve()
+	{
+		return shouldResolve;
+	}
+
 // -----------------------------------> Hierarchy methods
 
 	public void 						stackChildLater(AbstractDelegate child)
@@ -75,31 +70,22 @@ public abstract class AbstractDelegate
 
 	private void						stackChild()
 	{
-		DelegateVerifier.checkHasNoChild(this);
-		DelegateVerifier.checkHasNoParent(newChild);
+		AbstractDelegate				iterator;
 
-		DelegateLogger.logChildStacking(this, newChild);
+		iterator = this;
+		while (iterator.hasChild())
+			iterator = iterator.child;
 
-		this.child = newChild;
-		newChild.parent = this;
+		DelegateLogger.logChildStacking(iterator, newChild);
 
-		this.deactivate();
+		iterator.child = newChild;
+		newChild.parent = iterator;
+
+		iterator.deactivate();
 		newChild.activate();
 
 		shouldStackChild = false;
-		this.newChild = null;
-	}
-
-	private void						dropParent()
-	{
-		DelegateVerifier.checkHasParent(this);
-		DelegateVerifier.checkHasChild(parent);
-
-		this.deactivate();
-		parent.activate();
-
-		parent.child = null;
-		parent = null;
+		iterator.newChild = null;
 	}
 
 // -----------------------------------> Control methods
@@ -110,9 +96,7 @@ public abstract class AbstractDelegate
 		DelegateLogger.logActivating(this);
 
 		isActivated = true;
-		whenActivated(isFirstTime);
-
-		isFirstTime = false;
+		whenActivated();
 	}
 
 	protected void						deactivate()
@@ -123,9 +107,7 @@ public abstract class AbstractDelegate
 		DelegateLogger.logDeactivating(this);
 
 		isActivated = false;
-		whenDeactivated(isFirstTimeDeactivated);
-
-		isFirstTimeDeactivated = false;
+		whenDeactivated();
 	}
 
 	public final void					update()
@@ -163,7 +145,7 @@ public abstract class AbstractDelegate
 
 	private void 						resolve()
 	{
-		AbstractDelegate parentCopy;
+		AbstractDelegate				parentCopy;
 
 		DelegateLogger.logResolving(this);
 
@@ -174,8 +156,13 @@ public abstract class AbstractDelegate
 		{
 			parentCopy = parent;
 
-			dropParent();
+			this.deactivate();
+
+			parent.child = null;
+			parent = null;
+
 			parentCopy.whenChildResolved(resolutionMessage);
+			parentCopy.activate();
 		}
 
 		isResolved = true;
@@ -187,16 +174,17 @@ public abstract class AbstractDelegate
 // -----------------------------------> Callback methods
 
 	// TODO GUI<->Console switching
-	protected void						whenActivated(boolean isFirstTime) {}
-	protected void						whenDeactivated(boolean isFirstTime) {}
+	protected void						whenActivated() {}
+	protected void						whenDeactivated() {}
 
 	protected void						whenUpdated() {}
 
 	protected void						whenChildResolved(AbstractResolutionObject object) {}
 
 	protected void						tryToExecuteCommand(ExecutableCommand command) {}
-
 	protected void						tryToExecuteCommandSilently(ExecutableCommand command) {}
+
+	public void 						tryCatchLostCommand(LostCommand command) {}
 
 // -----------------------------------> Helper methods
 

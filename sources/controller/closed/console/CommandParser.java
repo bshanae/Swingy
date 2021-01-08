@@ -1,38 +1,40 @@
 package controller.closed.console;
 
+import lombok.Getter;
+
 class						CommandParser
 {
+// -----------------------> Attributes
+
 	private final String[]	tokens;
+
+	@Getter
 	private Pattern			pattern;
 
-	public Pattern			getPattern()
-	{
-		return pattern;
-	}
+// -----------------------> Constructor
 
 	public					CommandParser(String command)
 	{
 		tokens = command.split("\\s+");
 	}
 
+// -----------------------> Public methods
+
 	public boolean			canApplyPattern(Pattern pattern)
 	{
-		return pattern.checkTokens(tokens);
+		return pattern.compare(tokens);
 	}
 
 	public void				applyPattern(Pattern pattern)
 	{
-		assert pattern.checkTokens(tokens);
 		this.pattern = pattern;
 	}
 
 	public boolean			hasValue()
 	{
-		Keyword[]			keywords = pattern.getKeywords();
-
-		for (Keyword keyword : keywords)
+		for (Keyword keyword : pattern.getKeywords())
 		{
-			if (keyword == Keyword.VALUE)
+			if (keyword.isWildcard())
 				return true;
 		}
 
@@ -41,11 +43,11 @@ class						CommandParser
 
 	public String			extractValue()
 	{
-		Keyword[]			keywords = pattern.getKeywords();
+		final Keyword[]		keywords = pattern.getKeywords();
 
 		for (int i = 0; i < keywords.length; i++)
 		{
-			if (keywords[i] == Keyword.VALUE)
+			if (keywords[i].isWildcard())
 				return tokens[i];
 		}
 
