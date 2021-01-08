@@ -47,7 +47,7 @@ public class								Model
 
 	public void								notifyListener(Requests.Abstract request)
 	{
-		Debug.logFormat(LogGroup.MVC, "[Model/Model] Sending request of type '%s'", request.getClass());
+		Debug.logFormat(LogGroup.MVC, "[Model/Model] Queuing request of type '%s'", request.getClass());
 		requestQueue.add(request);
 	}
 

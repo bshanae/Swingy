@@ -123,7 +123,7 @@ public class				MapDelegate extends AbstractDelegate
 	@Override
 	protected void			whenActivated()
 	{
-		if (!isProcessingBattle)
+		if (!waitingToResolve() && !isProcessingBattle)
 			draw(true);
 	}
 
@@ -140,7 +140,6 @@ public class				MapDelegate extends AbstractDelegate
 				isProcessingBattle = false;
 			}
 
-			draw(false);
 		}
 		else if (object instanceof BattleDelegate.ResolutionObject)
 		{
@@ -149,8 +148,7 @@ public class				MapDelegate extends AbstractDelegate
 			else
 				isProcessingBattle = false;
 
-			if (!resolveIfHeroIsOnBorder())
-				draw(true);
+			resolveIfHeroIsOnBorder();
 		}
 	}
 
@@ -255,14 +253,13 @@ public class				MapDelegate extends AbstractDelegate
 	{
 		hero.setPosition(previousPosition);
 		previousPosition = null;
-
-		draw(true);
 	}
 
 	private void			tryRunAway()
 	{
 		isProcessingBattle = true;
 		stackChildLater(new RunAwayDelegate(opponent));
+		draw(false);
 	}
 
 	private void			startBattle()

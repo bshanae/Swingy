@@ -18,7 +18,7 @@ public enum								ApplicationOptions
 	LOG_GAME("log-game"),
 	LOG_FULL("log-full"),
 
-	TEST_ARTEFACT_DROPPER("test-artefact-dropper"),
+	TEST_ARTEFACT_DROPPER("test-always-drop-artefact"),
 	TEST_ALWAYS_ESCAPE("test-always-escape"),
 
 	USE_DATABASE("use-database");
