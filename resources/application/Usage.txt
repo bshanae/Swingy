@@ -6,7 +6,7 @@ Mandatory flags :
   gui           -  launch in GUI mode
 
 Optional flags :
-  use-database  -  load heroes from database, needs MySQL server
+  use-database  -  load heroes from a database, needs MySQL server
   debug         -  if you want to see, why it crashed...
 
 Description :
@@ -17,4 +17,4 @@ Description :
   enough experience, you get new level. Goal of the game is to get to level 8.
 
   There are four classes : warrior, swordsman, assassin and mage.
-  Each class has own features. However I won't describe them. Play the game.
+  Each class has own features. However, I won't describe them. Play the game.
