@@ -173,7 +173,6 @@ public abstract class AbstractDelegate
 
 // -----------------------------------> Callback methods
 
-	// TODO GUI<->Console switching
 	protected void						whenActivated() {}
 	protected void						whenDeactivated() {}
 

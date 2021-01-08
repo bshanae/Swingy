@@ -1,6 +1,7 @@
 package model.closed.delegates.concreteDelegates.core;
 
 import application.ApplicationOptions;
+import application.service.Exceptions;
 import controller.open.Commands;
 import model.closed.Game;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
@@ -29,7 +30,6 @@ public class					CoreDelegate extends AbstractDelegate
 // --------------------------->	Attributes
 
 	private State				state;
-	private boolean				isGameTerminated;
 
 // --------------------------->	Constructor
 
@@ -60,7 +60,7 @@ public class					CoreDelegate extends AbstractDelegate
 				break;
 
 			default:
-				assert false;
+				throw new Exceptions.UnexpectedCodeBranch();
 		}
 	}
 
@@ -78,7 +78,7 @@ public class					CoreDelegate extends AbstractDelegate
 				break;
 
 			default:
-				assert false;
+				throw new Exceptions.UnexpectedCodeBranch();
 		}
 	}
 

@@ -1,5 +1,7 @@
 package application.patterns.uniqueNotifier;
 
+import application.service.Exceptions;
+
 public class					UniqueNotifier<T>
 {
 	private UniqueListener<T>	listener;
@@ -11,7 +13,9 @@ public class					UniqueNotifier<T>
 	
 	public void					notifyListener(T object)
 	{
-		assert listener != null;
+		if (listener == null)
+			throw new Exceptions.InvalidUsage();
+
 		listener.listen(object);
 	}
 }

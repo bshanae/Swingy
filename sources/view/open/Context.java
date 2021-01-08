@@ -1,5 +1,6 @@
 package view.open;
 
+import application.service.Exceptions;
 import model.open.Requests;
 
 import java.util.HashMap;
@@ -42,7 +43,9 @@ public enum					Context
 
 	public static Context	parse(Requests.Abstract request)
 	{
-		assert requestToContext.containsKey(request.getClass());
+		if (!requestToContext.containsKey(request.getClass()))
+			throw new Exceptions.ObjectNotFound();
+
 		return requestToContext.get(request.getClass());
 	}
 }

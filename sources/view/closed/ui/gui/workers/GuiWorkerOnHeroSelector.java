@@ -133,19 +133,6 @@ public class					GuiWorkerOnHeroSelector extends GuiWorker
 
 	private void				parseRequest(Requests.Abstract request)
 	{
-		Requests.HeroSelector	heroSelectorRequest;
-
-		assert request instanceof Requests.HeroSelector;
-		heroSelectorRequest = (Requests.HeroSelector)request;
-
-		heroes = heroSelectorRequest.getHeroes();
-	}
-
-	private Pockets.Hero		getHeroAt(int index)
-	{
-		if (index < heroes.size())
-			return heroes.get(index);
-
-		return null;
+		heroes = ((Requests.HeroSelector)request).getHeroes();
 	}
 }
