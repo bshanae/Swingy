@@ -1,5 +1,6 @@
 package model.closed.delegates.concreteDelegates.game.battle;
 
+import application.ApplicationOptions;
 import application.service.Exceptions;
 import model.closed.creatures.enemy.Enemy;
 import model.closed.delegates.abstractDelegate.AbstractDelegate;
@@ -123,8 +124,11 @@ public class					RunAwayDelegate extends AbstractDelegate
 	private void 				tryEscape()
 	{
 		didEscape = RandomGenerator.randomWithProbability(0.5f);
-		stackChildLater(new InfoDelegate(didEscape ? RESULT_DID_ESCAPE : RESULT_DID_NOT_ESCAPE));
 
+		if (ApplicationOptions.get(ApplicationOptions.TEST_ALWAYS_ESCAPE))
+			didEscape = true;
+
+		stackChildLater(new InfoDelegate(didEscape ? RESULT_DID_ESCAPE : RESULT_DID_NOT_ESCAPE));
 		state = State.SHOWED_RESULT;
 	}
 }

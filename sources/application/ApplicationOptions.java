@@ -19,6 +19,7 @@ public enum								ApplicationOptions
 	LOG_FULL("log-full"),
 
 	TEST_ARTEFACT_DROPPER("test-artefact-dropper"),
+	TEST_ALWAYS_ESCAPE("test-always-escape"),
 
 	USE_DATABASE("use-database");
 
