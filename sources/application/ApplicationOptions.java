@@ -18,6 +18,8 @@ public enum								ApplicationOptions
 	LOG_GAME("log-game"),
 	LOG_FULL("log-full"),
 
+	TEST_ARTEFACT_DROPPER("test-artefact-dropper"),
+
 	USE_DATABASE("use-database");
 
 // -----------------------------------> Attributes
