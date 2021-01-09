@@ -11,11 +11,11 @@
 	<build>
 		<finalName>swingy</finalName>
 
-		<sourceDirectory>${project.basedir}/sources</sourceDirectory>
+		<sourceDirectory>sources/java</sourceDirectory>
 
 		<resources>
 			<resource>
-				<directory>${project.basedir}/resources</directory>
+				<directory>sources/resources</directory>
 			</resource>
 		</resources>
 
@@ -31,7 +31,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>application.Application</mainClass>
+							<mainClass>swingy.application.Application</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -54,7 +54,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>application.Application</mainClass>
+							<mainClass>swingy.application.Application</mainClass>
 						</manifest>
 					</archive>
 
