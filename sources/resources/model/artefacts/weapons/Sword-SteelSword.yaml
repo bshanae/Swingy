@@ -5,13 +5,13 @@ attacks :
   - name : Light blow
     weight : 60
     damage :
-      min : 60
-      max : 80
+      min : 40
+      max : 60
     critical chance : 0.1
 
   - name : Strong blow
     weight : 40
     damage :
-      min : 110
-      max : 130
+      min : 70
+      max : 80
     critical chance : 0.15

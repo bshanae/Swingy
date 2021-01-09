@@ -5,11 +5,11 @@ attacks :
   - name : Regular blow
     weight : 95
     damage :
-      min : 500
-      max : 500
+      min : 300
+      max : 300
 
   - name : Strong blow
     weight : 5
     damage :
-      min : 1600
-      max : 1600
+      min : 1500
+      max : 1500

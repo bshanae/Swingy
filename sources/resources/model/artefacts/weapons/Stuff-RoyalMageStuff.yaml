@@ -5,20 +5,20 @@ attacks :
   - name : Magic arrow
     weight : 25
     damage :
-      min : 200
-      max : 200
+      min : 250
+      max : 250
 
   - name : Heavy magic arrow
     weight : 25
     damage :
-      min : 250
-      max : 250
+      min : 300
+      max : 300
 
   - name : Magic spear
     weight : 25
     damage :
-      min : 300
-      max : 300
+      min : 350
+      max : 350
 
   - name : Heavy magic spear
     weight : 15
@@ -27,7 +27,7 @@ attacks :
       max : 400
 
   - name : Crtistal magic spear
-    weight : 19
+    weight : 15
     damage :
-      min : 1000
-      max : 1000
+      min : 600
+      max : 600

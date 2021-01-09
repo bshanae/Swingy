@@ -1,2 +1,6 @@
+model/creatures/enemies/Bandit.yaml
+model/creatures/enemies/Dragon.yaml
 model/creatures/enemies/Hollow.yaml
-model/creatures/enemies/Ogre.yaml
+model/creatures/enemies/HollowKnight.yaml
+model/creatures/enemies/HollowSoldier.yaml
+model/creatures/enemies/Woldhound.yaml

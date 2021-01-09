@@ -76,21 +76,20 @@ public abstract class				EnemySpawner
 		int							currentLevel;
 		int							appearanceLevel;
 		int							levelDelta;
-
-		float						appearProbabilityMultiplier;
+		float						spawnChance;
 
 		currentLevel = Session.getInstance().getHero().getLevel();
 		appearanceLevel = enemy.getLevel();
 		levelDelta = currentLevel - appearanceLevel;
 
-		appearProbabilityMultiplier = 1.f;
+		spawnChance = 1.f;
 
 		if (levelDelta > 0)
 		{
-			appearProbabilityMultiplier = 1.f - 0.05f * levelDelta * levelDelta;
-			appearProbabilityMultiplier = Math.max(0.f, appearProbabilityMultiplier);
+			spawnChance = 1.f - 0.05f * levelDelta * levelDelta;
+			spawnChance = Math.max(0.f, spawnChance);
 		}
 
-		return enemy.getSpawnChance() * appearProbabilityMultiplier;
+		return spawnChance;
 	}
 }

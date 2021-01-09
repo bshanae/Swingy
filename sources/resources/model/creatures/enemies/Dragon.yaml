@@ -1,0 +1,32 @@
+name : Dragon
+health : 2000
+defense : 100
+level : 6
+
+attacks :
+  - name : Blow with tail
+    weight : 35
+    damage :
+      min : 300
+      max : 300
+
+  - name : Fire breath
+    weight : 35
+    damage :
+      min : 250
+      max : 350
+
+  - name : Byte
+    weight : 30
+    damage :
+      min : 250
+      max : 250
+    critical chance : 0.6
+
+artefacts :
+  - name : Legendary helm
+  - name : Legendary armor
+  - name : Legendary rapier
+  - name : Lucky dagger
+  - name : Legendary scimitar
+  - name : Cursed stuff

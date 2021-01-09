@@ -1,0 +1,26 @@
+name : Hollow soldier
+health : 200
+defense : 15
+level : 2
+
+attacks :
+  - name : Blow
+    weight : 80
+    damage :
+      min : 40
+      max : 60
+    critical chance : 0.1
+
+  - name : Strong blow
+    weight : 20
+    damage :
+      min : 50
+      max : 80
+    critical chance : 0.15
+
+artefacts :
+  - name : Soldier helm
+  - name : Soldier armor
+  - name : Great hammer
+  - name : Soldier sword
+  - name : Master stuff

@@ -5,13 +5,13 @@ attacks :
   - name : Thrust
     weight : 80
     damage :
-      min : 350
-      max : 350
+      min : 300
+      max : 300
     critical chance : 0.35
 
   - name : Backstab
     weight : 20
     damage :
-      min : 600
-      max : 600
+      min : 450
+      max : 450
     critical chance : 0.6

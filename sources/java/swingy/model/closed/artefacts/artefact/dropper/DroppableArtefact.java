@@ -10,17 +10,9 @@ public class					DroppableArtefact
 	@Getter
 	private final ArtefactAlias	alias;
 
-	@Getter
-	private final float			dropChance;
-
 	@JsonCreator
-	public						DroppableArtefact
-								(
-									@JsonProperty("name") String artefactName,
-									@JsonProperty("drop chance") float dropChance
-								)
+	public						DroppableArtefact(@JsonProperty("name") String artefactName)
 	{
 		this.alias = new ArtefactAlias(artefactName);
-		this.dropChance = dropChance;
 	}
 }

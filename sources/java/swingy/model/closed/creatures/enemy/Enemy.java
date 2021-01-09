@@ -21,9 +21,6 @@ public class						Enemy extends Creature
 	private final int				level;
 
 	@Getter
-	private final float				spawnChance;
-
-	@Getter
 	private final ArtefactDropper	artefactDropper;
 
 // -------------------------------> Constructors
@@ -35,12 +32,11 @@ public class						Enemy extends Creature
 										@JsonProperty("health") int baseHealth,
 										@JsonProperty("defense") int defense,
 										@JsonProperty("level") int level,
-										@JsonProperty("spawn chance") float spawnChance,
 										@JsonProperty("attacks") List<Attack> attacks,
 										@JsonProperty("artefacts") List<DroppableArtefact> artefacts
 									)
 	{
-		this(name, baseHealth, defense, level, spawnChance, attacks, new ArtefactDropper(artefacts));
+		this(name, baseHealth, defense, level, attacks, new ArtefactDropper(artefacts));
 	}
 
 	private							Enemy
@@ -49,7 +45,6 @@ public class						Enemy extends Creature
 										int baseHealth,
 										int defense,
 										int level,
-										float spawnChance,
 										List<Attack> attacks,
 										ArtefactDropper artefactDropper
 									)
@@ -59,7 +54,6 @@ public class						Enemy extends Creature
 		this.defense = defense;
 
 		this.level = level;
-		this.spawnChance = spawnChance;
 
 		this.attacks = attacks;
 		this.artefactDropper = artefactDropper;
@@ -112,7 +106,6 @@ public class						Enemy extends Creature
 			getFullHealth(),
 			getDefense(),
 			getLevel(),
-			getSpawnChance(),
 			getAttacks(),
 			getArtefactDropper()
 		);

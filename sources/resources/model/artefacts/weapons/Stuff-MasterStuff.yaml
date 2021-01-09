@@ -3,19 +3,19 @@ category : stuff
 
 attacks :
   - name : Magic arrow
-    weight : 70
-    damage :
-      min : 50
-      max : 50
-
-  - name : Heavy magic arrow
-    weight : 15
+    weight : 35
     damage :
       min : 80
       max : 80
 
-  - name : Magic spear
-    weight : 15
+  - name : Heavy magic arrow
+    weight : 35
     damage :
-      min : 160
-      max : 160
+      min : 95
+      max : 95
+
+  - name : Magic spear
+    weight : 30
+    damage :
+      min : 120
+      max : 120

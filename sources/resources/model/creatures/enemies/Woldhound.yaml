@@ -1,0 +1,22 @@
+name : Wolfhound
+health : 100
+defense : 10
+level : 1
+
+attacks :
+  - name : Byte
+    weight : 100
+    damage :
+      min : 30
+      max : 30
+    critical chance : 0.4
+
+artefacts :
+  - name : Steel helm
+  - name : Steel armor
+  - name : Steel dagger
+  - name : Hammer
+  - name : Rapier
+  - name : Steel scimitar
+  - name : Steel sword
+  - name : Student stuff

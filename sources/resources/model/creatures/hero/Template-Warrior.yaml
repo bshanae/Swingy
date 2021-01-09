@@ -1,4 +1,4 @@
 class : Warrior
-health : 30
-defense : 30
+helm : Old helm
+armor : Old armor
 weapon : Old sword

@@ -1,4 +1,4 @@
 class : Swordsman
-health : 40
-defense : 20
+helm : Old helm
+armor : Old armor
 weapon : Old scimitar

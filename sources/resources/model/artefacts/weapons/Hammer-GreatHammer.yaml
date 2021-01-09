@@ -11,5 +11,5 @@ attacks :
   - name : Strong blow
     weight : 5
     damage :
-      min : 250
-      max : 250
+      min : 360
+      max : 360

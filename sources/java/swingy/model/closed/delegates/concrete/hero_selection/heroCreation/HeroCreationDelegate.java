@@ -62,6 +62,6 @@ public class						HeroCreationDelegate extends AbstractDelegate
 		HeroTemplate				template;
 
 		template = HeroTemplateStorage.getInstance().find(heroClass);
-		HeroStorageFactory.buildInstance().add(Hero.create(template, heroName));
+		HeroStorageFactory.buildInstance().add(Hero.create(heroName, template));
 	}
 }

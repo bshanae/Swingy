@@ -5,13 +5,13 @@ attacks :
   - name : Blow
     weight : 80
     damage :
-      min : 200
-      max : 250
-    critical chance : 0.5
+      min : 115
+      max : 130
+    critical chance : 0.35
 
   - name : Bleeding cut
-    weight : 82
+    weight : 20
     damage :
-      min : 300
-      max : 300
-    critical chance : 0.8
+      min : 100
+      max : 120
+    critical chance : 0.45

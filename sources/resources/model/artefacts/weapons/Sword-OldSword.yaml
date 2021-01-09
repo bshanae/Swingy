@@ -5,6 +5,6 @@ attacks :
   - name : Blow
     weight : 100
     damage :
-      min : 20
-      max : 40
+      min : 25
+      max : 35
     critical chance : 0.1

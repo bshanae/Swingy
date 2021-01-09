@@ -12,10 +12,10 @@ public class					HeroTemplate
 	private final HeroClass		heroClass;
 
 	@Getter
-	private final int			health;
+	private final ArtefactAlias	helm;
 
 	@Getter
-	private final int			defense;
+	private final ArtefactAlias	armor;
 
 	@Getter
 	private final ArtefactAlias	weapon;
@@ -24,14 +24,14 @@ public class					HeroTemplate
 	public						HeroTemplate
 								(
 									@JsonProperty("class") HeroClass heroClass,
-									@JsonProperty("health") int health,
-									@JsonProperty("defense") int defense,
+									@JsonProperty("helm") String helm,
+									@JsonProperty("armor") String armor,
 									@JsonProperty("weapon") String weaponName
 								)
 	{
 		this.heroClass = heroClass;
-		this.health = health;
-		this.defense = defense;
+		this.helm = new ArtefactAlias(helm);
+		this.armor = new ArtefactAlias(armor);
 		this.weapon = new ArtefactAlias(weaponName);
 	}
 }

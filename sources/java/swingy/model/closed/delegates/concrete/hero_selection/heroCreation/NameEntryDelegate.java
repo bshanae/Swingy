@@ -37,7 +37,7 @@ public class						NameEntryDelegate extends AbstractDelegate
 
 	@NotBlank(message = "Name is empty")
 	@Size(max = 16, message = "Name is too long")
-	@Pattern(regexp = "[A-Za-z0-9]+", message = "Name contains unsupported characters")
+	@Pattern(regexp = "[A-Za-z0-9-_]+", message = "Name contains unsupported characters")
 
 	private String					heroName;
 

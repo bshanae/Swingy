@@ -12,6 +12,7 @@ public class							ArtefactDropper
 // -----------------------------------> Constants
 
 	private static final int			NUMBER_OF_ATTEMPTS_TO_SELECT_SUPPORTED_ARTEFACT = 10;
+	private static final float			ARTEFACT_DROP_CHANCE = 0.6f;
 
 // -----------------------------------> Attributes
 
@@ -68,7 +69,7 @@ public class							ArtefactDropper
 
 	private static Artefact				getArtefactOrNull(DroppableArtefact artefact)
 	{
-		if (RandomGenerator.randomWithProbability(artefact.getDropChance()))
+		if (RandomGenerator.randomWithProbability(ARTEFACT_DROP_CHANCE))
 			return artefact.getAlias().get();
 
 		return null;

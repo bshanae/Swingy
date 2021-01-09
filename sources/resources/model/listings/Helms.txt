@@ -1,5 +1,5 @@
 model/artefacts/helms/KnightHelm.yaml
-model/artefacts/helms/LeatherHelm.yaml
+model/artefacts/helms/BanditHelm.yaml
 model/artefacts/helms/LegendaryHelm.yaml
 model/artefacts/helms/OldHelm.yaml
 model/artefacts/helms/SoldierHelm.yaml

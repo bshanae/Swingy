@@ -12,7 +12,7 @@ public enum				WeaponCategory
 	HAMMER(HeroClass.WARRIOR.toFlag()),
 
 	@JsonProperty("sword")
-	SWORD(HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag() | HeroClass.ASSASSIN.toFlag()),
+	SWORD(HeroClass.WARRIOR.toFlag() | HeroClass.SWORDSMAN.toFlag()),
 
 	@JsonProperty("rapier")
 	RAPIER(HeroClass.SWORDSMAN.toFlag()),
