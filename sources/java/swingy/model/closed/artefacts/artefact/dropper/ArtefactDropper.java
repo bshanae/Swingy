@@ -37,7 +37,7 @@ public class							ArtefactDropper
 		if (artefacts == null)
 			return null;
 
-		if (ApplicationOption.TEST_ARTEFACT_DROPPER.isDefined())
+		if (ApplicationOption.ALWAYS_DROP_ARTEFACT.isDefined())
 			return artefacts.get(0).getAlias().get();
 
 		for (int i = 0; i < NUMBER_OF_ATTEMPTS_TO_SELECT_SUPPORTED_ARTEFACT; i++)

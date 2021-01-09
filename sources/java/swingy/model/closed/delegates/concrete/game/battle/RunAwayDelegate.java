@@ -125,7 +125,7 @@ public class					RunAwayDelegate extends AbstractDelegate
 	{
 		didEscape = RandomGenerator.randomWithProbability(0.5f);
 
-		if (ApplicationOption.TEST_ALWAYS_ESCAPE.isDefined())
+		if (ApplicationOption.ALWAYS_ESCAPE.isDefined())
 			didEscape = true;
 
 		stackChildLater(new InfoDelegate(didEscape ? RESULT_DID_ESCAPE : RESULT_DID_NOT_ESCAPE));

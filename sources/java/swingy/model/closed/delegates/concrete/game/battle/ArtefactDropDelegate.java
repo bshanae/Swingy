@@ -29,7 +29,13 @@ public class					ArtefactDropDelegate extends AbstractDelegate
 
 	public						ArtefactDropDelegate(Enemy opponent)
 	{
-		this.artefact = opponent.getArtefactDropper().drop();
+		Artefact				temporary;
+
+		temporary = opponent.getArtefactDropper().drop();
+		if (Session.getInstance().getHero().getInventory().has(temporary))
+			temporary = null;
+
+		this.artefact = temporary;
 	}
 
 // ---------------------------> Implementations

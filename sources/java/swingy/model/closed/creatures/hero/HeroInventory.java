@@ -53,6 +53,11 @@ public class								HeroInventory
 			setWeapon((Weapon)artefact);
 	}
 
+	public boolean			has(Artefact artefact)
+	{
+		return helm.equals(artefact) || armor.equals(artefact) || weapon.equals(artefact);
+	}
+
 // -----------------------> Private methods
 
 	private static void		logSettingHelm(Helm helm)

@@ -18,8 +18,8 @@ public enum ApplicationOption
 	LOG_GAME("log-game"),
 	LOG_FULL("log-full"),
 
-	TEST_ARTEFACT_DROPPER("test-always-drop-artefact"),
-	TEST_ALWAYS_ESCAPE("test-always-escape"),
+	ALWAYS_DROP_ARTEFACT("always-drop-artefact"),
+	ALWAYS_ESCAPE("always-escape"),
 
 	USE_DATABASE("use-database");
 

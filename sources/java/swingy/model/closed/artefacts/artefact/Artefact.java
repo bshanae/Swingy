@@ -5,11 +5,15 @@ import swingy.model.closed.creatures.hero.HeroClass;
 
 public abstract class		Artefact
 {
+// ----------------------->	Attributes
+
 	@Getter
 	private final String	name;
 
 	@Getter
 	private final int		supportedClassesFlags;
+
+// ----------------------->	Constructors
 
 	protected 				Artefact(String name, int supportedClassesFlags)
 	{
@@ -26,5 +30,13 @@ public abstract class		Artefact
 			HeroClass.SWORDSMAN.toFlag() |
 			HeroClass.ASSASSIN.toFlag() |
 			HeroClass.MAGE.toFlag();
+	}
+
+// ----------------------->	Implementations
+
+	@Override
+	public boolean			equals(Object other)
+	{
+		return other instanceof Artefact && name.equals(((Artefact)other).name);
 	}
 }

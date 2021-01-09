@@ -9,7 +9,6 @@ import swingy.model.closed.artefacts.weapon.Weapon;
 import swingy.model.closed.battle.Attack;
 import swingy.model.closed.creatures.Creature;
 import swingy.model.closed.creatures.hero.template.HeroTemplate;
-import swingy.model.closed.creatures.hero.template.HeroTemplateStorage;
 
 import java.util.List;
 
