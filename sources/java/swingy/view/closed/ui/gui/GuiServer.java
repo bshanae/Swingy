@@ -161,6 +161,8 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 		private final
 		GuiTasks.ShowInDialog			task;
 
+		private boolean					didRebuild;
+
 		// ---------------------------> Constructor
 
 		public 							DialogUpdater(GuiTasks.ShowInDialog task)
@@ -195,6 +197,8 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 				dialog = new JDialog(frame, Dialog.ModalityType.DOCUMENT_MODAL);
 				dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				dialog.setResizable(false);
+
+				didRebuild = true;
 			}
 		}
 
@@ -215,7 +219,8 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 
 		private void					center()
 		{
-			dialog.setLocationRelativeTo(frame);
+			if (didRebuild)
+				dialog.setLocationRelativeTo(frame);
 		}
 
 		private void					redraw()
