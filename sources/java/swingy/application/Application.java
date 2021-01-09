@@ -24,6 +24,7 @@ public class			Application
 		catch (ApplicationOptionsValidator.InvalidOptionsException exception)
 		{
 			printUsage();
+			System.exit(1);
 		}
 		catch (Exception exception)
 		{
@@ -34,7 +35,11 @@ public class			Application
 				System.out.println("Terminating with exception :" + exception.toString());
 				exception.printStackTrace();
 			}
+
+			System.exit(1);
 		}
+
+		System.exit(0);
 	}
 
 // -------------------> Private methods

@@ -22,7 +22,6 @@ public abstract class				Commands
 // -------------------------------> Concrete : System
 
 	public static class				Unknown implements Abstract {}
-	public static class				FinishTermination implements Abstract {}
 
 // -------------------------------> Concrete : UI, Global
 

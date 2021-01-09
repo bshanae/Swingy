@@ -5,7 +5,6 @@ import swingy.model.open.Requests;
 import swingy.view.closed.WorkerFactory;
 import swingy.view.closed.system.workers.SystemWorkerOnSwitchToConsole;
 import swingy.view.closed.system.workers.SystemWorkerOnSwitchToGui;
-import swingy.view.closed.system.workers.SystemWorkerOnTermination;
 
 public class							SystemWorkerFactory extends WorkerFactory
 {
@@ -21,8 +20,6 @@ public class							SystemWorkerFactory extends WorkerFactory
 			return new SystemWorkerOnSwitchToConsole();
 		if (request instanceof Requests.SwitchToGui)
 			return new SystemWorkerOnSwitchToGui();
-		if (request instanceof Requests.Terminate)
-			return new SystemWorkerOnTermination();
 
 		throw new UnrecognizedRequestException(request);
 	}

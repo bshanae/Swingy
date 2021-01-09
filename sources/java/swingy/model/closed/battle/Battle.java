@@ -56,6 +56,7 @@ public class					Battle
 
 // ---------------------------> Public methods
 
+
 	public void					executeTurn()
 	{
 		BattleTurnReport		report = null;

@@ -13,9 +13,7 @@ public abstract class						SignalTranslator
 	{
 		SignalTranslator					instance;
 
-		if (signal instanceof Signals.FinishedTermination)
-			return new Commands.FinishTermination();
-		else if (signal instanceof Signals.Console)
+		if (signal instanceof Signals.Console)
 		{
 			instance = SingletonMap.getInstanceOf(ConsoleSignalTranslator.class);
 			return instance.translateImplementation(signal);

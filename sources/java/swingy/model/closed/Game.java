@@ -72,7 +72,6 @@ public class						Game
 		Debug.log(LogGroup.GAME, "[Model/Game] Terminating");
 
 		state = State.TERMINATED;
-
 		HeroStorageFactory.buildInstance().upload();
 	}
 

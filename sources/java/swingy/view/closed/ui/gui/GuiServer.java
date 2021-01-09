@@ -4,7 +4,6 @@ import swingy.application.patterns.SingletonMap;
 import swingy.application.patterns.Server;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import swingy.view.closed.ui.gui.utils.GuiSettings;
-import swingy.view.closed.utils.UiTerminator;
 import swingy.view.open.ButtonId;
 import swingy.view.open.Signals;
 import swingy.view.open.View;
@@ -38,11 +37,6 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 
 // -----------------------------------> Private methods : Execute
 
-	private void						execute(GuiTasks.Terminate task)
-	{
-		EventQueue.invokeLater(new Terminator());
-	}
-
 	private void						execute(GuiTasks.Enable task)
 	{
 		EventQueue.invokeLater(new Enabler());
@@ -64,19 +58,6 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 	}
 
 // -----------------------------------> Nested classes for GUI queuing
-
-	private class						Terminator implements Runnable
-	{
-		@Override
-		public void						run()
-		{
-			if (dialog != null)
-				dialog.dispose();
-
-			frame.dispose();
-			UiTerminator.getInstance().markGuiTerminated();
-		}
-	}
 
 	private class						Enabler implements Runnable
 	{

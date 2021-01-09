@@ -3,7 +3,6 @@ package swingy.view.closed.ui.console;
 import swingy.application.options.ApplicationOption;
 import swingy.application.patterns.SingletonMap;
 import swingy.application.patterns.Server;
-import swingy.view.closed.utils.UiTerminator;
 import swingy.view.open.Signals;
 import swingy.view.open.View;
 
@@ -19,17 +18,6 @@ public class					ConsoleServer extends Server<ConsoleTasks.Abstract>
 	}
 
 // ---------------------------> Private methods
-
-	private void				execute(ConsoleTasks.Terminate task)
-	{
-		if (!ApplicationOption.IDE.isDefined())
-		{
-			System.out.print("\033\143");
-			System.out.flush();
-		}
-
-		UiTerminator.getInstance().markConsoleTerminated();
-	}
 
 	private void				execute(ConsoleTasks.Clean task)
 	{

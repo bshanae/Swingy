@@ -44,8 +44,6 @@ public abstract class						Requests
 
 	public static class						SwitchToGui extends System {}
 
-	public static class						Terminate extends System {}
-
 	public static class						HeroSelector extends Ui
 	{
 		@Getter

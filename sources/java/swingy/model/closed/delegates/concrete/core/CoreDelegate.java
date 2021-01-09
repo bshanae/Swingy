@@ -96,8 +96,6 @@ public class					CoreDelegate extends AbstractDelegate
 			stackChildLater(new AutoResolvableDelegate());
 		}
 		else if (command.getCommand() instanceof Commands.Exit)
-			sendRequest(new Requests.Terminate());
-		else if (command.getCommand() instanceof Commands.FinishTermination)
 			Game.getInstance().terminate();
 		else
 			return;
