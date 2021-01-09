@@ -9,7 +9,7 @@ public abstract class			AttackGenerator
 {
 // ---------------------------> Constants
 
-	public static final float	CRITICAL_MULTIPLIER = 2.5f;
+	public static final float	CRITICAL_MULTIPLIER = 2.f;
 
 // ---------------------------> Public methods
 

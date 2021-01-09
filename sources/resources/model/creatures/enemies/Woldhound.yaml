@@ -5,11 +5,18 @@ level : 1
 
 attacks :
   - name : Byte
-    weight : 100
+    weight : 70
     damage :
-      min : 30
-      max : 30
-    critical chance : 0.4
+      min : 25
+      max : 35
+    critical chance : 0.3
+
+  - name : Scratch
+    weight : 30
+    damage :
+      min : 20
+      max : 25
+    critical chance : 0.1
 
 artefacts :
   - name : Steel helm

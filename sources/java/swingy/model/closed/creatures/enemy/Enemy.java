@@ -92,7 +92,7 @@ public class						Enemy extends Creature
 
 	public int						getExperienceForDefeating()
 	{
-		return 200 * (level + 1) * (level + 1);
+		return 50 * (level + 1) + 10 * (level + 1) * (level + 1);
 	}
 
 // -------------------------------> Public methods

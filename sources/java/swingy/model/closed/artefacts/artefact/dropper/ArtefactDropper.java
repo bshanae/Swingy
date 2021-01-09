@@ -12,7 +12,7 @@ public class							ArtefactDropper
 // -----------------------------------> Constants
 
 	private static final int			NUMBER_OF_ATTEMPTS_TO_SELECT_SUPPORTED_ARTEFACT = 10;
-	private static final float			ARTEFACT_DROP_CHANCE = 0.6f;
+	private static final float			ARTEFACT_DROP_CHANCE = 0.75f;
 
 // -----------------------------------> Attributes
 
