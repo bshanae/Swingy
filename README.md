@@ -23,7 +23,7 @@ There multiple categories of weapons :
 
 ```
 mvn clean install
-java -jar target/swing.jar [console/gui]
+java -jar target/swingy.jar [console/gui]
 ```
 
 ### Mandatory flags :
