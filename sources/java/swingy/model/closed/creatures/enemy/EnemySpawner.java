@@ -86,7 +86,7 @@ public abstract class				EnemySpawner
 
 		if (levelDelta > 0)
 		{
-			spawnChance = 1.f - 0.1f * levelDelta * levelDelta;
+			spawnChance = 1.f - 0.15f * levelDelta * levelDelta;
 			spawnChance = Math.max(0.f, spawnChance);
 		}
 

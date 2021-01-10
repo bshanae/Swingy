@@ -4,24 +4,17 @@ defense : 100
 level : 6
 
 attacks :
-  - name : Blow with tail
-    weight : 35
-    damage :
-      min : 220
-      max : 220
-
   - name : Fire breath
-    weight : 35
+    weight : 60
     damage :
-      min : 200
-      max : 400
+      min : 100
+      max : 500
 
-  - name : Byte
-    weight : 30
+  - name : Blow with tail
+    weight : 40
     damage :
       min : 200
-      max : 300
-    critical chance : 0.6
+      max : 250
 
 artefacts :
   - name : Legendary helm

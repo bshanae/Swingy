@@ -41,7 +41,7 @@ public abstract class			AttackGenerator
 		damageMin = attack.damageRange.getMin();
 		damageMax = attack.damageRange.getMax();
 
-		baseDamage = RandomGenerator.randomBetween(RandomGenerator.Function.SINE, damageMin, damageMax);
+		baseDamage = RandomGenerator.randomBetween(damageMin, damageMax);
 		finalDamage = isCritical ? (int)(baseDamage * CRITICAL_MULTIPLIER) : baseDamage;
 
 		return finalDamage;
