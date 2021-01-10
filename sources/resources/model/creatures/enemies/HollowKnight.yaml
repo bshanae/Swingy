@@ -1,29 +1,29 @@
-name : Knight
+name : Hollow knight
 health : 600
 defense : 50
 level : 4
 
 attacks :
   - name : Light blow
-    weight : 50
+    weight : 60
     damage :
-      min : 120
-      max : 140
+      min : 125
+      max : 145
     critical chance : 0.1
 
-  - name : String blow
+  - name : Strong blow
     weight : 30
     damage :
-      min : 140
-      max : 170
-    critical chance : 0.2
+      min : 190
+      max : 205
+    critical chance : 0.1
 
   - name : Thrust
-    weight : 20
+    weight : 10
     damage :
-      min : 180
-      max : 180
-    critical chance : 0.45
+      min : 135
+      max : 135
+    critical chance : 0.4
 
 artefacts :
   - name : Knight helm

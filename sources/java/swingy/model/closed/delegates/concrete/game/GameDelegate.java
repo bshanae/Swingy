@@ -60,7 +60,7 @@ public class				GameDelegate extends AbstractDelegate
 	{
 		String				message;
 
-		message = String.format("Generating map of level %s...", Session.getInstance().getHero().getLevel());
+		message = String.format("Generating new map of level %s...", Session.getInstance().getHero().getLevel());
 		stackChildLater(new InfoDelegate(message));
 	}
 }

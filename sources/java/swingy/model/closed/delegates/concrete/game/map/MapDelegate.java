@@ -8,7 +8,7 @@ import swingy.model.closed.creatures.enemy.Enemy;
 import swingy.model.closed.delegates.abstract_.AbstractResolutionObject;
 import swingy.model.closed.delegates.abstract_.commands.ExecutableCommand;
 import swingy.model.closed.delegates.concrete.game.battle.BattleDelegate;
-import swingy.model.closed.delegates.concrete.game.battle.RunAwayDelegate;
+import swingy.model.closed.delegates.concrete.game.battle.EscapeDelegate;
 import swingy.model.closed.map.Map;
 import swingy.model.closed.Session;
 import swingy.model.closed.delegates.abstract_.AbstractDelegate;
@@ -130,9 +130,9 @@ public class				MapDelegate extends AbstractDelegate
 	@Override
 	public void				whenChildResolved(AbstractResolutionObject object)
 	{
-		if (object instanceof RunAwayDelegate.ResolutionObject)
+		if (object instanceof EscapeDelegate.ResolutionObject)
 		{
-			if (((RunAwayDelegate.ResolutionObject)object).shouldStartBattle())
+			if (((EscapeDelegate.ResolutionObject)object).shouldStartBattle())
 				startBattle();
 			else
 			{
@@ -260,7 +260,7 @@ public class				MapDelegate extends AbstractDelegate
 	private void			tryRunAway()
 	{
 		isProcessingBattle = true;
-		stackChildLater(new RunAwayDelegate(opponent));
+		stackChildLater(new EscapeDelegate(opponent));
 		draw(false);
 	}
 

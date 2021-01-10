@@ -1,4 +1,6 @@
 name : Knight rapier
+level : 4
+
 category : rapier
 
 attacks :
@@ -12,6 +14,5 @@ attacks :
   - name : Backstab
     weight : 20
     damage :
-      min : 450
-      max : 450
-    critical chance : 0.6
+      min : 600
+      max : 600

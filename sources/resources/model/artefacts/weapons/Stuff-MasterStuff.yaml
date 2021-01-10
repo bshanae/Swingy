@@ -1,21 +1,22 @@
 name : Master stuff
+level : 2
 category : stuff
 
 attacks :
   - name : Magic arrow
     weight : 35
     damage :
-      min : 80
-      max : 80
+      min : 115
+      max : 115
 
   - name : Heavy magic arrow
     weight : 35
     damage :
-      min : 95
-      max : 95
+      min : 135
+      max : 135
 
   - name : Magic spear
     weight : 30
     damage :
-      min : 120
-      max : 120
+      min : 185
+      max : 185

@@ -1,4 +1,5 @@
 name : Royal mage stuff
+level : 4
 category : stuff
 
 attacks :
@@ -29,5 +30,5 @@ attacks :
   - name : Crtistal magic spear
     weight : 15
     damage :
-      min : 600
-      max : 600
+      min : 650
+      max : 650

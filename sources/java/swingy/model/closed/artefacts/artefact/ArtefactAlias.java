@@ -3,7 +3,6 @@ package swingy.model.closed.artefacts.artefact;
 import swingy.application.service.Exceptions;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 import swingy.model.closed.artefacts.armor.ArmorStorage;
 import swingy.model.closed.artefacts.helm.HelmStorage;
 import swingy.model.closed.artefacts.weapon.WeaponStorage;
@@ -13,42 +12,44 @@ public class						ArtefactAlias
 {
 // -------------------------------> Attributes
 
-	@Getter
-	public final String				name;
+	private final Artefact			artefact;
 
 // -------------------------------> Constructors
 
 	@JsonCreator
 	public 							ArtefactAlias(@JsonProperty("name") String name)
 	{
-		this.name = name;
+		artefact = find(name);
 	}
 
 // -------------------------------> Public methods
 
 	public Artefact					get()
 	{
+		return artefact;
+	}
+
+// -------------------------------> Private methods
+
+	private Artefact				find(String name)
+	{
 		Artefact					temporary;
 
-		if ((temporary = lookupForArtefact(HelmStorage.getInstance())) != null)
+		if ((temporary = lookupForArtefact(HelmStorage.getInstance(), name)) != null)
 			return temporary;
-
-		if ((temporary = lookupForArtefact(ArmorStorage.getInstance())) != null)
+		else if ((temporary = lookupForArtefact(ArmorStorage.getInstance(), name)) != null)
 			return temporary;
-
-		if ((temporary = lookupForArtefact(WeaponStorage.getInstance())) != null)
+		else if ((temporary = lookupForArtefact(WeaponStorage.getInstance(), name)) != null)
 			return temporary;
 
 		throw new Exceptions.ObjectNotFound();
 	}
 
-// -------------------------------> Private methods
-
-	private <T extends Artefact> T	lookupForArtefact(AbstractStorage<T> storage)
+	private <T extends Artefact> T	lookupForArtefact(AbstractStorage<T> storage, String artefactName)
 	{
 		for (T object : storage)
 		{
-			if (object.getName().equals(name))
+			if (object.getName().equals(artefactName))
 				return object;
 		}
 

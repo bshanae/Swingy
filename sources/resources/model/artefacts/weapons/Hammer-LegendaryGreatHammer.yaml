@@ -1,16 +1,15 @@
-name : Legendary rapier
+name : Legendary great hammer
 level : 6
-category : rapier
+category : hammer
 
 attacks :
-  - name : Thrust
+  - name : Regular blow
     weight : 80
     damage :
       min : 400
       max : 400
-    critical chance : 0.5
 
-  - name : Backstab
+  - name : Strong blow
     weight : 20
     damage :
       min : 800

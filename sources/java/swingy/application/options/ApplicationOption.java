@@ -20,8 +20,12 @@ public enum ApplicationOption
 
 	ALWAYS_DROP_ARTEFACT("always-drop-artefact"),
 	ALWAYS_ESCAPE("always-escape"),
+	ALWAYS_WIN("always-win"),
+	ALWAYS_LOSE("always-lose"),
 
-	USE_DATABASE("use-database");
+	USE_DATABASE("use-database"),
+	BETTER_ESCAPING("better-escaping"),
+	BETTER_DROPPING("better-artefact-dropping");
 
 // -------------------------------> Attributes
 

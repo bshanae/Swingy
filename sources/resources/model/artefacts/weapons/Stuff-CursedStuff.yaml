@@ -1,15 +1,16 @@
 name : Cursed stuff
+level : 6
 category : stuff
 
 attacks :
   - name : Nothing
-    weight : 85
+    weight : 80
     damage :
       min : 0
       max : 0
 
   - name : Dark storm
-    weight : 15
+    weight : 20
     damage :
-      min : 2000
-      max : 2000
+      min : 3000
+      max : 3000

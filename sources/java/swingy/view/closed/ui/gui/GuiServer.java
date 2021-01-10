@@ -66,6 +66,7 @@ public class							GuiServer extends Server<GuiTasks.Abstract>
 		{
 			frame.setVisible(true);
 			frame.setAlwaysOnTop(true);
+			frame.setAlwaysOnTop(false);
 		}
 	}
 

@@ -1,24 +1,25 @@
 name : Knight sword
+level : 4
 category : sword
 
 attacks :
   - name : Light blow
-    weight : 40
+    weight : 60
     damage :
       min : 270
       max : 330
     critical chance : 0.15
 
   - name : Strong blow
-    weight : 40
+    weight : 30
     damage :
       min : 350
       max : 450
     critical chance : 0.2
 
   - name : Thrust
-    weight : 20
+    weight : 10
     damage :
-      min : 450
-      max : 450
+      min : 300
+      max : 300
     critical chance : 0.5

@@ -25,11 +25,12 @@ public class						Weapon extends Artefact
 	protected						Weapon
 									(
 										@JsonProperty("name") String name,
+										@JsonProperty("level") int level,
 										@JsonProperty("category") WeaponCategory category,
 										@JsonProperty("attacks") List<Attack> attacks
 									)
 	{
-		super(name, category.getSupportedClassesFlags());
+		super(name, level, category.getSupportedClassesFlags());
 
 		this.category = category;
 		this.attacks = attacks;

@@ -58,7 +58,24 @@ public class								HeroInventory
 		return helm.equals(artefact) || armor.equals(artefact) || weapon.equals(artefact);
 	}
 
+	public boolean			hasBetter(Artefact artefact)
+	{
+		if (artefact instanceof Helm && checkIfBetter(helm, artefact))
+			return true;
+		if (artefact instanceof Armor && checkIfBetter(armor, artefact))
+			return true;
+		if (artefact instanceof Weapon && checkIfBetter(weapon, artefact))
+			return true;
+
+		return false;
+	}
+
 // -----------------------> Private methods
+
+	private boolean			checkIfBetter(Artefact artefactA, Artefact artefactB)
+	{
+		return artefactA == null || artefactA.getLevel() > artefactB.getLevel();
+	}
 
 	private static void		logSettingHelm(Helm helm)
 	{

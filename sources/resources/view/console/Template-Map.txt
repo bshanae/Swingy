@@ -10,14 +10,14 @@
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
 │                                                                   │
-│   %COMMANDS      %                                                │
+│  %COMMANDS      %                                                 │
 │                                                                   │
-│   north/south/east/west  :  Move in the direction                 │
+│  north/south/east/west  :  Move in the direction                  │
 │                                                                   │
-│   stats                  :  Show stats of the hero                │
-│   inventory              :  Show inventory of the hero            │
-│   gui                    :  Switch to GUI                         │
-│   exit                   :  Terminate application                 │
+│  stats                  :  Show stats of the hero                 │
+│  inventory              :  Show inventory of the hero             │
+│  gui                    :  Switch to GUI                          │
+│  exit                   :  Terminate application                  │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 

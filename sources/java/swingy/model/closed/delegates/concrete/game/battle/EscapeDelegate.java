@@ -3,6 +3,7 @@ package swingy.model.closed.delegates.concrete.game.battle;
 import swingy.application.options.ApplicationOption;
 import swingy.application.service.Exceptions;
 import swingy.application.utils.RandomGenerator;
+import swingy.model.closed.Session;
 import swingy.model.closed.creatures.enemy.Enemy;
 import swingy.model.closed.delegates.abstract_.AbstractDelegate;
 import swingy.model.closed.delegates.abstract_.AbstractResolutionObject;
@@ -10,7 +11,7 @@ import swingy.model.closed.delegates.abstract_.commands.ExecutableCommand;
 import swingy.model.closed.delegates.concrete.common.InfoDelegate;
 import swingy.model.closed.delegates.concrete.common.QuestionDelegate;
 
-public class					RunAwayDelegate extends AbstractDelegate
+public class					EscapeDelegate extends AbstractDelegate
 {
 // ---------------------------> Nested types
 
@@ -54,7 +55,7 @@ public class					RunAwayDelegate extends AbstractDelegate
 
 // ---------------------------> Constructor
 
-	public 						RunAwayDelegate(Enemy opponent)
+	public						EscapeDelegate(Enemy opponent)
 	{
 		this.opponent = opponent;
 		this.state = State.WAITING_TO_ASK_QUESTION;
@@ -124,11 +125,19 @@ public class					RunAwayDelegate extends AbstractDelegate
 	private void 				tryEscape()
 	{
 		didEscape = RandomGenerator.randomWithProbability(0.5f);
-
-		if (ApplicationOption.ALWAYS_ESCAPE.isDefined())
-			didEscape = true;
+		didEscape = didEscape || getSpecialCaseResult();
 
 		stackChildLater(new InfoDelegate(didEscape ? RESULT_DID_ESCAPE : RESULT_DID_NOT_ESCAPE));
 		state = State.SHOWED_RESULT;
+	}
+
+	private boolean				getSpecialCaseResult()
+	{
+		if (ApplicationOption.ALWAYS_ESCAPE.isDefined())
+			return true;
+		if (ApplicationOption.BETTER_ESCAPING.isDefined())
+			return Session.getInstance().getHero().getLevel() > opponent.getLevel();
+
+		return false;
 	}
 }

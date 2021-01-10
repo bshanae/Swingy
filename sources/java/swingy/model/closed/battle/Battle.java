@@ -1,5 +1,6 @@
 package swingy.model.closed.battle;
 
+import swingy.application.options.ApplicationOption;
 import swingy.model.closed.Session;
 import swingy.model.closed.creatures.Creature;
 import swingy.model.closed.creatures.enemy.Enemy;
@@ -93,10 +94,14 @@ public class					Battle
 		Attack					attack;
 		boolean					isCritical;
 		int						damage;
+		Integer					specialDamage;
 
 		attack = AttackGenerator.generateAttack(attacker.getAttacks());
 		isCritical = AttackGenerator.generateIsCritical(attack);
 		damage = AttackGenerator.generateDamage(attack, isCritical);
+
+		if ((specialDamage = getDamageForSpecialCases(attacker)) != null)
+			damage = specialDamage;
 
 		attackee.hit(damage);
 
@@ -121,4 +126,15 @@ public class					Battle
 
 		Session.getInstance().getMap().getCreatures().remove(loser);
 	}
+
+	private Integer				getDamageForSpecialCases(Creature attacker)
+	{
+		if (ApplicationOption.ALWAYS_WIN.isDefined())
+			return attacker instanceof Hero ? 10000 : 0;
+		else if (ApplicationOption.ALWAYS_LOSE.isDefined())
+			return attacker instanceof Enemy ? 10000 : 0;
+
+		return null;
+	}
+
 }

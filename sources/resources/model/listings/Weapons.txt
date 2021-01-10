@@ -5,6 +5,7 @@ model/artefacts/weapons/Dagger-SteelDagger.yaml
 model/artefacts/weapons/Hammer-GreatHammer.yaml
 model/artefacts/weapons/Hammer-Hammer.yaml
 model/artefacts/weapons/Hammer-KnightGreatHammer.yaml
+model/artefacts/weapons/Hammer-LegendaryGreatHammer.yaml
 model/artefacts/weapons/Rapier-KnightRapier.yaml
 model/artefacts/weapons/Rapier-LegendaryRapier.yaml
 model/artefacts/weapons/Rapier-Rapier.yaml

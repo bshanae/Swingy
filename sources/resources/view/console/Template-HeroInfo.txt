@@ -1,19 +1,19 @@
 ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
 │                                                                   │
-│   %TITLE         %                                                │
+│  %TITLE         %                                                 │
 │                                                                   │
-│   Class : %CLASS         %                                        │
-│   Level : %LEVEL%                                                 │
-│   Experience : %EXPERIENCE    %                                   │
+│  Class : %CLASS         %                                         │
+│  Level : %LEVEL%                                                  │
+│  Experience : %EXPERIENCE    %                                    │
 │                                                                   │
-│   Helm : %HELM          %                                         │
-│   Armor : %ARMOR         %                                        │
-│   Weapon : %WEAPON        %                                       │
+│  Helm : %HELM              %                                      │
+│  Armor : %ARMOR             %                                     │
+│  Weapon : %WEAPON            %                                    │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
 │                                                                   │
-│   Press enter to go back to menu...                               │
+│  Press enter to go back to menu...                                │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 

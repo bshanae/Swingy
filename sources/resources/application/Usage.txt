@@ -6,5 +6,7 @@ Mandatory flags :
   gui           -  launch in GUI mode
 
 Optional flags :
-  use-database  -  load heroes from a database, needs MySQL server
-  debug         -  if you want to see, why it crashed...
+  use-database    -  load heroes from a database, needs MySQL server
+  better-escaping -  allows to always escape from enemies with lower level, than hero
+  better-dropping -  don't offer a new artefact, if hero has better one of this kind
+  debug           -  if you want to see, why it crashed...

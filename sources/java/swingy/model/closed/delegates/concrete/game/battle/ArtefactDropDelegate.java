@@ -1,5 +1,6 @@
 package swingy.model.closed.delegates.concrete.game.battle;
 
+import swingy.application.options.ApplicationOption;
 import swingy.application.service.Exceptions;
 import swingy.model.closed.Session;
 import swingy.model.closed.artefacts.artefact.Artefact;
@@ -32,8 +33,14 @@ public class					ArtefactDropDelegate extends AbstractDelegate
 		Artefact				temporary;
 
 		temporary = opponent.getArtefactDropper().drop();
-		if (Session.getInstance().getHero().getInventory().has(temporary))
-			temporary = null;
+
+		if (ApplicationOption.BETTER_DROPPING.isDefined())
+		{
+			if (isAlreadyEquipped(temporary))
+				temporary = null;
+			if (doesHeroHasBetterArtefact(temporary))
+				temporary = null;
+		}
 
 		this.artefact = temporary;
 	}
@@ -80,5 +87,15 @@ public class					ArtefactDropDelegate extends AbstractDelegate
 
 		question = String.format(QUESTION, artefact.getName());
 		stackChildLater(new QuestionDelegate(question, ANSWER_A, ANSWER_B));
+	}
+
+	private boolean				isAlreadyEquipped(Artefact artefact)
+	{
+		return Session.getInstance().getHero().getInventory().has(artefact);
+	}
+
+	private boolean				doesHeroHasBetterArtefact(Artefact artefact)
+	{
+		return Session.getInstance().getHero().getInventory().hasBetter(artefact);
 	}
 }

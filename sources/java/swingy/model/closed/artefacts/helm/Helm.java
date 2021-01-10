@@ -15,10 +15,11 @@ public class			Helm extends Artefact
 	public 				Helm
 						(
 							@JsonProperty("name") String name,
+							@JsonProperty("level") int level,
 							@JsonProperty("health") int healthGain
 						)
 	{
-		super(name);
+		super(name, level);
 		this.healthGain = healthGain;
 	}
 }

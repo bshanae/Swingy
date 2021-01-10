@@ -1,24 +1,24 @@
 ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
 │                                                                   │
-│   %TITLE                                                      %   │
+│  %TITLE                                                        %  │
 │                                                                   │
-│   %HERO0                                                      %   │
-│   %HERO1                                                      %   │
-│   %HERO2                                                      %   │
-│   %HERO3                                                      %   │
+│  %HERO0                                                        %  │
+│  %HERO1                                                        %  │
+│  %HERO2                                                        %  │
+│  %HERO3                                                        %  │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
 │                                                                   │
-│   %COMMANDS      %                                                │
+│  %COMMANDS      %                                                 │
 │                                                                   │
-│   create         :  Create hero                                   │
-│   select [hero]  :  Select hero                                   │
-│   info [hero]    :  Info about hero                               │
-│   delete [hero]  :  Delete hero                                   │
+│  create         :  Create hero                                    │
+│  select [hero]  :  Select hero                                    │
+│  info [hero]    :  Info about hero                                │
+│  delete [hero]  :  Delete hero                                    │
 │                                                                   │
-│   gui            :  Switch to GUI                                 │
-│   exit           :  Terminate application                         │
+│  gui            :  Switch to GUI                                  │
+│  exit           :  Terminate application                          │
 │                                                                   │
 ┕━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
 

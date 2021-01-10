@@ -1,15 +1,16 @@
 name : Knight great hammer
+level : 4
 category : hammer
 
 attacks :
   - name : Regular blow
-    weight : 95
+    weight : 80
     damage :
       min : 300
       max : 300
 
   - name : Strong blow
-    weight : 5
+    weight : 20
     damage :
-      min : 1500
-      max : 1500
+      min : 600
+      max : 600

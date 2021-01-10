@@ -11,19 +11,24 @@ public abstract class		Artefact
 	private final String	name;
 
 	@Getter
+	private final int		level;
+
+	@Getter
 	private final int		supportedClassesFlags;
 
 // ----------------------->	Constructors
 
-	protected 				Artefact(String name, int supportedClassesFlags)
+	protected 				Artefact(String name, int level, int supportedClassesFlags)
 	{
 		this.name = name;
+		this.level = level;
 		this.supportedClassesFlags = supportedClassesFlags;
 	}
 
-	protected 				Artefact(String name)
+	protected 				Artefact(String name, int level)
 	{
 		this.name = name;
+		this.level = level;
 
 		this.supportedClassesFlags =
 			HeroClass.WARRIOR.toFlag() |

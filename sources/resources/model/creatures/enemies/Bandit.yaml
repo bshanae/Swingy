@@ -1,5 +1,5 @@
 name : Bandit
-health : 350
+health : 300
 defense : 30
 level : 3
 
@@ -7,17 +7,19 @@ attacks :
   - name : Blow with scimitar
     weight : 80
     damage :
-      min : 60
-      max : 120
+      min : 75
+      max : 175
     critical chance : 0.1
 
   - name : Cut with knife
     weight : 20
     damage :
-      min : 80
-      max : 80
-    critical chance : 0.5
+      min : 95
+      max : 95
+    critical chance : 0.45
 
 artefacts :
+  - name : Bandit helm
+  - name : Bandit armor
   - name : Bandit dagger
-  - name : Dandit scimitar
+  - name : Bandit scimitar

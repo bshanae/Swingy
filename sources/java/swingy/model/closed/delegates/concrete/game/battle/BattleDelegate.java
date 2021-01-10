@@ -1,5 +1,6 @@
 package swingy.model.closed.delegates.concrete.game.battle;
 
+import swingy.application.options.ApplicationOption;
 import swingy.application.service.Exceptions;
 import swingy.controller.open.Commands;
 import swingy.model.closed.Session;

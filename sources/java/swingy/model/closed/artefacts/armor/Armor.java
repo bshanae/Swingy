@@ -14,9 +14,10 @@ public class			Armor extends Artefact
 	public				Armor
 						(
 							@JsonProperty("name") String name,
+							@JsonProperty("level") int level,
 							@JsonProperty("defense") int defenseGain)
 	{
-		super(name);
+		super(name, level);
 		this.defenseGain = defenseGain;
 	}
 }

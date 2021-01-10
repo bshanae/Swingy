@@ -35,7 +35,9 @@ java -jar target/swing.jar [console/gui]
 ### Optional flags :
 `use-database`  -  load heroes from a database, needs MySQL server
 
-`debug`         -  if you want to see, why it crashed...
+`better-escaping` -  allows to always escape from enemies with lower level, than hero
+
+`better-dropping` -  don't offer a new artefact, if hero has this artefact or has better one of this kind
 
 ## Resources
 
